@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" style="-fx-background-image: url('/images/bg1.jpg');" stylesheets="@../../../../../values/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <ImageView fitHeight="812.0" fitWidth="1536.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <image>
+         <Image url="@../../../images/bg.jpg" />
+      </image>
+   </ImageView>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="borderpane" stylesheets="@../../../../../values/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox alignment="CENTER" prefWidth="437.0" stylesheets="@../../../../../values/style.css">
+            <VBox alignment="CENTER" styleClass="card" stylesheets="@../../../../../values/style.css">
+               <children>
+                     <Button styleClass="userbtn">
+                        <graphic>
+                           <ImageView fitHeight="100" fitWidth="100" scaleX="0.75" scaleY="0.8">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@../../../images/reader3.png" />
+                           </image>
+                        </ImageView>
+                        </graphic>
+                     </Button>
+                     <Label text="User">
+                     <font>
+                        <Font name="Corbel" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            </VBox>
+         </left>
+         <center>
+            <VBox alignment="CENTER" prefWidth="438.0" stylesheets="@../../../../../values/style.css">
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="card">
+               <children>
+                     <Button styleClass="libbtn">
+                        <graphic>
+                           <ImageView fitHeight="100" fitWidth="100" scaleX="0.75" scaleY="0.75" styleClass="card-image">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@../../../images/librarian.png" />
+                           </image>
+                        </ImageView>
+                        </graphic>
+                     </Button>
+                     <Label text="Librarian">
+                     <font>
+                        <Font name="Corbel" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            </VBox>
+         </center>
+         <right>
+            <VBox alignment="CENTER" prefWidth="437.0">
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="card">
+               <children>
+                     <Button alignment="CENTER" styleClass="adminbtn" textFill="#dcd7c9">
+                        <graphic>
+                           <ImageView fitHeight="100" fitWidth="100" scaleX="0.75" scaleY="0.75">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@../../../images/admin.png" />
+                           </image>
+                        </ImageView>
+                        </graphic>
+                     </Button>
+                     <Label text="Admin">
+                     <font>
+                        <Font name="Corbel" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <cursor>
+               <Cursor fx:constant="DEFAULT" />
+            </cursor>
+            </VBox>
+         </right>
+      <bottom>
+         <Text fill="#d74a2e" strokeType="OUTSIDE" strokeWidth="4.0" text="Alaa Kanso - Mohamad Itani - Mustafa Radi - Hamza Hamadi" BorderPane.alignment="CENTER">
+            <font>
+               <Font name="Corbel Bold" size="29.0" />
+            </font>
+            <BorderPane.margin>
+               <Insets bottom="-3.0" right="87.0" />
+            </BorderPane.margin>
+         </Text>
+      </bottom>
+      </BorderPane>
+</AnchorPane>

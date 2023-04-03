@@ -1,0 +1,84 @@
+.logo {
+    -fx-fit-height: 50;
+    -fx-fit-width: 50;
+}
+
+.libbtn {
+    -fx-background-color: #ffffff;
+    -fx-padding: 7px 10px;
+    -fx-background-radius:50%;
+    -fx-alignment: center;
+}
+
+.userbtn{
+    -fx-background-color: #ffffff;
+    -fx-padding: 7px 10px;
+    -fx-background-radius:50%;
+    -fx-alignment: center;
+}
+
+.adminbtn{
+    -fx-background-color: #ffffff;
+    -fx-padding: 7px 10px;
+    -fx-background-radius:50%;
+     -fx-alignment: center;
+}
+
+.card {
+    -fx-background-color: #f0824f;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 3);
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+    -fx-transition: all 2s ease;
+    -fx-max-height: 257.0;
+    -fx-max-width: 209.0;
+    -fx-min-height: 257.0;
+    -fx-min-width: 209.0;
+    -fx-pref-height: 257.0;
+    -fx-pref-width: 209.0;
+}
+
+
+.card:hover {
+    -fx-translate-y: -10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 5);
+    -fx-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.vleft {
+    -fx-background-color: #dcd7c9;
+}
+
+.vright {
+    -fx-background-color: #f6f5f1;
+}
+
+.registerbtn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #3f4e4f;
+    -fx-font-size: 14px;
+    -fx-padding: 5px 10px;
+}
+
+.registerbtn:hover {
+    -fx-text-fill: #f0824f;
+}
+
+.loginbtn {
+    -fx-background-color: #dcd7c9;
+        -fx-text-fill: #3f4e4f;
+        -fx-padding: 5px 10px;
+        -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 2);
+        -fx-font-size: 14px;
+        -fx-transition: all 0.3s;
+}
+
+.loginbtn:hover {
+    -fx-background-color: #3f4e4f;
+        -fx-text-fill: #dcd7c9;
+        -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.8), 10, 0, 0, 2);
+        -fx-font-size: 15px;
+        -fx-scale-x: 1.2;
+}
