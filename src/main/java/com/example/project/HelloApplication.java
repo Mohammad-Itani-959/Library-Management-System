@@ -26,6 +26,7 @@ public class HelloApplication extends Application {
 
         // Hello there//
 
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
         AnchorPane root = loader.load();
         Scene scene = new Scene(root);
