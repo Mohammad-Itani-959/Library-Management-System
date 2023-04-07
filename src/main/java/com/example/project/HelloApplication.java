@@ -24,8 +24,6 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();*/
 
-        // Hello there//
-
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
         AnchorPane root = loader.load();
@@ -39,7 +37,7 @@ public class HelloApplication extends Application {
 
 
         //HelloController controller = loader.getController();
-    }
+    }//Hello Mohammad itani
 
     public static void main(String[] args) {
         /*try {
