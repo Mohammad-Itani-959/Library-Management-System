@@ -35,7 +35,7 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
 
-
+        //Moustafa Radi
         //HelloController controller = loader.getController();
     }//Hello Mohammad itani
 
