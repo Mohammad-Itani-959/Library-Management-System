@@ -55,14 +55,14 @@
     -fx-background-color: #f6f5f1;
 }
 
-.registerbtn {
+.Registerbtn {
     -fx-background-color: transparent;
     -fx-text-fill: #3f4e4f;
     -fx-font-size: 14px;
     -fx-padding: 5px 10px;
 }
 
-.registerbtn:hover {
+.Registerbtn:hover {
     -fx-text-fill: #f0824f;
 }
 

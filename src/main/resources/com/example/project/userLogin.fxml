@@ -40,13 +40,13 @@
                <children>
                   <ImageView fitHeight="49.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
                      <image>
-                        <Image url="@../../../images/admin.png" />
+                        <Image url="@../../../images/email.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="19.0" />
                      </HBox.margin>
                   </ImageView>
-                  <TextField prefHeight="38.0" prefWidth="364.0" promptText="Username">
+                  <TextField prefHeight="38.0" prefWidth="364.0" promptText="Email">
                      <HBox.margin>
                         <Insets left="17.0" />
                      </HBox.margin>
