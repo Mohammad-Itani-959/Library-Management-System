@@ -8,6 +8,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Main extends Application {
     Button user;
@@ -16,7 +18,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("books.fxml"));
         AnchorPane root = loader.load();
         Scene scene = new Scene(root);
 
@@ -28,7 +30,11 @@ public class Main extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+        Database database = new Database();
+        //database.createSuppliers();
+        //database.createBooks();
         launch();
+
     }
 }
