@@ -4,7 +4,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,10 +17,12 @@ public class Main extends Application {
     Button user;
     Button librarian;
     Button admin;
+
+
     @Override
     public void start(Stage stage) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("books.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("borrowerRegister.fxml"));
         AnchorPane root = loader.load();
         Scene scene = new Scene(root);
 
@@ -32,8 +36,9 @@ public class Main extends Application {
 
     public static void main(String[] args) throws SQLException {
         Database database = new Database();
-        //database.createSuppliers();
-        //database.createBooks();
+        database.createTables();
+        database.addData();
+
         launch();
 
     }

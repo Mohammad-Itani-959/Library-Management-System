@@ -22,13 +22,14 @@ public class loginController {
     }
 
     public void userHandler(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("userLogin.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("borrowerLogin.fxml"));
         AnchorPane root = loader.load();
         Scene scene = new Scene(root);
         Stage stage1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage1.setTitle("Library Management System");
+        stage1.setTitle("Borrower Login");
         stage1.setWidth(800);
         stage1.setHeight(600);
+
         stage1.setScene(scene);
         stage1.show();
 
