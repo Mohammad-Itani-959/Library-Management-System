@@ -29,7 +29,7 @@
                 </ImageView>
             </children>
         </VBox>
-        <VBox alignment="CENTER" layoutX="559.0" prefHeight="810.0" prefWidth="756.0" styleClass="adminbtn" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="634.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox alignment="CENTER" layoutX="559.0" prefHeight="810.0" prefWidth="756.0" styleClass="vright" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="634.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                     <children>
@@ -111,7 +111,7 @@
                         </PasswordField>
                     </children>
                 </HBox>
-                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #2264e0;" styleClass="Registerbtn" text="Register">
+                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #03b1fc;" styleClass="Registerbtn" text="Register">
                     <VBox.margin>
                         <Insets left="32.0" top="22.0" />
                     </VBox.margin>
