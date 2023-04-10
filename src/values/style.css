@@ -56,18 +56,18 @@
 }
 
 .Registerbtn {
-    -fx-background-color: transparent;
     -fx-text-fill: #3f4e4f;
     -fx-font-size: 14px;
     -fx-padding: 5px 10px;
+    -fx-background-radius : 40;
 }
 
 .Registerbtn:hover {
     -fx-text-fill: #f0824f;
-}
 
+}
 .loginbtn {
-    -fx-background-color: #dcd7c9;
+    -fx-background-color:#dcd7c9;
         -fx-text-fill: #3f4e4f;
         -fx-padding: 5px 10px;
         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 2);
