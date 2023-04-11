@@ -201,7 +201,7 @@ public class Database {
     }
 
     public ResultSet selectAllBooks() throws SQLException{
-        return statement.executeQuery("Select * from book ");
+        return statement.executeQuery("Select * from Books ");
     }
 
     public ResultSet getSelectedBook(String bookName) throws SQLException{

@@ -64,7 +64,7 @@ public class borrowerLoginController {
 
 
             allBooksController allBooksController = fxmlLoader.getController();
-            allBooksController.setUser(this.proxyBorrower);
+            allBooksController.setUser(this.proxyBorrower.getRealBorrower().getEmail());
 
 
             Scene scene = new Scene(root);
