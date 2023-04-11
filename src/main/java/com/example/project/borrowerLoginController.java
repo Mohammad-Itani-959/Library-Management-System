@@ -41,6 +41,7 @@ public class borrowerLoginController {
     @FXML
     private Label errorMessage;
 
+    protected  proxyBorrower proxyBorrower;
     public void login(ActionEvent actionEvent) throws SQLException, IOException {
 
         String Email = email.getText().toString();
@@ -50,9 +51,8 @@ public class borrowerLoginController {
             errorMessage.setText("Please fill the empty fields ... ! ");
             return ;
         }
-        boolean flag = database.login(Email,Password);
-        System.out.println(flag);
-        if(flag == false){
+        this.proxyBorrower = new proxyBorrower(Email,Password);
+        if(this.proxyBorrower.getRealBorrower()==null){
             errorMessage.setText("Invalid username or password ... !");
             return ;
         }
@@ -61,10 +61,18 @@ public class borrowerLoginController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("allbooks.fxml"));
             Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
             AnchorPane root = fxmlLoader.load();
+
+
+            allBooksController allBooksController = fxmlLoader.getController();
+            allBooksController.setUser(this.proxyBorrower);
+
+
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setFullScreen(true);
+
             stage.show();
+            //hello
         }
 
     }

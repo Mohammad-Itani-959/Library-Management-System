@@ -22,7 +22,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("borrowerRegister.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("borrowerLogin.fxml"));
         AnchorPane root = loader.load();
         Scene scene = new Scene(root);
 

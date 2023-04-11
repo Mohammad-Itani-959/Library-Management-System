@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="810.0" prefWidth="1315.0" stylesheets="@../../../../../values/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.userLoginController">
+<AnchorPane prefHeight="810.0" prefWidth="1315.0" stylesheets="@../../../../../values/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.borrowerLoginController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="810.0" prefWidth="634.0" styleClass="vleft">
          <children>
@@ -46,7 +47,7 @@
                         <Insets left="19.0" />
                      </HBox.margin>
                   </ImageView>
-                  <TextField prefHeight="38.0" prefWidth="364.0" promptText="Email">
+                  <TextField fx:id="email" prefHeight="38.0" prefWidth="364.0" promptText="Email">
                      <HBox.margin>
                         <Insets left="17.0" />
                      </HBox.margin>
@@ -66,7 +67,7 @@
                         <Insets left="7.0" />
                      </HBox.margin>
                   </ImageView>
-                  <PasswordField prefHeight="38.0" prefWidth="366.0" promptText="password">
+                  <PasswordField fx:id="password" prefHeight="38.0" prefWidth="366.0" promptText="password">
                      <HBox.margin>
                         <Insets left="11.0" />
                      </HBox.margin>
@@ -87,7 +88,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button mnemonicParsing="false" styleClass="loginbtn" text="Login">
+            <Button mnemonicParsing="false" styleClass="loginbtn" text="Login" onAction="#login">
                <VBox.margin>
                   <Insets left="32.0" top="22.0" />
                </VBox.margin>
@@ -95,6 +96,17 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Label fx:id="errorMessage" textFill="#e10505" textOverrun="WORD_ELLIPSIS">
+               <VBox.margin>
+                  <Insets left="20.0" top="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Franklin Gothic Medium" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Label>
          </children></VBox>
    </children>
 </AnchorPane>
