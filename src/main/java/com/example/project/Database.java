@@ -8,7 +8,7 @@ public class Database {
     Statement statement ;
 
     public Database() throws SQLException {
-        this.connection= DriverManager.getConnection(String.format("jdbc:mysql://localhost:3306/%s", "guiprroject"), "root", "");
+        this.connection= DriverManager.getConnection(String.format("jdbc:mysql://localhost:3306/%s", "guiprroject"), "root", "AlaaKanso2002.@.");
         this.statement = this.connection.createStatement();
         /* statement.execute("create function numberOfBooks (@category varchar(30))" +
                 "returns int" +
@@ -107,67 +107,65 @@ public class Database {
     }
 
     public void createTables() throws SQLException{
-
-        ResultSet resultSet ;
-        resultSet = statement.executeQuery("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'Users')");
-        if(!(resultSet.next() && resultSet.getBoolean(1))){
-            statement.execute("CREATE TABLE Users (id int ,username VARCHAR(50)," +
-                    "  email VARCHAR(50), password VARCHAR(255),type varchar(20),PRIMARY KEY(id) )" );
-        }
-
-
-
-
-        resultSet = statement.executeQuery("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'Suppliers')");
-        if(!(resultSet.next() && resultSet.getBoolean(1))){
-            statement.execute("CREATE TABLE Suppliers (" +
-                    "  suplierId int  PRIMARY KEY," +
-                    "  name VARCHAR(50) NOT NULL," +
-                    "  phoneNumber varchar(20));");
-        }
-
-        resultSet = statement.executeQuery("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'Books')");
-        if(!(resultSet.next() && resultSet.getBoolean(1))){
-            statement.execute("CREATE TABLE Books  ( SN int PRIMARY KEY," +
-                    "title VARCHAR(50) ,description TEXT,quantity int," +
-                    "category varchar(30),autherName varchar(30), suplierId int," +
-                    "FOREIGN KEY (suplierId) REFERENCES Suppliers(suplierId));");
-        }
-
-        resultSet = statement.executeQuery("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'Borrowers')");
-        if(!(resultSet.next() && resultSet.getBoolean(1))){
-            statement.execute("CREATE TABLE Borrowers (" +
-                    "  SN int," +
-                    "  id int," +
-                    "  borrowDate DATETIME," +
-                    "  returnTime DATETIME," +
-                    "  FOREIGN KEY (SN) REFERENCES Books(SN)" +
-                    ");");
-        }
+            ResultSet resultSet ;
+            resultSet = statement.executeQuery("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'Users')");
+            if(!(resultSet.next() && resultSet.getBoolean(1))){
+                statement.execute("CREATE TABLE Users (" +
+                        " id int PRIMARY KEY," +
+                        " username VARCHAR(50) NOT NULL," +
+                        " email VARCHAR(50) NOT NULL," +
+                        " password VARCHAR(255) NOT NULL," +
+                        " type VARCHAR(20));");
+            }
 
 
 
 
+            resultSet = statement.executeQuery("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'Suppliers')");
+            if(!(resultSet.next() && resultSet.getBoolean(1))){
+                statement.execute("CREATE TABLE Suppliers (" +
+                        "  suplierId int  PRIMARY KEY," +
+                        "  name VARCHAR(50) NOT NULL," +
+                        "  phoneNumber varchar(20));");
+            }
+
+            resultSet = statement.executeQuery("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'Books')");
+            if(!(resultSet.next() && resultSet.getBoolean(1))){
+                statement.execute("CREATE TABLE Books  ( SN int PRIMARY KEY," +
+                        "title VARCHAR(50) ,description TEXT,quantity int," +
+                        "category varchar(30),autherName varchar(30), suplierId int," +
+                        "FOREIGN KEY (suplierId) REFERENCES Suppliers(suplierId));");
+            }
+
+            resultSet = statement.executeQuery("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'Borrowers')");
+            if(!(resultSet.next() && resultSet.getBoolean(1))){
+                statement.execute("CREATE TABLE Borrowers (" +
+                        "  SN int," +
+                        "  id int," +
+                        "  borrowDate DATETIME," +
+                        "  returnTime DATETIME," +
+                        "  FOREIGN KEY (SN) REFERENCES Books(SN)" +
+                        ");");
+            }
     }
 
     public void addData() throws SQLException{
-        createUsers();
         createSuppliers();
         createBooks();
+        createUsers();
     }
 
     public void createUsers() throws SQLException{
-        ResultSet resultSet = statement.executeQuery("Select * from Users");
-        if(resultSet.next()){
-            return ;
-        }
-        Statement statement = connection.createStatement();
-        statement.execute("INSERT INTO Users (id, username, email, password, type) VALUES " +
-                "(1, 'john.doe', 'john.doe@example.com', 'password1', 'admin'), " +
-                "(2, 'jane.doe', 'jane.doe@example.com', 'password2', 'borrower'), " +
-                "(3, 'alice', 'alice@example.com', 'password3', 'borrower'), " +
-                "(4, 'bob', 'bob@example.com', 'password4', 'librarian'), " +
-                "(5, 'charlie', 'charlie@example.com', 'password5', 'librarian')");
+            ResultSet resultSet = statement.executeQuery("Select * from Users");
+            if(resultSet.next()){
+                return ;
+            }
+            statement.execute("INSERT INTO Users (id, username, email, password, type) VALUES\n" +
+                    "( 1, 'john.doe', 'john.doe@example.com', 'password1', 'admin'),\n" +
+                    "( 2, 'jane.doe', 'jane.doe@example.com', 'password2', 'borrower'),\n" +
+                    "( 3, 'alice', 'alice@example.com', 'password3', 'borrower'),\n" +
+                    "( 4, 'bob', 'bob@example.com', 'password4', 'librarian'),\n" +
+                    "( 5, 'charlie', 'charlie@example.com', 'password5', 'librarian');\n");
 
     }
     public void createSuppliers() throws SQLException{

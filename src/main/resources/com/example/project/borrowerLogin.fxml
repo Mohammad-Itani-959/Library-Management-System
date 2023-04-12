@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="810.0" prefWidth="1315.0" stylesheets="@../../../../../values/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.borrowerLoginController">
+<AnchorPane prefHeight="810.0" prefWidth="1315.0" stylesheets="@../../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.borrowerLoginController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="810.0" prefWidth="634.0" styleClass="vleft">
          <children>
@@ -88,7 +88,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button mnemonicParsing="false" styleClass="loginbtn" text="Login" onAction="#login">
+            <Button mnemonicParsing="false" onAction="#login" styleClass="loginbtn" text="Login">
                <VBox.margin>
                   <Insets left="32.0" top="22.0" />
                </VBox.margin>

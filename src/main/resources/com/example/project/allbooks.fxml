@@ -21,7 +21,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.allBooksController">
+<AnchorPane prefHeight="810.0" prefWidth="1315.0" stylesheets="@../../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.allBooksController">
     <children>
         <BorderPane prefHeight="810.0" prefWidth="1321.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
@@ -208,10 +208,10 @@
                     </children>
                 </VBox>
             </center>
+         <stylesheets>
+            <URL value="@../../../../../values/style.css" />
+            <URL value="@../../../../../values/style.css" />
+         </stylesheets>
         </BorderPane>
     </children>
-   <stylesheets>
-      <URL value="@../../../../../values/style.css" />
-      <URL value="@../../../../../values/style.css" />
-   </stylesheets>
 </AnchorPane>

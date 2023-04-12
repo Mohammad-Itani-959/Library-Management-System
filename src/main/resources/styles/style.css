@@ -1,27 +1,16 @@
+/*General*/
+.white-bg{
+    -fx-background-color: #dcd7c9;
+}
+
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+/*start page*/
 .logo {
     -fx-fit-height: 50;
     -fx-fit-width: 50;
-}
-
-.libbtn {
-    -fx-background-color: #ffffff;
-    -fx-padding: 7px 10px;
-    -fx-background-radius:50%;
-    -fx-alignment: center;
-}
-
-.userbtn{
-    -fx-background-color: #ffffff;
-    -fx-padding: 7px 10px;
-    -fx-background-radius:50%;
-    -fx-alignment: center;
-}
-
-.adminbtn{
-    -fx-background-color: #ffffff;
-    -fx-padding: 7px 10px;
-    -fx-background-radius:50%;
-     -fx-alignment: center;
 }
 
 .card {
@@ -47,6 +36,7 @@
     -fx-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
+/*login and register pages*/
 .vleft {
     -fx-background-color: #dcd7c9;
 }
@@ -55,19 +45,19 @@
     -fx-background-color: #f6f5f1;
 }
 
-.Registerbtn {
+.registerbtn {
+    -fx-background-color: transparent;
     -fx-text-fill: #3f4e4f;
     -fx-font-size: 14px;
     -fx-padding: 5px 10px;
-    -fx-background-radius : 40;
 }
 
-.Registerbtn:hover {
+.registerbtn:hover {
     -fx-text-fill: #f0824f;
-
 }
+
 .loginbtn {
-    -fx-background-color:#dcd7c9;
+    -fx-background-color: #dcd7c9;
         -fx-text-fill: #3f4e4f;
         -fx-padding: 5px 10px;
         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 2);
@@ -83,7 +73,11 @@
         -fx-scale-x: 1.2;
 }
 
+.Registerbtn{
+    -fx-background-color: #5cc5cc;
+}
 
+/*allbooks page*/
 .searchbox{
     -fx-border-radius: 50;
     -fx-border-color: #f0824f;
