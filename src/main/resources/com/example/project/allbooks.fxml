@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:controller="com.example.project.allBooksController" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="810.0" prefWidth="1315.0" stylesheets="@../../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.allBooksController">
     <children>
         <BorderPane prefHeight="810.0" prefWidth="1321.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
@@ -104,7 +104,7 @@
                             </children>
                         </HBox>
                         <Separator prefWidth="200.0" />
-                        <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" text="Browse">
+                        <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter">
                             <VBox.margin>
                                 <Insets left="4.0" top="6.0" />
                             </VBox.margin>
@@ -132,6 +132,23 @@
                                 </ChoiceBox>
                             </children>
                         </HBox>
+                  <HBox prefHeight="26.0" prefWidth="310.0">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/author.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets top="1.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <TextArea prefHeight="23.0" prefWidth="223.0" promptText="Author">
+                           <font>
+                              <Font name="Corbel" size="14.0" />
+                           </font>
+                        </TextArea>
+                     </children>
+                  </HBox>
                         <Separator prefWidth="200.0">
                             <VBox.margin>
                                 <Insets top="2.0" />
@@ -207,8 +224,4 @@
             </center>
         </BorderPane>
     </children>
-   <stylesheets>
-      <URL value="@../../../../../values/style.css" />
-      <URL value="@../../../../../values/style.css" />
-   </stylesheets>
 </AnchorPane>

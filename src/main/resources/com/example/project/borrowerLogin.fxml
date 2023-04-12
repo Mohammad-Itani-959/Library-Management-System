@@ -77,7 +77,7 @@
                   </PasswordField>
                </children>
             </HBox>
-            <Button mnemonicParsing="false" styleClass="registerbtn" text="Don't have an accont? click here to register!">
+            <Button mnemonicParsing="false" fx:id="register" styleClass="registerbtn" text="Don't have an accont? click here to register!">
                <font>
                   <Font name="Arial Bold" size="15.0" />
                </font>
@@ -88,7 +88,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button mnemonicParsing="false" onAction="#login" styleClass="loginbtn" text="Login">
+            <Button mnemonicParsing="false" onAction="#login" styleClass="loginbtn" fx:id="login" text="Login">
                <VBox.margin>
                   <Insets left="32.0" top="22.0" />
                </VBox.margin>
