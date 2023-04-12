@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -16,10 +17,14 @@ public class loginController {
     private Label welcomeText;
 
     @FXML
+    private Button userbtn;
 
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
+    @FXML
+    private Button librarianbtn;
+
+    @FXML
+    private Button adminbtn;
+
 
     public void userHandler(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("borrowerLogin.fxml"));
@@ -27,20 +32,42 @@ public class loginController {
         Scene scene = new Scene(root);
         Stage stage1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage1.setTitle("Borrower Login");
-        stage1.setWidth(800);
-        stage1.setHeight(600);
+        stage1.setWidth(1350);
+        stage1.setHeight(810);
 
         stage1.setScene(scene);
         stage1.show();
 
     }
-    public void librarianHandler(ActionEvent event){
-        System.out.printf("Librarian button is clicked");
+    public void librarianHandler(ActionEvent event) throws IOException{
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("adminANDlibrarianLogin.fxml"));
+            AnchorPane root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage1.setTitle("librarian Login");
+            stage1.setWidth(1350);
+            stage1.setHeight(810);
+
+            stage1.setScene(scene);
+            stage1.show();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
-    public void adminHandler(ActionEvent event){
-        System.out.printf("Admin button is clicked");
+    public void adminHandler(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("adminANDlibrarianLogin.fxml"));
+        AnchorPane root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage1.setTitle("admin Login");
+        stage1.setWidth(1350);
+        stage1.setHeight(810);
+
+        stage1.setScene(scene);
+        stage1.show();
 
     }
 
