@@ -28,6 +28,8 @@ public class borrowerLoginController {
         }
     }
 
+
+    @javafx.fxml.FXML
     @FXML
     public TextField email;
     @FXML

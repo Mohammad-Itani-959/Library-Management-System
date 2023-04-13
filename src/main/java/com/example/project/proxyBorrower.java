@@ -25,7 +25,7 @@ public class proxyBorrower {
         }
     }
     public void login(String email , String password) throws SQLException{
-        if(database.login(email,password)){
+        if(database.borrowerLogin(email,password)){
             this.realBorrower = new borrower(email,password);
 
         }
