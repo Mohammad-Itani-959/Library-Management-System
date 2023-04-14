@@ -45,7 +45,7 @@ public class registerController {
         String Email = email.getText();
 
         if(Username.length()>0 && (Password.length()>0 && Password.equals(ConfirmPassword)) && Email.length()>0){
-            boolean flag = database.registerBorrower(Username , Email , Password);
+            boolean flag = database.borrowerRegister(Username , Email , Password);
             if(flag == true){
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("allbooks.fxml"));
                 AnchorPane root = fxmlLoader.load();

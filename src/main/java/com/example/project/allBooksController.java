@@ -216,7 +216,7 @@ public class allBooksController implements Initializable {
 
 
             ImageView imageView = new ImageView();
-            Image image = new Image("file:C:/Users/Moustafar/Documents/GitHub/GUI/gui/src/main/resources/"+bookImage);
+            Image image = new Image("file:src/main/resources/"+bookImage);
             imageView.setImage(image);
             imageView.setFitWidth(50);
             imageView.setFitHeight(50);

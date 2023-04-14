@@ -210,13 +210,43 @@ public class Database {
         if(resultSet.next()) return true;
         return false;
     }
-    public boolean registerBorrower(String username , String email , String password)throws SQLException{
+    public boolean borrowerRegister(String username , String email , String password)throws SQLException{
         statement.execute("INSERT INTO Users(id,username , email , password ,type) " +
-                "Values('"+id+"','"+username+"','"+email+"','"+password+"', 'borrower');");
-        id++;
+                "Values('"+idBorrowers+"','"+username+"','"+email+"','"+password+"', 'borrower');");
+        idBorrowers++;
         return true;
     }
 
+    public boolean adminLogin(String email , String password) throws SQLException{
+        ResultSet resultSet = statement.executeQuery("Select * from Users where email = '"+email+"' and password = '"+password+"' and " +
+                "type = 'admin'");
+        if(resultSet.next()) return true;
+        return false;
+    }
+
+    public boolean adminRegister(String username , String email , String password)throws SQLException{
+        ResultSet resultSet = statement.executeQuery("Select * from Users where type = 'admin'");
+        if(resultSet.next())return false;
+        else{
+            statement.execute("INSERT INTO Users(id,username , email , password ,type) " +
+                    "Values('"+'1'+"','"+username+"','"+email+"','"+password+"', 'admin');");
+            return true;
+        }
+
+    }
+
+    public boolean librarianLogin(String email , String password) throws SQLException{
+       ResultSet resultSet= statement.executeQuery("Select * from Users where email = '"+email+"' and password = '"+password+"' and type = 'librarian'");
+        if(resultSet.next()) return true;
+        return  false ;
+    }
+
+    public boolean librarianRegister(String username , String password , String email) throws SQLException{
+        statement.execute("INSERT INTO Users(id,username , email , password ,type) " +
+                "Values('"+idBorrowers+"','"+username+"','"+email+"','"+password+"', 'librarian');");
+        idLibrarians++;
+        return true;
+    }
     public ResultSet get_books_by_author(String authorName) throws SQLException{
         ResultSet resultSet = statement.executeQuery("Select * From Books where autherName = '"+authorName+"'");
         return resultSet;
@@ -230,6 +260,7 @@ public class Database {
         return statement.executeQuery("Select * From Books where bookLength <='"+length+"'");
     }
 
-    static int id = 6;
+    static int idBorrowers = 6;
+    static int idLibrarians = 6;
 }
 
