@@ -70,6 +70,44 @@
                                 </Button>
                             </children>
                         </HBox>
+                  <Separator prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets top="2.0" />
+                     </VBox.margin>
+                  </Separator>
+                  <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="310.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/notification.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" text="No new notification">
+                           <font>
+                              <Font name="Corbel Bold" size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="13.0" top="6.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="11.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Separator prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Separator>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="borrow-btn" text="Borrow">
+                     <font>
+                        <Font name="Corbel Bold Italic" size="21.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="87.0" top="20.0" />
+                     </VBox.margin>
+                  </Button>
                     </children>
                 </VBox>
             </left>

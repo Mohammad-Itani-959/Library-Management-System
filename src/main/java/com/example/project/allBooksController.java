@@ -85,13 +85,12 @@ public class allBooksController implements Initializable {
             String bookCat = allbooks.getString(6);
             String bookAuth = allbooks.getString(7);
 
-
+            System.out.println(bookImage);
             ImageView imageView = new ImageView();
-            Image image = new Image("file:C:/Users/Moustafar/Documents/GitHub/GUI/gui/src/main/resources/"+bookImage);
+            Image image = new Image(getClass().getResourceAsStream("/" + bookImage));
             imageView.setImage(image);
-            imageView.setFitWidth(50);
-            imageView.setFitHeight(50);
-
+            imageView.setFitWidth(90);
+            imageView.setFitHeight(120);
 
             Label label = new Label(bookTitle);
             VBox newVbox = new VBox();
