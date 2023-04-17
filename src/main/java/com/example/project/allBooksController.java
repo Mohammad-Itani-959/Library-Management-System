@@ -5,14 +5,19 @@ import com.example.project.iterator.LengthIterator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -73,68 +78,75 @@ public class allBooksController implements Initializable {
 
     }
 
-    public void getAllbooks(GridPane gridPane) throws SQLException {
-        ResultSet allbooks = this.database.selectAllBooks();
-        int columnIndex = 0;
-        int rowIndex = 0;
+        public void getAllbooks(GridPane gridPane) throws SQLException {
+            ResultSet allbooks = this.database.selectAllBooks();
+            int columnIndex = 0;
+            int rowIndex = 0;
 
-        while (allbooks.next()) {
-            String bookTitle= allbooks.getString(2);
-            String bookDesc = allbooks.getString(3);
-            String bookImage = allbooks.getString(5);
-            String bookCat = allbooks.getString(6);
-            String bookAuth = allbooks.getString(7);
+            gridPane.setPadding(new Insets(10));
+            gridPane.setHgap(15);
+            gridPane.setVgap(10);
 
-            System.out.println(bookImage);
-            ImageView imageView = new ImageView();
-            Image image = new Image(getClass().getResourceAsStream("/" + bookImage));
-            imageView.setImage(image);
-            imageView.setFitWidth(90);
-            imageView.setFitHeight(120);
+            while (allbooks.next()) {
+                String bookTitle= allbooks.getString(2);
+                String bookDesc = allbooks.getString(3);
+                String bookImage = allbooks.getString(5);
+                String bookCat = allbooks.getString(6);
+                String bookAuth = allbooks.getString(7);
 
-            Label label = new Label(bookTitle);
-            VBox newVbox = new VBox();
-            newVbox.getChildren().add(imageView);
-            newVbox.getChildren().add(label);
+                ImageView imageView = new ImageView();
+                Image image = new Image(getClass().getResourceAsStream("/" + bookImage));
+                imageView.setImage(image);
+                imageView.setFitWidth(207);
+                imageView.setFitHeight(300);
 
-            imageView.setOnMouseClicked(event-> {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
-                VBox root ;
-                try {
-                     root = fxmlLoader.load();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+                Label label = new Label(bookTitle);
+                label.setFont(Font.font("Corbel", 16));
+                label.setTextFill(Color.web("#f0824f"));
+                VBox newVbox = new VBox();
+                newVbox.getChildren().add(imageView);
+                newVbox.getChildren().add(label);
+                newVbox.setPrefWidth(207);
+                newVbox.setPrefHeight(320);
+                newVbox.getStyleClass().add("book-vbox");
+
+
+                imageView.setOnMouseClicked(event-> {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
+                    VBox root ;
+                    try {
+                        root = fxmlLoader.load();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    bookController bookcontroller = fxmlLoader.getController();
+                    bookcontroller.setAuthor(bookAuth);
+                    bookcontroller.setTitle(bookTitle);
+                    if(this.email != null){
+                        bookcontroller.setEmail(this.email.getText());
+                    }
+
+                    Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    Scene scene = new Scene(root);
+                    stage.setFullScreen(true);
+                    stage.setScene(scene);
+                    stage.show();
+                });
+
+                gridPane.add(newVbox, columnIndex % 5, rowIndex);
+
+                if (columnIndex % 5 == 4) {
+                    rowIndex++;
+                    columnIndex = 0;
+                } else {
+                    columnIndex++;
                 }
-
-                bookController bookcontroller = fxmlLoader.getController();
-                bookcontroller.setAuthor(bookAuth);
-                bookcontroller.setTitle(bookTitle);
-                if(this.email != null){
-                    bookcontroller.setEmail(this.email.getText());
-                }
-
-
-                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                Scene scene = new Scene(root);
-                stage.setFullScreen(true);
-                stage.setScene(scene);
-                stage.show();
-            });
-
-            gridPane.add(newVbox,rowIndex,columnIndex);
-
-            if(gridPane.getColumnCount() == columnIndex){
-                rowIndex++;
-                columnIndex = 0 ;
-                continue;
             }
-            columnIndex++;
-
         }
 
-    }
 
-    //Handler for filtering that works with the iteration design pattern //
+        //Handler for filtering that works with the iteration design pattern //
 
     private void setChoiceBoxElements(){
         String[] elements = {"By author", "By category" , "By length"};
