@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.Admin">
+   <children>
+      <HBox prefHeight="65.0" prefWidth="1315.0">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/logout.png" />
+               </image>
+            </ImageView>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Logout" textFill="#f0824f">
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin></Button>
+            <Pane prefHeight="65.0" prefWidth="424.0" />
+            <Label alignment="CENTER" prefHeight="71.0" prefWidth="109.0" text="Admin" textFill="#f0824f">
+               <font>
+                  <Font name="Cambria Bold Italic" size="36.0" />
+               </font>
+            </Label>
+         </children></HBox>
+      <HBox layoutX="-14.0" layoutY="65.0" prefHeight="486.0" prefWidth="1329.0">
+         <children>
+            <VBox prefHeight="486.0" prefWidth="541.0">
+               <children>
+                  <ListView prefHeight="486.0" prefWidth="600.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin></ListView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="486.0" prefWidth="668.0">
+                        <children>
+                     <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                        <children>
+                           <ImageView fitHeight="49.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" HBox.hgrow="ALWAYS">
+                              <image>
+                                 <Image url="@../../../images/admin.png" />
+                              </image>
+                              <HBox.margin>
+                                 <Insets left="19.0" />
+                              </HBox.margin>
+                           </ImageView>
+                           <TextField prefHeight="38.0" prefWidth="366.0" promptText="LibrarianUsername">
+                              <HBox.margin>
+                                 <Insets left="17.0" />
+                              </HBox.margin>
+                              <font>
+                                 <Font name="Cambria" size="16.0" />
+                              </font>
+                           </TextField>
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                        <children>
+                           <ImageView fitHeight="49.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
+                              <image>
+                                 <Image url="@../../../images/email.png" />
+                              </image>
+                              <HBox.margin>
+                                 <Insets left="19.0" />
+                              </HBox.margin>
+                           </ImageView>
+                           <TextField prefHeight="38.0" prefWidth="366.0" promptText="LibrarianEmail">
+                              <HBox.margin>
+                                 <Insets left="17.0" />
+                              </HBox.margin>
+                              <font>
+                                 <Font name="Cambria" size="16.0" />
+                              </font>
+                           </TextField>
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" layoutX="10.0" layoutY="365.0" prefHeight="50.0" prefWidth="200.0">
+                        <children>
+                           <ImageView fitHeight="60.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
+                              <image>
+                                 <Image url="@../../../images/pass.png" />
+                              </image>
+                              <HBox.margin>
+                                 <Insets left="7.0" />
+                              </HBox.margin>
+                           </ImageView>
+                           <PasswordField prefHeight="38.0" prefWidth="366.0" promptText="LibrarianPassword">
+                              <HBox.margin>
+                                 <Insets left="11.0" />
+                              </HBox.margin>
+                              <font>
+                                 <Font name="Cambria" size="16.0" />
+                              </font>
+                           </PasswordField>
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" layoutX="10.0" layoutY="365.0" prefHeight="50.0" prefWidth="200.0">
+                        <children>
+                           <ImageView fitHeight="60.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
+                              <image>
+                                 <Image url="@../../../images/pass.png" />
+                              </image>
+                              <HBox.margin>
+                                 <Insets left="7.0" />
+                              </HBox.margin>
+                           </ImageView>
+                           <PasswordField prefHeight="38.0" prefWidth="366.0" promptText="Confirm Password">
+                              <HBox.margin>
+                                 <Insets left="11.0" />
+                              </HBox.margin>
+                              <font>
+                                 <Font name="Cambria" size="16.0" />
+                              </font>
+                           </PasswordField>
+                        </children>
+                     </HBox>
+                     <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="Registerbtn" text="Add Librarian" textFill="#c37726">
+                        <VBox.margin>
+                           <Insets left="32.0" top="22.0" />
+                        </VBox.margin>
+                        <font>
+                           <Font name="Cambria Bold Italic" size="24.0" />
+                        </font>
+                     </Button>
+                  </children>
+
+            </VBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+   </children>
+</AnchorPane>
