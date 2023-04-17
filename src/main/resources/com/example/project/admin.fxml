@@ -40,7 +40,7 @@
                         <children>
                      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                         <children>
-                           <ImageView fitHeight="49.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" HBox.hgrow="ALWAYS">
+                           <ImageView fitHeight="49.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" HBox.hgrow="ALWAYS">
                               <image>
                                  <Image url="@../../../images/admin.png" />
                               </image>
