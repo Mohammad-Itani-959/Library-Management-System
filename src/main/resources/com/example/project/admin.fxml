@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.Admin">
    <children>
-      <HBox prefHeight="65.0" prefWidth="1315.0">
+      <HBox layoutY="-16.0" prefHeight="65.0" prefWidth="1315.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -20,23 +20,20 @@
                   <Insets top="5.0" />
                </HBox.margin></Button>
             <Pane prefHeight="65.0" prefWidth="424.0" />
-            <Label alignment="CENTER" prefHeight="71.0" prefWidth="109.0" text="Admin" textFill="#f0824f">
+            <Label alignment="CENTER" prefHeight="81.0" prefWidth="170.0" text="Admin" textFill="#f0824f">
                <font>
-                  <Font name="Cambria Bold Italic" size="36.0" />
+                  <Font name="Harlow Solid Italic" size="48.0" />
                </font>
             </Label>
          </children></HBox>
-      <HBox layoutX="-14.0" layoutY="65.0" prefHeight="486.0" prefWidth="1329.0">
+      <HBox layoutX="-14.0" layoutY="65.0" prefHeight="544.0" prefWidth="1329.0">
          <children>
             <VBox prefHeight="486.0" prefWidth="541.0">
                <children>
-                  <ListView prefHeight="486.0" prefWidth="600.0">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin></ListView>
+                  <ListView prefHeight="550.0" prefWidth="530.0" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="486.0" prefWidth="668.0">
+            <VBox alignment="CENTER" prefHeight="489.0" prefWidth="810.0" styleClass="white-bg" stylesheets="@../../../styles/style.css">
                         <children>
                      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                         <children>
@@ -118,7 +115,7 @@
                            </PasswordField>
                         </children>
                      </HBox>
-                     <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="Registerbtn" text="Add Librarian" textFill="#c37726">
+                     <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Add Librarian" textFill="#c37726">
                         <VBox.margin>
                            <Insets left="32.0" top="22.0" />
                         </VBox.margin>
