@@ -1,18 +1,18 @@
 package com.example.project;
 
-public class borrower {
+public class User {
     private String email ;
     private String username ;
     private String password;
     private boolean isLogged ;
 
 
-    public borrower (String email ,String password ){
+    public User(String email , String password ){
         this.email = email ;
         this.password= password;
         this.isLogged = false ;
     }
-    public borrower (String email , String username , String password ){
+    public User(String email , String username , String password ){
         this.email= email;
         this.password = password;
         this.username= username ;

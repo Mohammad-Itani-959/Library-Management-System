@@ -1,74 +1,108 @@
 package com.example.project;
 
+
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class loginController {
-    @FXML
-    private Label welcomeText;
-
-    @FXML
-    private Button userbtn;
-
-    @FXML
-    private Button librarianbtn;
-
-    @FXML
-    private Button adminbtn;
 
 
-    public void userHandler(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("borrowerLogin.fxml"));
-        AnchorPane root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage1.setTitle("Borrower Login");
-        stage1.setWidth(1350);
-        stage1.setHeight(810);
+    Database database;
 
-        stage1.setScene(scene);
-        stage1.show();
-
-    }
-    public void librarianHandler(ActionEvent event) throws IOException{
+    {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("adminANDlibrarianLogin.fxml"));
-            AnchorPane root = loader.load();
-            Scene scene = new Scene(root);
-            Stage stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage1.setTitle("librarian Login");
-            stage1.setWidth(1350);
-            stage1.setHeight(810);
+            database = new Database();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-            stage1.setScene(scene);
-            stage1.show();
-        }catch (Exception e) {
-            e.printStackTrace();
+
+    @javafx.fxml.FXML
+    @FXML
+    public TextField email;
+    @FXML
+    public PasswordField password;
+    @FXML
+    public Button register;
+    @FXML
+    public Button login;
+
+    @javafx.fxml.FXML
+    @FXML
+    private Label errorMessage;
+
+    private String type ;
+
+    protected proxyUser proxyUser;
+    public void login(ActionEvent actionEvent) throws SQLException, IOException {
+
+        String Email = email.getText().toString();
+        String Password = password.getText().toString();
+
+        if(Email.isEmpty() || Password.isEmpty()){
+            errorMessage.setText("Please fill the empty fields ... ! ");
+            return ;
+        }
+
+        this.proxyUser = new proxyUser(Email,Password,this.type);
+
+
+        if(this.proxyUser.getRealUser()==null){
+            errorMessage.setText("Invalid username or password ... !");
+            return ;
+        }
+        else{
+            if(this.type == "borrower"){
+                errorMessage.setText("");
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("allbooks.fxml"));
+                Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+                AnchorPane root = fxmlLoader.load();
+
+
+                allBooksController allBooksController = fxmlLoader.getController();
+                allBooksController.setUser(this.proxyUser.getRealUser().getEmail());
+
+
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.setFullScreen(true);
+
+                stage.show();
+                return ;
+            }
+            if(this.type =="librarian"){
+                errorMessage.setText("");
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("librarianLayout.fxml"));
+                Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+                AnchorPane root = fxmlLoader.load();
+
+
+               /* allBooksController allBooksController = fxmlLoader.getController();
+                allBooksController.setUser(this.proxyUser.getRealUser().getEmail());*/
+
+
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.setFullScreen(true);
+
+                stage.show();
+            }
+
         }
 
     }
 
-    public void adminHandler(ActionEvent event) throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("adminANDlibrarianLogin.fxml"));
-        AnchorPane root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage1.setTitle("admin Login");
-        stage1.setWidth(1350);
-        stage1.setHeight(810);
-
-        stage1.setScene(scene);
-        stage1.show();
-
-    }
-
+    public void setType(String type){this.type = type;}
 }

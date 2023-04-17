@@ -22,7 +22,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("entry.fxml"));
         AnchorPane root = loader.load();
         Scene scene = new Scene(root);
 
@@ -32,6 +32,7 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.show();
+
     }
 
     public static void main(String[] args) throws SQLException {

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
@@ -20,7 +21,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:controller="com.example.project.allBooksController" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="810.0" prefWidth="1315.0" stylesheets="@../../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.allBooksController">
     <children>
         <BorderPane prefHeight="810.0" prefWidth="1321.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
@@ -49,6 +50,13 @@
                 <VBox prefHeight="739.0" prefWidth="310.0" styleClass="white-bg" BorderPane.alignment="CENTER">
                     <children>
                         <Separator prefWidth="200.0" />
+                        <Label fx:id="email" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="199.0" textFill="#f0824f">
+                            <font>
+                                <Font name="Corbel Italic" size="17.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="39.0" top="3.0" />
+                            </VBox.margin></Label>
                         <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="35.0" prefWidth="290.0" styleClass="searchbox">
                             <VBox.margin>
                                 <Insets left="21.0" right="21.0" top="22.0" />
@@ -104,34 +112,93 @@
                             </children>
                         </HBox>
                         <Separator prefWidth="200.0" />
-                        <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" text="Browse">
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="234.0" prefHeight="26.0" prefWidth="310.0">
+                     <children>
+                        <ImageView fitHeight="28.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/notification.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="6.0" top="1.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" text="No new notification">
+                           <HBox.margin>
+                              <Insets left="13.0" top="4.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Corbel Bold" size="17.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="2.0" top="9.0" />
+                     </VBox.margin>
+                  </HBox>
+                        <Separator layoutX="10.0" layoutY="145.0" prefWidth="200.0">
                             <VBox.margin>
-                                <Insets left="4.0" top="6.0" />
+                                <Insets top="4.0" />
+                            </VBox.margin>
+                        </Separator>
+                        <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter">
+                            <VBox.margin>
+                                <Insets left="4.0" top="7.0" />
                             </VBox.margin>
                             <font>
                                 <Font name="Corbel Bold" size="16.0" />
                             </font>
                         </Text>
-                        <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="310.0" styleClass="mouse-moved">
+                        <HBox fx:id="hbox" alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="310.0" styleClass="mouse-moved">
                             <children>
                                 <ImageView fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../../../images/categ.png" />
                                     </image>
                                     <HBox.margin>
-                                        <Insets left="9.0" />
+                                        <Insets left="12.0" />
                                     </HBox.margin>
                                 </ImageView>
-                                <ChoiceBox fx:id="cat" prefHeight="26.0" prefWidth="192.0" styleClass="transparent">
+                                <ChoiceBox fx:id="choiceBox" onAction="#choiceBoxHandler" prefHeight="26.0" prefWidth="192.0">
                                     <HBox.margin>
-                                        <Insets left="5.0" />
+                                        <Insets left="9.0" />
                                     </HBox.margin>
                                     <cursor>
                                         <Cursor fx:constant="HAND" />
                                     </cursor>
+                           <styleClass>
+                              <String fx:value="transparent" />
+                              <String fx:value="searchbox" />
+                           </styleClass>
                                 </ChoiceBox>
                             </children>
+                     <VBox.margin>
+                        <Insets left="-1.0" />
+                     </VBox.margin>
                         </HBox>
+                  <HBox prefHeight="26.0" prefWidth="310.0">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/author.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets top="1.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <TextField prefHeight="19.0" prefWidth="186.0" promptText="Author">
+                           <HBox.margin>
+                              <Insets left="1.0" top="9.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="searchbox" />
+                              <String fx:value="transparent" />
+                           </styleClass>
+                           <font>
+                              <Font name="Corbel" size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
                         <Separator prefWidth="200.0">
                             <VBox.margin>
                                 <Insets top="2.0" />
@@ -142,7 +209,7 @@
                                 <Font name="Corbel Bold" size="16.0" />
                             </font>
                             <VBox.margin>
-                                <Insets left="4.0" top="6.0" />
+                                <Insets left="4.0" top="7.0" />
                             </VBox.margin>
                         </Text>
                         <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="101.0" prefHeight="44.0" prefWidth="310.0" styleClass="mouse-moved">
@@ -152,7 +219,7 @@
                                         <Image url="@../../../images/book.png" />
                                     </image>
                                     <HBox.margin>
-                                        <Insets left="7.0" top="3.0" />
+                                        <Insets left="9.0" top="3.0" />
                                     </HBox.margin>
                                 </ImageView>
                                 <Button mnemonicParsing="false" styleClass="transparent" text="Your Books" textFill="#f0824f">
@@ -168,11 +235,7 @@
                                 </Button>
                             </children>
                         </HBox>
-                        <Separator layoutX="10.0" layoutY="145.0" prefWidth="200.0">
-                            <VBox.margin>
-                                <Insets top="4.0" />
-                            </VBox.margin>
-                        </Separator>
+                  <Separator layoutX="10.0" layoutY="170.0" prefWidth="200.0" />
                     </children>
                 </VBox>
             </left>
@@ -189,16 +252,10 @@
                         </Text>
                         <ScrollPane prefHeight="698.0" prefWidth="882.0" styleClass="transparent" VBox.vgrow="ALWAYS">
                      <content>
-                        <GridPane fx:id="gridPane" prefHeight="318.0" prefWidth="401.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
+                        <GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="979.0">
+                           <padding>
+                              <Insets left="19.0" top="19.0" />
+                           </padding>
                         </GridPane>
                      </content>
                         </ScrollPane>
@@ -207,8 +264,4 @@
             </center>
         </BorderPane>
     </children>
-   <stylesheets>
-      <URL value="@../../../../../values/style.css" />
-      <URL value="@../../../../../values/style.css" />
-   </stylesheets>
 </AnchorPane>

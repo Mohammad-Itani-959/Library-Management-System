@@ -133,6 +133,7 @@ public class Database {
             if(!(resultSet.next() && resultSet.getBoolean(1))){
                 statement.execute("CREATE TABLE Books  ( SN int PRIMARY KEY," +
                         "title VARCHAR(50) ,description TEXT,quantity int," +
+                        "image VARCHAR(50),bookLength int,"+
                         "category varchar(30),autherName varchar(30), suplierId int," +
                         "FOREIGN KEY (suplierId) REFERENCES Suppliers(suplierId));");
             }
@@ -184,18 +185,15 @@ public class Database {
         if(resultSet.next()){
             return ;
         }
-        statement.execute("INSERT INTO Books (SN, title, description, quantity, category, autherName, suplierId)\n" +
+        statement.execute("INSERT INTO Books (SN, title, description,image,bookLength,quantity, category, autherName, suplierId)\n" +
                 "VALUES\n" +
-                "  (1, 'The Great Gatsby', 'A novel by F. Scott Fitzgerald', 5, 'Fiction', 'F. Scott Fitzgerald', 1),\n" +
-                "  (2, 'To Kill a Mockingbird', 'A novel by Harper Lee', 10, 'Fiction', 'Harper Lee', 2),\n" +
-                "  (3, '1984', 'A dystopian novel by George Orwell', 3, 'Science Fiction', 'George Orwell', 3),\n" +
-                "  (4, 'Pride and Prejudice', 'A novel by Jane Austen', 7, 'Romance', 'Jane Austen', 4),\n" +
-                "  (5, 'The Catcher in the Rye', 'A novel by J.D. Salinger', 2, 'Fiction', 'J.D. Salinger', 1),\n" +
-                "  (6, 'Animal Farm', 'A political allegory by George Orwell', 8, 'Satire', 'George Orwell', 1),\n" +
-                "  (7, 'The Hobbit', 'A fantasy novel by J.R.R. Tolkien', 4, 'Fantasy', 'J.R.R. Tolkien', 2),\n" +
-                "  (8, 'Brave New World', 'A dystopian novel by Aldous Huxley', 6, 'Science Fiction', 'Aldous Huxley', 3),\n" +
-                "  (9, 'Jane Eyre', 'A novel by Charlotte Bronte', 1, 'Romance', 'Charlotte Bronte', 4),\n" +
-                "  (10, 'The Adventures of Sherlock Holmes', 'A collection of stories by Arthur Conan Doyle', 9, 'Mystery', 'Arthur Conan Doyle', 1);\n");
+                "  (1, 'Alice In WonderLand', 'A novel by F. Scott Fitzgerald','images/books/aliceinwonderland.jpg',200, 5, 'Fiction', 'F. Scott Fitzgerald', 1),\n" +
+                "  (2, 'How To Kill', 'A novel by Harper Lee','images/books/how to kill.jpg',244, 10, 'Fiction','Harper Lee', 2),\n" +
+                "  (3, 'Harry Potter', 'A dystopian novel by George Orwell','images/books/harrypotter.png',142,3, 'Science Fiction', 'George Orwell', 3),\n" +
+                "  (4, 'Stephen King', 'A novel by Jane Austen','images/books/it.jpg' ,111,7, 'Romance', 'Jane Austen', 4),\n" +
+                "  (5, 'Java', 'A novel by J.D. Salinger','images/books/java.jpg', 231,2, 'Fiction','J.D. Salinger', 1),\n" +
+                "  (6, 'Lemon De Secret', 'A political allegory by George Orwell','images/books/lemondesecret.jpg',122, 8, 'Satire', 'George Orwell', 1),\n" +
+                "  (7, 'Percy Jackson', 'A fantasy novel by J.R.R. Tolkien', 'images/books/percyjackson.jpg',122,4, 'Fantasy', 'J.R.R. Tolkien', 2)\n");
     }
 
     public ResultSet selectAllBooks() throws SQLException{
@@ -206,10 +204,63 @@ public class Database {
         return statement.executeQuery("Select * from book where title = '"+bookName+"'");
     }
 
-    public boolean login(String email , String password) throws SQLException{
-        ResultSet resultSet = statement.executeQuery("Select * from Users where email = '"+email+"' and password = '"+password+"'");
+    public boolean borrowerLogin(String email , String password) throws SQLException{
+        ResultSet resultSet = statement.executeQuery("Select * from Users where email = '"+email+"' and password = '"+password+"' and " +
+                "type = 'borrower'");
         if(resultSet.next()) return true;
         return false;
     }
+    public boolean borrowerRegister(String username , String email , String password)throws SQLException{
+        statement.execute("INSERT INTO Users(id,username , email , password ,type) " +
+                "Values('"+idBorrowers+"','"+username+"','"+email+"','"+password+"', 'borrower');");
+        idBorrowers++;
+        return true;
+    }
+
+    public boolean adminLogin(String email , String password) throws SQLException{
+        ResultSet resultSet = statement.executeQuery("Select * from Users where email = '"+email+"' and password = '"+password+"' and " +
+                "type = 'admin'");
+        if(resultSet.next()) return true;
+        return false;
+    }
+
+    public boolean adminRegister(String username , String email , String password)throws SQLException{
+        ResultSet resultSet = statement.executeQuery("Select * from Users where type = 'admin'");
+        if(resultSet.next())return false;
+        else{
+            statement.execute("INSERT INTO Users(id,username , email , password ,type) " +
+                    "Values('"+'1'+"','"+username+"','"+email+"','"+password+"', 'admin');");
+            return true;
+        }
+
+    }
+
+    public boolean librarianLogin(String email , String password) throws SQLException{
+       ResultSet resultSet= statement.executeQuery("Select * from Users where email = '"+email+"' and password = '"+password+"' and type = 'librarian'");
+        if(resultSet.next()) return true;
+        return  false ;
+    }
+
+    public boolean librarianRegister(String username , String password , String email) throws SQLException{
+        statement.execute("INSERT INTO Users(id,username , email , password ,type) " +
+                "Values('"+idBorrowers+"','"+username+"','"+email+"','"+password+"', 'librarian');");
+        idLibrarians++;
+        return true;
+    }
+    public ResultSet get_books_by_author(String authorName) throws SQLException{
+        ResultSet resultSet = statement.executeQuery("Select * From Books where autherName = '"+authorName+"'");
+        return resultSet;
+    }
+
+    public ResultSet get_books_by_category(String category) throws SQLException{
+        return statement.executeQuery("Select * From Books where category ='"+category+"'");
+    }
+
+    public ResultSet get_books_by_length(int length) throws SQLException{
+        return statement.executeQuery("Select * From Books where bookLength <='"+length+"'");
+    }
+
+    static int idBorrowers = 6;
+    static int idLibrarians = 6;
 }
 

@@ -45,5 +45,10 @@ public class bookController implements Initializable {
     public void setAuthor(String name ){this.bookAuthor.setText(name);}
     public void setTitle(String title){this.bookTitle.setText(title);}
 
-    public void setEmail(String email){this.email = email ;}
+    public void setEmail(String email){
+        if(email != null){
+            this.email = email ;
+        }
+
+    }
 }
