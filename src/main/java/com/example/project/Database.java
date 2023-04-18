@@ -260,7 +260,7 @@ public class Database {
         return statement.executeQuery("Select * From Books where bookLength <='"+length+"'");
     }
 
-    static int idBorrowers = 6;
-    static int idLibrarians = 6;
+    static int idBorrowers = 8;
+    static int idLibrarians = 8;
 }
 

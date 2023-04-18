@@ -24,7 +24,7 @@
                                 <Image url="@../../../images/logo1.png" />
                             </image>
                         </ImageView>
-                        <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" text="World Of Boooks">
+                        <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" text="World Of Books">
                             <font>
                                 <Font name="Harlow Solid Italic" size="42.0" />
                             </font>
@@ -60,7 +60,7 @@
                                         <Insets top="2.0" />
                                     </HBox.margin>
                                 </ImageView>
-                                <Button mnemonicParsing="false" styleClass="transparent" text="Go back" textFill="#f0824f">
+                                <Button onAction="#backHandler" mnemonicParsing="false" styleClass="transparent" text="Go back" textFill="#f0824f">
                                     <font>
                                         <Font name="Corbel Bold" size="18.0" />
                                     </font>
@@ -174,7 +174,7 @@
                               <Insets top="13.0" />
                            </VBox.margin>
                         </Text>
-                        <Text lineSpacing="3.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="589.0000734329224">
+                        <Text fx:id="bookDescription" lineSpacing="3.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="589.0000734329224">
                            <font>
                               <Font name="Corbel" size="20.0" />
                            </font>
@@ -184,12 +184,12 @@
                         </Text>
                         <HBox alignment="CENTER_LEFT" layoutX="21.0" layoutY="10.0" prefHeight="59.0" prefWidth="449.0">
                            <children>
-                              <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" text="Genre:">
+                              <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:">
                                  <font>
                                     <Font name="Harlow Solid Italic" size="45.0" />
                                  </font>
                               </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0">
+                              <Text fx:id="bookCategory" strokeType="OUTSIDE" strokeWidth="0.0">
                                  <font>
                                     <Font name="Corbel" size="24.0" />
                                  </font>

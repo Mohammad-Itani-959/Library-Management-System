@@ -35,7 +35,7 @@
             </ImageView>
          </children>
       </VBox>
-      <VBox alignment="CENTER" layoutX="559.0" prefHeight="810.0" prefWidth="756.0" styleClass="vright" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="634.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox fx:id="Vbox" alignment="CENTER" layoutX="559.0" prefHeight="810.0" prefWidth="756.0" styleClass="vright" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="634.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
@@ -77,7 +77,7 @@
                   </PasswordField>
                </children>
             </HBox>
-            <Button mnemonicParsing="false" fx:id="register" styleClass="registerbtn" text="Don't have an accont? click here to register!">
+            <Button mnemonicParsing="false" onAction="#register" fx:id="register" styleClass="registerbtn" text="Don't have an accont? click here to register!">
                <font>
                   <Font name="Arial Bold" size="15.0" />
                </font>

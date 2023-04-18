@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="810.0" prefWidth="1315.0" stylesheets="@../../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.borrowerRegisterController">
+<AnchorPane prefHeight="810.0" prefWidth="1315.0" stylesheets="@../../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.registerController">
     <children>
         <VBox alignment="TOP_CENTER" prefHeight="810.0" prefWidth="634.0" styleClass="vleft">
             <children>
@@ -46,7 +46,7 @@
                                 <Insets left="19.0" />
                             </HBox.margin>
                         </ImageView>
-                        <TextField prefHeight="38.0" prefWidth="366.0" promptText="Username">
+                        <TextField fx:id="username" prefHeight="38.0" prefWidth="366.0" promptText="Username">
                             <HBox.margin>
                                 <Insets left="17.0" />
                             </HBox.margin>
@@ -66,7 +66,7 @@
                                 <Insets left="19.0" />
                             </HBox.margin>
                         </ImageView>
-                        <TextField prefHeight="38.0" prefWidth="366.0" promptText="Email">
+                        <TextField fx:id="email" prefHeight="38.0" prefWidth="366.0" promptText="Email">
                             <HBox.margin>
                                 <Insets left="17.0" />
                             </HBox.margin>
@@ -86,7 +86,7 @@
                                 <Insets left="7.0" />
                             </HBox.margin>
                         </ImageView>
-                        <PasswordField prefHeight="38.0" prefWidth="366.0" promptText="password">
+                        <PasswordField fx:id="password" prefHeight="38.0" prefWidth="366.0" promptText="password">
                             <HBox.margin>
                                 <Insets left="11.0" />
                             </HBox.margin>
@@ -106,7 +106,7 @@
                                 <Insets left="7.0" />
                             </HBox.margin>
                         </ImageView>
-                        <PasswordField prefHeight="38.0" prefWidth="366.0" promptText="Confirm Password">
+                        <PasswordField fx:id="confirmPassword" prefHeight="38.0" prefWidth="366.0" promptText="Confirm Password">
                             <HBox.margin>
                                 <Insets left="11.0" />
                             </HBox.margin>
@@ -116,7 +116,7 @@
                         </PasswordField>
                     </children>
                 </HBox>
-                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="Registerbtn" text="Register">
+                <Button mnemonicParsing="false" onAction="#registerHandler" prefHeight="50.0" prefWidth="300.0" styleClass="Registerbtn" text="Register">
                     <VBox.margin>
                         <Insets left="32.0" top="22.0" />
                     </VBox.margin>

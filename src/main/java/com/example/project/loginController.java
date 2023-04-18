@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -45,6 +46,11 @@ public class loginController {
 
     private String type ;
 
+    @javafx.fxml.FXML
+    @FXML
+    private VBox Vbox;
+
+
     protected proxyUser proxyUser;
     public void login(ActionEvent actionEvent) throws SQLException, IOException {
 
@@ -64,7 +70,7 @@ public class loginController {
             return ;
         }
         else{
-            if(this.type == "borrower"){
+            if(this.type.equals("borrower")){
                 errorMessage.setText("");
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("allbooks.fxml"));
                 Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -72,7 +78,7 @@ public class loginController {
 
 
                 allBooksController allBooksController = fxmlLoader.getController();
-                allBooksController.setUser(this.proxyUser.getRealUser().getEmail());
+                allBooksController.setProxyUser(this.proxyUser);
 
 
                 Scene scene = new Scene(root);
@@ -82,15 +88,12 @@ public class loginController {
                 stage.show();
                 return ;
             }
-            if(this.type =="librarian"){
+            if(this.type.equals("librarian")){
                 errorMessage.setText("");
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("librarianLayout.fxml"));
                 Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
                 AnchorPane root = fxmlLoader.load();
 
-
-               /* allBooksController allBooksController = fxmlLoader.getController();
-                allBooksController.setUser(this.proxyUser.getRealUser().getEmail());*/
 
 
                 Scene scene = new Scene(root);
@@ -104,5 +107,19 @@ public class loginController {
 
     }
 
+    public void register(ActionEvent actionEvent)throws SQLException ,IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("register.fxml"));
+        AnchorPane root = fxmlLoader.load();
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setFullScreen(true);
+        stage.show();
+    }
+
     public void setType(String type){this.type = type;}
+
+    public void removeRegister(){
+        Vbox.getChildren().remove(register);
+    }
 }

@@ -34,7 +34,6 @@ public class Main extends Application {
         stage.show();
 
     }
-
     public static void main(String[] args) throws SQLException {
         Database database = new Database();
         database.createTables();

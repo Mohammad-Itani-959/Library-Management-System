@@ -28,6 +28,7 @@ public class registerController {
     @FXML
     private TextField confirmPassword;
 
+    private proxyUser proxyUser;
     Database database;
 
     {
@@ -47,10 +48,11 @@ public class registerController {
         if(Username.length()>0 && (Password.length()>0 && Password.equals(ConfirmPassword)) && Email.length()>0){
             boolean flag = database.borrowerRegister(Username , Email , Password);
             if(flag == true){
+                proxyUser = new proxyUser(Email,Password,"borrower");
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("allbooks.fxml"));
                 AnchorPane root = fxmlLoader.load();
                 allBooksController allBooksController = fxmlLoader.getController();
-                allBooksController.setUser(Email);
+                allBooksController.setProxyUser(proxyUser);
 
                 Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);

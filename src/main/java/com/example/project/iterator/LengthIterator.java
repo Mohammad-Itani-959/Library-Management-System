@@ -1,6 +1,7 @@
 package com.example.project.iterator;
 
 import com.example.project.Database;
+import javafx.scene.layout.GridPane;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,7 +22,7 @@ public class LengthIterator implements Iterator {
     public LengthIterator(int length){this.length=length;}
 
     @Override
-    public ResultSet getBooks() throws SQLException {
-        return database.get_books_by_length(this.length);
+    public void showBooks(GridPane gridPane, ResultSet resultSet) throws SQLException {
+
     }
 }

@@ -25,19 +25,19 @@ public class proxyUser {
         }
     }
     public void login(String email , String password , String type) throws SQLException{
-        if(type == "borrower"){
+        if(type.equals("borrower")){
             if(database.borrowerLogin(email,password)){
                 this.realUser = new User(email,password);
             }
             return ;
         }
-        if(type == "librarian"){
+        if(type.equals("librarian")){
             if(database.librarianLogin(email,password)){
                 this.realUser = new User(email,password);
             }
             return ;
         }
-        if(type =="admin"){
+        if(type.equals("admin")){
             if(database.librarianLogin(email,password)){
                 this.realUser = new User(email,password);
             }

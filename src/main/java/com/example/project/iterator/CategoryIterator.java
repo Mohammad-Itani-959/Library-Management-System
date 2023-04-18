@@ -1,6 +1,8 @@
 package com.example.project.iterator;
 
 import com.example.project.Database;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +21,7 @@ public class CategoryIterator implements Iterator {
     }
 
     @Override
-    public ResultSet getBooks() throws SQLException {
-        return database.get_books_by_category(this.category);
+    public void showBooks(GridPane gridPane,ResultSet resultSet) throws SQLException {
+
     }
 }
