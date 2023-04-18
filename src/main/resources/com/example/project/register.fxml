@@ -38,7 +38,7 @@
             <children>
                 <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                     <children>
-                        <ImageView fitHeight="49.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2">
+                        <ImageView fitHeight="49.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
                             <image>
                                 <Image url="@../../../images/admin.png" />
                             </image>
@@ -78,7 +78,7 @@
                 </HBox>
                 <HBox alignment="CENTER" layoutX="10.0" layoutY="365.0" prefHeight="50.0" prefWidth="200.0">
                     <children>
-                        <ImageView fitHeight="60.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" scaleX="0.6" scaleY="0.6">
+                        <ImageView fitHeight="60.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
                             <image>
                                 <Image url="@../../../images/pass.png" />
                             </image>
@@ -98,7 +98,7 @@
                 </HBox>
                 <HBox alignment="CENTER" layoutX="10.0" layoutY="365.0" prefHeight="50.0" prefWidth="200.0">
                     <children>
-                        <ImageView fitHeight="60.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" scaleX="0.6" scaleY="0.6">
+                        <ImageView fitHeight="60.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
                             <image>
                                 <Image url="@../../../images/pass.png" />
                             </image>
@@ -116,7 +116,7 @@
                         </PasswordField>
                     </children>
                 </HBox>
-                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="Registerbtn" text="Register" textAlignment="CENTER">
+                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="Registerbtn" text="Register">
                     <VBox.margin>
                         <Insets left="32.0" top="22.0" />
                     </VBox.margin>
