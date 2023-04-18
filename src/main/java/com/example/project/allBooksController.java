@@ -12,10 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
@@ -113,7 +110,7 @@ public class allBooksController implements Initializable {
 
                 imageView.setOnMouseClicked(event-> {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
-                    VBox root ;
+                    AnchorPane root ;
                     try {
                         root = fxmlLoader.load();
                     } catch (IOException e) {
@@ -123,6 +120,7 @@ public class allBooksController implements Initializable {
                     bookController bookcontroller = fxmlLoader.getController();
                     bookcontroller.setAuthor(bookAuth);
                     bookcontroller.setTitle(bookTitle);
+
                     if(this.email != null){
                         bookcontroller.setEmail(this.email.getText());
                     }

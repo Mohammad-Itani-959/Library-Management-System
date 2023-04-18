@@ -16,6 +16,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class bookController implements Initializable {
+
     @FXML
     private ImageView bookImage;
     @FXML
@@ -50,5 +51,6 @@ public class bookController implements Initializable {
             this.email = email ;
         }
 
+        System.out.println(this.email);
     }
 }

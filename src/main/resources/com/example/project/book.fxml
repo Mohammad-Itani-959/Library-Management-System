@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" stylesheets="@../../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" stylesheets="@../../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.bookController">
     <children>
         <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
@@ -114,7 +114,7 @@
          <center>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER_LEFT">
                <children>
-                  <ImageView fitHeight="594.0" fitWidth="415.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="bookImage" fitHeight="594.0" fitWidth="415.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets left="79.0" />
                      </HBox.margin>
@@ -133,7 +133,7 @@
                                     <Font name="Harlow Solid Italic" size="45.0" />
                                  </font>
                               </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0">
+                              <Text fx:id="bookTitle" strokeType="OUTSIDE" strokeWidth="0.0">
                                  <font>
                                     <Font name="Corbel" size="24.0" />
                                  </font>
@@ -153,7 +153,7 @@
                                     <Font name="Harlow Solid Italic" size="45.0" />
                                  </font>
                               </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0">
+                              <Text fx:id="bookAuthor" strokeType="OUTSIDE" strokeWidth="0.0">
                                  <font>
                                     <Font name="Corbel" size="24.0" />
                                  </font>
