@@ -17,15 +17,16 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.example.project.proxyUser;
 
 public class GeneralIterator implements Iterator{
-
     Database database;
-
+    private proxyUser proxyUser;
+    FXMLLoader fxmlLoader;
     {
         try {
             database = new Database();
@@ -33,22 +34,13 @@ public class GeneralIterator implements Iterator{
             throw new RuntimeException(e);
         }
     }
-
-    private proxyUser proxyUser;
-    private FXMLLoader fxmlLoader;
-
-    public GeneralIterator(proxyUser proxyUser, GridPane gridPane , FXMLLoader fxmlLoader){
-        this.setProxyUser(proxyUser);
-        this.fxmlLoader = fxmlLoader;
-        try {
-            this.showBooks(gridPane, this.getBooks());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    private ResultSet resultSet;
+    public GeneralIterator()throws SQLException{
+        this.resultSet = this.getBooks();
     }
     @Override
-    public void showBooks(GridPane gridPane, ResultSet resultSet) throws SQLException {
-        resultSet = this.database.selectAllBooks();
+    public void showBooks(GridPane gridPane) throws SQLException {
+
         int columnIndex = 0;
         int rowIndex = 0;
 
@@ -56,19 +48,22 @@ public class GeneralIterator implements Iterator{
         gridPane.setHgap(15);
         gridPane.setVgap(10);
 
-        while (resultSet.next()) {
+        ResultSet resultSet ;
+        while (has_Next()) {
+            resultSet = getNext();
             String bookTitle= resultSet.getString(2);
             String bookDesc = resultSet.getString(3);
             String bookImage = resultSet.getString(5);
             String bookCat = resultSet.getString(7);
             String bookAuth = resultSet.getString(8);
 
+
+
             ImageView imageView = new ImageView();
             Image image = new Image(getClass().getResourceAsStream("/" + bookImage));
             imageView.setImage(image);
             imageView.setFitWidth(207);
             imageView.setFitHeight(300);
-
             Label label = new Label(bookTitle);
             label.setFont(Font.font("Corbel", 16));
             label.setTextFill(Color.web("#f0824f"));
@@ -81,14 +76,12 @@ public class GeneralIterator implements Iterator{
 
 
             imageView.setOnMouseClicked(event-> {
-                FXMLLoader fxmlLoader = this.fxmlLoader;
-                AnchorPane root ;
+                AnchorPane root;
                 try {
                     root = fxmlLoader.load();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
                 bookController bookcontroller = fxmlLoader.getController();
                 bookcontroller.setAuthor(bookAuth);
                 bookcontroller.setTitle(bookTitle);
@@ -96,6 +89,7 @@ public class GeneralIterator implements Iterator{
                 bookcontroller.setCategory(bookCat);
                 bookcontroller.setImage(bookImage);
                 bookcontroller.setProxyUser(this.proxyUser);
+
 
                 Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
@@ -117,5 +111,24 @@ public class GeneralIterator implements Iterator{
     public ResultSet getBooks() throws SQLException{
         return database.selectAllBooks();
     }
-    public void setProxyUser(proxyUser proxyUser){this.proxyUser=proxyUser;}
-}
+    public boolean has_Next(){
+        try {
+            if(resultSet.next()){
+                return true;
+            }
+            else{
+                return false;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public ResultSet getNext(){
+        return resultSet;
+    }
+
+    @Override
+    public void setFXMLLoader(FXMLLoader fxmlLoader){this.fxmlLoader =fxmlLoader;}
+    @Override
+    public void setProxyUser(proxyUser proxyUser){this.proxyUser = proxyUser;}
+ }

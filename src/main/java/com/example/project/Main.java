@@ -14,11 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Main extends Application {
-    Button user;
-    Button librarian;
-    Button admin;
-
-
     @Override
     public void start(Stage stage) throws IOException {
 

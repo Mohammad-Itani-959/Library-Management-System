@@ -1,5 +1,7 @@
 package com.example.project;
 
+import com.example.project.iterator.GeneralIterator;
+import com.example.project.iterator.Iterator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class bookController implements Initializable {
@@ -32,6 +35,7 @@ public class bookController implements Initializable {
     private proxyUser proxyUser;
 
 
+    private Iterator iterator;
     private String email ;
 
     @Override
@@ -42,8 +46,12 @@ public class bookController implements Initializable {
     public void backHandler(ActionEvent actionEvent)throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("allbooks.fxml"));
         AnchorPane root = fxmlLoader.load();
+
         allBooksController allBooksController = fxmlLoader.getController();
         allBooksController.setProxyUser(this.proxyUser);
+
+        allBooksController.initialize();
+
         Stage stage =(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);

@@ -27,7 +27,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class allBooksController implements Initializable {
+public class allBooksController{
     @javafx.fxml.FXML
     @FXML
     private GridPane gridPane;
@@ -54,7 +54,7 @@ public class allBooksController implements Initializable {
     @FXML
     private TextField searchLength;
 
-    private proxyUser proxyUser;
+    private  proxyUser proxyUser;
     Database database;
 
     Iterator iterator;
@@ -67,8 +67,8 @@ public class allBooksController implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    public void initialize() {
         try {
             this.getAllbooks(gridPane);
         } catch (SQLException e) {
@@ -78,16 +78,17 @@ public class allBooksController implements Initializable {
     }
 
     public void getAllbooks(GridPane gridPane) throws SQLException {
-        ResultSet resultSet = this.database.selectAllBooks();
+       /* ResultSet resultSet = this.database.selectAllBooks();
         int columnIndex = 0;
         int rowIndex = 0;
+        System.out.println(this.proxyUser);
 
         gridPane.setPadding(new Insets(10));
         gridPane.setHgap(15);
         gridPane.setVgap(10);
 
         while (resultSet.next()) {
-            String bookTitle= resultSet.getString(2);
+            String bookTitle = resultSet.getString(2);
             String bookDesc = resultSet.getString(3);
             String bookImage = resultSet.getString(5);
             String bookCat = resultSet.getString(7);
@@ -110,9 +111,9 @@ public class allBooksController implements Initializable {
             newVbox.getStyleClass().add("book-vbox");
 
 
-            imageView.setOnMouseClicked(event-> {
+            imageView.setOnMouseClicked(event -> {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
-                AnchorPane root ;
+                AnchorPane root;
                 try {
                     root = fxmlLoader.load();
                 } catch (IOException e) {
@@ -127,7 +128,7 @@ public class allBooksController implements Initializable {
                 bookcontroller.setImage(bookImage);
                 bookcontroller.setProxyUser(this.proxyUser);
 
-                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setFullScreen(true);
                 stage.setScene(scene);
@@ -142,11 +143,14 @@ public class allBooksController implements Initializable {
             } else {
                 columnIndex++;
             }
-        }
-        }
-
+        }*/
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
+        iterator = new GeneralIterator();
+        iterator.setProxyUser(this.proxyUser);
+        iterator.showBooks(gridPane);
+        iterator.setFXMLLoader(fxmlLoader);
+    }
     //Handler for filtering that works with the iteration design pattern //
-
     private void setChoiceBoxElements(){
         String[] elements = {"Fiction" ,"Science Fiction" ,"Romance","Fantasy","Satire"};
         choiceBox.getItems().addAll(elements);
@@ -179,7 +183,6 @@ public class allBooksController implements Initializable {
             default:return ;
         }
     }
-
     public void searchAuthorHandler(ActionEvent actionEvent )throws SQLException{
             String authorName = searchAuthor.getText();
             if(authorName.isEmpty()){
@@ -187,11 +190,11 @@ public class allBooksController implements Initializable {
                 this.getAllbooks(gridPane);
             }
             else{
-                try {
-                    updateBooks(this.gridPane,database.get_books_by_author(authorName));
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
+                iterator = new AuthorIterator(authorName);
+                iterator.setProxyUser(this.proxyUser);
+                iterator.showBooks(gridPane);
+                iterator.setFXMLLoader(fxmlLoader);
             }
     }
     public void searchLengthHandler(ActionEvent actionEvent )throws SQLException{
@@ -208,7 +211,6 @@ public class allBooksController implements Initializable {
             }
         }
     }
-
     public void updateBooks(GridPane gridPane , ResultSet allbooks) throws  SQLException {
 
         int i = 0 ;
@@ -286,7 +288,6 @@ public class allBooksController implements Initializable {
         }
 
     }
-
     public void Logout(ActionEvent actionEvent) throws SQLException,IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("entry.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();

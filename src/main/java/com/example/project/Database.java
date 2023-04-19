@@ -195,15 +195,12 @@ public class Database {
                 "  (6, 'Lemon De Secret', 'A political allegory by George Orwell','images/books/lemondesecret.jpg',122, 8, 'Satire', 'George Orwell', 1),\n" +
                 "  (7, 'Percy Jackson', 'A fantasy novel by J.R.R. Tolkien', 'images/books/percyjackson.jpg',122,4, 'Fantasy', 'J.R.R. Tolkien', 2)\n");
     }
-
     public ResultSet selectAllBooks() throws SQLException{
         return statement.executeQuery("Select * from Books ");
     }
-
     public ResultSet getSelectedBook(String bookName) throws SQLException{
         return statement.executeQuery("Select * from book where title = '"+bookName+"'");
     }
-
     public boolean borrowerLogin(String email , String password) throws SQLException{
         ResultSet resultSet = statement.executeQuery("Select * from Users where email = '"+email+"' and password = '"+password+"' and " +
                 "type = 'borrower'");
@@ -216,14 +213,12 @@ public class Database {
         idBorrowers++;
         return true;
     }
-
     public boolean adminLogin(String email , String password) throws SQLException{
         ResultSet resultSet = statement.executeQuery("Select * from Users where email = '"+email+"' and password = '"+password+"' and " +
                 "type = 'admin'");
         if(resultSet.next()) return true;
         return false;
     }
-
     public boolean adminRegister(String username , String email , String password)throws SQLException{
         ResultSet resultSet = statement.executeQuery("Select * from Users where type = 'admin'");
         if(resultSet.next())return false;
@@ -234,13 +229,11 @@ public class Database {
         }
 
     }
-
     public boolean librarianLogin(String email , String password) throws SQLException{
        ResultSet resultSet= statement.executeQuery("Select * from Users where email = '"+email+"' and password = '"+password+"' and type = 'librarian'");
         if(resultSet.next()) return true;
         return  false ;
     }
-
     public boolean librarianRegister(String username , String password , String email) throws SQLException{
         statement.execute("INSERT INTO Users(id,username , email , password ,type) " +
                 "Values('"+idBorrowers+"','"+username+"','"+email+"','"+password+"', 'librarian');");
@@ -251,15 +244,12 @@ public class Database {
         ResultSet resultSet = statement.executeQuery("Select * From Books where autherName = '"+authorName+"'");
         return resultSet;
     }
-
     public ResultSet get_books_by_category(String category) throws SQLException{
         return statement.executeQuery("Select * From Books where category ='"+category+"'");
     }
-
     public ResultSet get_books_by_length(int length) throws SQLException{
         return statement.executeQuery("Select * From Books where bookLength <='"+length+"'");
     }
-
     static int idBorrowers = 8;
     static int idLibrarians = 8;
 }

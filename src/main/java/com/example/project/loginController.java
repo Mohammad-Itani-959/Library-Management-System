@@ -50,7 +50,6 @@ public class loginController {
     @FXML
     private VBox Vbox;
 
-
     protected proxyUser proxyUser;
     public void login(ActionEvent actionEvent) throws SQLException, IOException {
 
@@ -79,6 +78,7 @@ public class loginController {
 
                 allBooksController allBooksController = fxmlLoader.getController();
                 allBooksController.setProxyUser(this.proxyUser);
+                allBooksController.initialize();
 
 
                 Scene scene = new Scene(root);
