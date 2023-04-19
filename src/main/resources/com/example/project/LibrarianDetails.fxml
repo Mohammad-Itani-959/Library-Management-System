@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.LibrarianDetails">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="810.0" prefWidth="1315.0" styleClass="btn" stylesheets="@../../../styles/style.css">
+         <children>
+            <HBox prefHeight="51.0" prefWidth="1307.0" styleClass="white-bg" stylesheets="@../../../styles/style.css">
+              
+                  <VBox.margin>
+                     <Insets left="8.0" top="10.0" />
+                  </VBox.margin>
+                  <children>
+                     <ImageView fitHeight="113.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" scaleX="1.1" scaleY="1.1">
+                        <image>
+                           <Image url="@../../../images/back.png" />
+                        </image>
+                        <HBox.margin>
+                           <Insets top="2.0" />
+                        </HBox.margin>
+                     </ImageView>
+                     <Button mnemonicParsing="false" styleClass="transparent" stylesheets="@../../../styles/style.css" text="Go back" textFill="#f0824f">
+                        <font>
+                           <Font name="Corbel Bold" size="18.0" />
+                        </font>
+                        <HBox.margin>
+                           <Insets top="4.0" />
+                        </HBox.margin>
+                     </Button>
+                  <Pane prefHeight="61.0" prefWidth="367.0" />
+                  <Label alignment="CENTER" prefHeight="61.0" prefWidth="307.0" textFill="#f0824f">
+                     <font>
+                        <Font name="Harlow Solid Italic" size="36.0" />
+                     </font>
+                  </Label>
+                  </children>
+
+            </HBox>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="white-bg" stylesheets="@../../../styles/style.css">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="210.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/books/librarian.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox>
+               <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="154.0" prefWidth="596.0" text="librarian name :" textFill="#f0824f">
+                  <font>
+                     <Font name="Harlow Solid Italic" size="36.0" />
+                  </font>
+               </Label>
+               <Label contentDisplay="RIGHT" prefHeight="154.0" prefWidth="449.0" textFill="#f0824f">
+                  <font>
+                     <Font name="Harlow Solid Italic" size="36.0" />
+                  </font>
+                  <HBox.margin>
+                     <Insets left="50.0" />
+                  </HBox.margin>
+               </Label>
+            </HBox>
+            <HBox>
+               <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="154.0" prefWidth="596.0" text="librarian name :" textFill="#f0824f">
+                  <font>
+                     <Font name="Harlow Solid Italic" size="36.0" />
+                  </font>
+               </Label>
+               <Label contentDisplay="RIGHT" prefHeight="154.0" prefWidth="449.0" textFill="#f0824f">
+                  <font>
+                     <Font name="Harlow Solid Italic" size="36.0" />
+                  </font>
+                  <HBox.margin>
+                     <Insets left="50.0" />
+                  </HBox.margin>
+               </Label>
+            </HBox>
+            <HBox>
+               <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="154.0" prefWidth="596.0" text="librarian name :" textFill="#f0824f">
+                  <font>
+                     <Font name="Harlow Solid Italic" size="36.0" />
+                  </font>
+               </Label>
+               <Label contentDisplay="RIGHT" prefHeight="154.0" prefWidth="449.0" textFill="#f0824f">
+                  <font>
+                     <Font name="Harlow Solid Italic" size="36.0" />
+                  </font>
+                  <HBox.margin>
+                     <Insets left="50.0" />
+                  </HBox.margin>
+               </Label>
+            </HBox>
+            <Button mnemonicParsing="false" prefHeight="95.0" prefWidth="162.0" styleClass="btn" stylesheets="@../../../styles/style.css" text="Detete" textFill="#f0824f">
+               <font>
+                  <Font name="Cambria Bold Italic" size="36.0" />
+               </font>
+            </Button>
+
+
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

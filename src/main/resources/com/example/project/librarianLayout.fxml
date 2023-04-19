@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.librarianController">
    <children>
-      <HBox alignment="CENTER" layoutX="72.0" prefHeight="59.0" prefWidth="542.0">
+      <HBox alignment="CENTER" layoutX="447.0" prefHeight="59.0" prefWidth="458.0">
          <children>
             <Label text="Add Book" textFill="#f0824f">
                <font>
@@ -17,7 +17,7 @@
             </Label>
          </children>
       </HBox>
-      <HBox layoutX="139.0" layoutY="78.0" prefHeight="441.0" prefWidth="522.0" style="-fx-background-color: #f0824f;">
+      <HBox layoutX="428.0" layoutY="76.0" prefHeight="441.0" prefWidth="522.0" style="-fx-background-color: #f0824f;">
          <children>
             <VBox alignment="CENTER" prefHeight="288.0" prefWidth="171.0">
                <children>
@@ -60,7 +60,8 @@
                   <TextField prefHeight="31.0" prefWidth="173.0" promptText="Enter Book Title">
                      <VBox.margin>
                         <Insets top="60.0" />
-                     </VBox.margin></TextField>
+                     </VBox.margin>
+                  </TextField>
                   <Pane prefHeight="14.0" prefWidth="173.0" />
                   <TextField prefHeight="32.0" prefWidth="173.0" promptText="Enter book Category" />
                   <Pane prefHeight="17.0" prefWidth="173.0" />
@@ -78,7 +79,7 @@
             </VBox>
          </children>
       </HBox>
-      <HBox prefHeight="70.0" prefWidth="199.0">
+      <HBox prefHeight="70.0" prefWidth="224.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -95,12 +96,12 @@
             </Button>
          </children>
       </HBox>
-      <Button layoutX="171.0" layoutY="544.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="118.0" text="Cancel">
+      <Button layoutX="471.0" layoutY="544.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="118.0" text="Cancel">
          <font>
             <Font name="Cambria Bold Italic" size="24.0" />
          </font>
       </Button>
-      <Button layoutX="512.0" layoutY="544.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="118.0" text="ADD">
+      <Button layoutX="813.0" layoutY="544.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="118.0" text="ADD">
          <font>
             <Font name="Cambria Bold Italic" size="24.0" />
          </font>
