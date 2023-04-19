@@ -3,7 +3,7 @@ package com.example.project;
 
 import java.sql.SQLException;
 
-public class proxyUser {
+public class ProxyUser {
     private User realUser;
     private String type ;
     private Database database;
@@ -16,7 +16,7 @@ public class proxyUser {
         }
     }
 
-    public proxyUser(String email , String password ,String type){
+    public ProxyUser(String email , String password , String type){
         this.type=type ;
         try {
             this.login(email ,password,this.type);

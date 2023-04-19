@@ -1,14 +1,13 @@
 package com.example.project.iterator;
 
 import com.example.project.Database;
-import com.example.project.bookController;
-import com.example.project.proxyUser;
+import com.example.project.BookDetailController;
+import com.example.project.ProxyUser;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -24,7 +23,7 @@ public class AuthorIterator implements Iterator {
     private String authorName;
     private  ResultSet resultSet;
     private FXMLLoader fxmlLoader;
-    private  proxyUser proxyUser;
+    private ProxyUser proxyUser;
 
     Database database;
 
@@ -96,7 +95,7 @@ public class AuthorIterator implements Iterator {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-                bookController bookcontroller = fxmlLoader.getController();
+                BookDetailController bookcontroller = fxmlLoader.getController();
                 bookcontroller.setAuthor(bookAuth);
                 bookcontroller.setTitle(bookTitle);
                 bookcontroller.setDescription(bookDesc);
@@ -127,7 +126,7 @@ public class AuthorIterator implements Iterator {
         this.fxmlLoader = fxmlLoader;
     }
     @Override
-    public void setProxyUser(proxyUser proxyUser) {
+    public void setProxyUser(ProxyUser proxyUser) {
         this.proxyUser = proxyUser;
     }
     public ResultSet getBooks() throws SQLException{

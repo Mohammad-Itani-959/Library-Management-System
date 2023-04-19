@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class entryController {
+public class EntryController {
     @FXML
     private Label welcomeText;
 
@@ -30,7 +30,7 @@ public class entryController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
         AnchorPane root = loader.load();
 
-        loginController loginController = loader.getController();
+        LoginController loginController = loader.getController();
         loginController.setType("borrower");
 
         Scene scene = new Scene(root);
@@ -48,7 +48,7 @@ public class entryController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
             AnchorPane root = loader.load();
 
-            loginController loginController = loader.getController();
+            LoginController loginController = loader.getController();
             loginController.setType("librarian");
             loginController.removeRegister();
 
@@ -70,7 +70,7 @@ public class entryController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
         AnchorPane root = loader.load();
 
-        loginController loginController = loader.getController();
+        LoginController loginController = loader.getController();
         loginController.setType("admin");
         loginController.removeRegister();
 

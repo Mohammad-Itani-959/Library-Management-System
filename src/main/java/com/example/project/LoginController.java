@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class loginController {
+public class LoginController {
 
 
     Database database;
@@ -50,7 +50,7 @@ public class loginController {
     @FXML
     private VBox Vbox;
 
-    protected proxyUser proxyUser;
+    protected ProxyUser proxyUser;
     public void login(ActionEvent actionEvent) throws SQLException, IOException {
 
         String Email = email.getText().toString();
@@ -61,9 +61,7 @@ public class loginController {
             return ;
         }
 
-        this.proxyUser = new proxyUser(Email,Password,this.type);
-
-
+        this.proxyUser = new ProxyUser(Email,Password,this.type);
         if(this.proxyUser.getRealUser()==null){
             errorMessage.setText("Invalid username or password ... !");
             return ;
@@ -76,9 +74,9 @@ public class loginController {
                 AnchorPane root = fxmlLoader.load();
 
 
-                allBooksController allBooksController = fxmlLoader.getController();
+                AllBooksController allBooksController = fxmlLoader.getController();
                 allBooksController.setProxyUser(this.proxyUser);
-                allBooksController.initialize();
+                allBooksController.start();
 
 
                 Scene scene = new Scene(root);

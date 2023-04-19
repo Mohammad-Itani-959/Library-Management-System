@@ -1,14 +1,9 @@
 package com.example.project;
 
-import com.example.project.iterator.AuthorIterator;
-import com.example.project.iterator.GeneralIterator;
-import com.example.project.iterator.Iterator;
-import com.example.project.iterator.LengthIterator;
+import com.example.project.iterator.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -17,17 +12,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicInteger;
 
-public class allBooksController{
+public class AllBooksController {
     @javafx.fxml.FXML
     @FXML
     private GridPane gridPane;
@@ -54,7 +45,7 @@ public class allBooksController{
     @FXML
     private TextField searchLength;
 
-    private  proxyUser proxyUser;
+    public ProxyUser proxyUser;
     Database database;
 
     Iterator iterator;
@@ -68,7 +59,8 @@ public class allBooksController{
     }
 
 
-    public void initialize() {
+
+    public void start(){
         try {
             this.getAllbooks(gridPane);
         } catch (SQLException e) {
@@ -78,72 +70,6 @@ public class allBooksController{
     }
 
     public void getAllbooks(GridPane gridPane) throws SQLException {
-       /* ResultSet resultSet = this.database.selectAllBooks();
-        int columnIndex = 0;
-        int rowIndex = 0;
-        System.out.println(this.proxyUser);
-
-        gridPane.setPadding(new Insets(10));
-        gridPane.setHgap(15);
-        gridPane.setVgap(10);
-
-        while (resultSet.next()) {
-            String bookTitle = resultSet.getString(2);
-            String bookDesc = resultSet.getString(3);
-            String bookImage = resultSet.getString(5);
-            String bookCat = resultSet.getString(7);
-            String bookAuth = resultSet.getString(8);
-
-            ImageView imageView = new ImageView();
-            Image image = new Image(getClass().getResourceAsStream("/" + bookImage));
-            imageView.setImage(image);
-            imageView.setFitWidth(207);
-            imageView.setFitHeight(300);
-
-            Label label = new Label(bookTitle);
-            label.setFont(Font.font("Corbel", 16));
-            label.setTextFill(Color.web("#f0824f"));
-            VBox newVbox = new VBox();
-            newVbox.getChildren().add(imageView);
-            newVbox.getChildren().add(label);
-            newVbox.setPrefWidth(207);
-            newVbox.setPrefHeight(320);
-            newVbox.getStyleClass().add("book-vbox");
-
-
-            imageView.setOnMouseClicked(event -> {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
-                AnchorPane root;
-                try {
-                    root = fxmlLoader.load();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-
-                bookController bookcontroller = fxmlLoader.getController();
-                bookcontroller.setAuthor(bookAuth);
-                bookcontroller.setTitle(bookTitle);
-                bookcontroller.setDescription(bookDesc);
-                bookcontroller.setCategory(bookCat);
-                bookcontroller.setImage(bookImage);
-                bookcontroller.setProxyUser(this.proxyUser);
-
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene scene = new Scene(root);
-                stage.setFullScreen(true);
-                stage.setScene(scene);
-                stage.show();
-            });
-
-            gridPane.add(newVbox, columnIndex % 5, rowIndex);
-
-            if (columnIndex % 5 == 4) {
-                rowIndex++;
-                columnIndex = 0;
-            } else {
-                columnIndex++;
-            }
-        }*/
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
         iterator = new GeneralIterator();
         iterator.setProxyUser(this.proxyUser);
@@ -155,33 +81,14 @@ public class allBooksController{
         String[] elements = {"Fiction" ,"Science Fiction" ,"Romance","Fantasy","Satire"};
         choiceBox.getItems().addAll(elements);
     }
-    public void choiceBoxHandler(ActionEvent actionEvent) throws SQLException{
+    public void searchCategoryHandler(ActionEvent actionEvent) throws SQLException{
         String selectedItem = choiceBox.getValue();
-        TextField textField = new TextField();
-        Button search = new Button("Search");
+        iterator = new CategoryIterator(selectedItem);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
+        iterator.setProxyUser(this.proxyUser);
+        iterator.setFXMLLoader(fxmlLoader);
+        iterator.showBooks(gridPane);
 
-        switch (selectedItem){
-            case "Fiction":
-                updateBooks(gridPane,database.get_books_by_category("Fiction"));
-                return ;
-
-            case "Science Fiction":
-                updateBooks(gridPane,database.get_books_by_category("Science Fiction"));
-                return ;
-
-            case "Fantasy":
-                updateBooks(gridPane,database.get_books_by_category("Fantasy"));
-                return ;
-            case "Romance":
-                updateBooks(gridPane,database.get_books_by_category("Romance"));
-                return ;
-
-            case "Satire":
-                updateBooks(gridPane,database.get_books_by_category("Satire"));
-                return ;
-
-            default:return ;
-        }
     }
     public void searchAuthorHandler(ActionEvent actionEvent )throws SQLException{
             String authorName = searchAuthor.getText();
@@ -198,17 +105,18 @@ public class allBooksController{
             }
     }
     public void searchLengthHandler(ActionEvent actionEvent )throws SQLException{
-        Integer length = Integer.parseInt(searchLength.getText());
-        if(length == null){
+        if(searchLength.getText().equals("")){
             searchAuthor.setPromptText("Please enter an author name");
             this.getAllbooks(gridPane);
+
         }
         else{
-            try {
-                updateBooks(this.gridPane,database.get_books_by_length(length));
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+            Integer length = Integer.parseInt(searchLength.getText());
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
+            iterator = new LengthIterator(length);
+            iterator.setProxyUser(this.proxyUser);
+            iterator.showBooks(gridPane);
+            iterator.setFXMLLoader(fxmlLoader);
         }
     }
     public void updateBooks(GridPane gridPane , ResultSet allbooks) throws  SQLException {
@@ -261,7 +169,7 @@ public class allBooksController{
                     throw new RuntimeException(e);
                 }
 
-                bookController bookcontroller = fxmlLoader.getController();
+                BookDetailController bookcontroller = fxmlLoader.getController();
                 bookcontroller.setAuthor(bookAuth);
                 bookcontroller.setTitle(bookTitle);
                 bookcontroller.setDescription(bookDesc);
@@ -297,7 +205,7 @@ public class allBooksController{
         stage.setScene(scene);
         stage.show();
     }
-    public void setProxyUser(proxyUser proxyUser){
+    public void setProxyUser(ProxyUser proxyUser){
         this.proxyUser = proxyUser;
         this.email.setText(proxyUser.getRealUser().getEmail());
     }

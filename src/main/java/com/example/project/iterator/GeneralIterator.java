@@ -1,7 +1,7 @@
 package com.example.project.iterator;
 
 import com.example.project.Database;
-import com.example.project.bookController;
+import com.example.project.BookDetailController;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -17,15 +17,14 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.example.project.proxyUser;
+import com.example.project.ProxyUser;
 
 public class GeneralIterator implements Iterator{
     Database database;
-    private proxyUser proxyUser;
+    private ProxyUser proxyUser;
     FXMLLoader fxmlLoader;
     {
         try {
@@ -40,7 +39,6 @@ public class GeneralIterator implements Iterator{
     }
     @Override
     public void showBooks(GridPane gridPane) throws SQLException {
-
         int columnIndex = 0;
         int rowIndex = 0;
 
@@ -73,8 +71,6 @@ public class GeneralIterator implements Iterator{
             newVbox.setPrefWidth(207);
             newVbox.setPrefHeight(320);
             newVbox.getStyleClass().add("book-vbox");
-
-
             imageView.setOnMouseClicked(event-> {
                 AnchorPane root;
                 try {
@@ -82,14 +78,13 @@ public class GeneralIterator implements Iterator{
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-                bookController bookcontroller = fxmlLoader.getController();
+                BookDetailController bookcontroller = fxmlLoader.getController();
                 bookcontroller.setAuthor(bookAuth);
                 bookcontroller.setTitle(bookTitle);
                 bookcontroller.setDescription(bookDesc);
                 bookcontroller.setCategory(bookCat);
                 bookcontroller.setImage(bookImage);
-                bookcontroller.setProxyUser(this.proxyUser);
-
+                bookcontroller.setProxyUser(getProxyUser());
 
                 Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
@@ -130,5 +125,6 @@ public class GeneralIterator implements Iterator{
     @Override
     public void setFXMLLoader(FXMLLoader fxmlLoader){this.fxmlLoader =fxmlLoader;}
     @Override
-    public void setProxyUser(proxyUser proxyUser){this.proxyUser = proxyUser;}
+    public void setProxyUser(ProxyUser proxyUser){this.proxyUser = proxyUser;}
+    public ProxyUser getProxyUser(){return this.proxyUser ;}
  }
