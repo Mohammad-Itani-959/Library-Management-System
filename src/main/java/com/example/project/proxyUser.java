@@ -38,7 +38,7 @@ public class proxyUser {
             return ;
         }
         if(type.equals("admin")){
-            if(database.librarianLogin(email,password)){
+            if(database.adminLogin(email,password)){
                 this.realUser = new User(email,password);
             }
             return ;

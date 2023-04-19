@@ -102,6 +102,20 @@ public class loginController {
 
                 stage.show();
             }
+            if(this.type.equals("admin")){
+                errorMessage.setText("");
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("admin.fxml"));
+                Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+                AnchorPane root = fxmlLoader.load();
+
+
+
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.setFullScreen(true);
+
+                stage.show();
+            }
 
         }
 

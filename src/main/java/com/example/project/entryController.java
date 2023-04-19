@@ -72,6 +72,7 @@ public class entryController {
 
         loginController loginController = loader.getController();
         loginController.setType("admin");
+        loginController.removeRegister();
 
         Scene scene = new Scene(root);
         Stage stage1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
