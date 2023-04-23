@@ -187,13 +187,13 @@ public class Database {
         }
         statement.execute("INSERT INTO Books (SN, title, description,image,bookLength,quantity, category, autherName, suplierId)\n" +
                 "VALUES\n" +
-                "  (1, 'Alice In WonderLand', 'A novel by F. Scott Fitzgerald','images/books/aliceinwonderland.jpg',200, 5, 'Fiction', 'F. Scott Fitzgerald', 1),\n" +
-                "  (2, 'How To Kill', 'A novel by Harper Lee','images/books/how to kill.jpg',244, 10, 'Fiction','Harper Lee', 2),\n" +
-                "  (3, 'Harry Potter', 'A dystopian novel by George Orwell','images/books/harrypotter.png',142,3, 'Science Fiction', 'George Orwell', 3),\n" +
-                "  (4, 'Stephen King', 'A novel by Jane Austen','images/books/it.jpg' ,111,7, 'Romance', 'Jane Austen', 4),\n" +
-                "  (5, 'Java', 'A novel by J.D. Salinger','images/books/java.jpg', 231,2, 'Fiction','J.D. Salinger', 1),\n" +
-                "  (6, 'Lemon De Secret', 'A political allegory by George Orwell','images/books/lemondesecret.jpg',122, 8, 'Satire', 'George Orwell', 1),\n" +
-                "  (7, 'Percy Jackson', 'A fantasy novel by J.R.R. Tolkien', 'images/books/percyjackson.jpg',122,4, 'Fantasy', 'J.R.R. Tolkien', 2)\n");
+                "  (1, 'Alice In WonderLand', 'A novel by Lewis Carroll','images/books/aliceinwonderland.jpg',200, 5, 'Fiction', 'Lewis Carroll', 1),\n" +
+                "  (2, 'How To Kill A Mockingbird', 'A novel by Harper Lee','images/books/how to kill.jpg',244, 10, 'Fiction','Harper Lee', 2),\n" +
+                "  (3, 'Harry Potter', 'A dystopian novel by J. K. Rowling','images/books/harrypotter.png',142,3, 'Science Fiction', 'J. K. Rowling', 3),\n" +
+                "  (4, 'IT', 'A novel by Stephen King','images/books/it.jpg' ,111,7, 'Horror', 'Stephen King', 4),\n" +
+                "  (5, 'Java', 'A novel by Mr Kotiyana','images/books/java.jpg', 231,2, 'Nonfiction','Mr Kotiyana', 1),\n" +
+                "  (6, 'Le monde Secret De Sombreterre', 'Children book by Cassandra ODonnell','images/books/lemondesecret.jpg',122, 8, 'Fiction', 'Cassandra ODonnell', 1),\n" +
+                "  (7, 'Percy Jackson', 'A fantasy novel by Rick Riordan', 'images/books/percyjackson.jpg',122,4, 'Fantasy', 'Rick Riordan', 2)\n");
     }
     public ResultSet selectAllBooks() throws SQLException{
         return statement.executeQuery("Select * from Books ");
@@ -240,8 +240,11 @@ public class Database {
         idLibrarians++;
         return true;
     }
-    public ResultSet get_books_by_author(String authorName) throws SQLException{
-        ResultSet resultSet = statement.executeQuery("Select * From Books where autherName = '"+authorName+"'");
+    public ResultSet get_books_by_author(String authorName) throws SQLException {
+        String query = "SELECT * FROM Books WHERE REPLACE(LOWER(autherName), ' ', '') = ?";
+        PreparedStatement stmt = connection.prepareStatement(query);
+        stmt.setString(1, authorName.toLowerCase().replaceAll("\\s+", ""));
+        ResultSet resultSet = stmt.executeQuery();
         return resultSet;
     }
     public ResultSet get_books_by_category(String category) throws SQLException{
@@ -249,6 +252,10 @@ public class Database {
     }
     public ResultSet get_books_by_length(int length) throws SQLException{
         return statement.executeQuery("Select * From Books where bookLength <='"+length+"'");
+    }
+
+    public ResultSet getCategories() throws SQLException{
+        return statement.executeQuery("Select DISTINCT category From Books");
     }
     static int idBorrowers = 8;
     static int idLibrarians = 8;
