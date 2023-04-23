@@ -8,7 +8,7 @@ public class Database {
     Statement statement ;
 
     public Database() throws SQLException {
-        this.connection= DriverManager.getConnection(String.format("jdbc:mysql://localhost:3306/%s", "guiprroject"), "root", "AlaaKanso2002.@.");
+        this.connection= DriverManager.getConnection(String.format("jdbc:mysql://localhost:3306/%s", "guiprroject"), "root", "");
         this.statement = this.connection.createStatement();
         /* statement.execute("create function numberOfBooks (@category varchar(30))" +
                 "returns int" +
@@ -105,95 +105,88 @@ public class Database {
         */
 
     }
-
     public void createTables() throws SQLException{
             ResultSet resultSet ;
-            resultSet = statement.executeQuery("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'Users')");
+         /*     statement.execute("CREATE TABLE Users ("+
+                "id int AUTO_INCREMENT Primary Key,"+
+                " username VARCHAR(50) NOT NULL," +
+                " email VARCHAR(50) NOT NULL," +
+                " password VARCHAR(255) NOT NULL," +
+                " type VARCHAR(20));");
+          resultSet = statement.executeQuery("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'Users')");
             if(!(resultSet.next() && resultSet.getBoolean(1))){
-                statement.execute("CREATE TABLE Users (" +
-                        " id int PRIMARY KEY," +
+                statement.execute("CREATE TABLE Users ("+
                         " username VARCHAR(50) NOT NULL," +
                         " email VARCHAR(50) NOT NULL," +
                         " password VARCHAR(255) NOT NULL," +
                         " type VARCHAR(20));");
-            }
+            }*/
 
-
-
-
-            resultSet = statement.executeQuery("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'Suppliers')");
+            resultSet = statement.executeQuery("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'Messages')");
             if(!(resultSet.next() && resultSet.getBoolean(1))){
-                statement.execute("CREATE TABLE Suppliers (" +
-                        "  suplierId int  PRIMARY KEY," +
-                        "  name VARCHAR(50) NOT NULL," +
-                        "  phoneNumber varchar(20));");
+                statement.execute("CREATE TABLE Messages (" +
+                        "id int AUTO_INCREMENT Primary Key,"+
+                        "  message TEXT," +
+                        "  userId int );");
             }
 
             resultSet = statement.executeQuery("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'Books')");
             if(!(resultSet.next() && resultSet.getBoolean(1))){
-                statement.execute("CREATE TABLE Books  ( SN int PRIMARY KEY," +
-                        "title VARCHAR(50) ,description TEXT,quantity int," +
-                        "image VARCHAR(50),bookLength int,"+
-                        "category varchar(30),autherName varchar(30), suplierId int," +
-                        "FOREIGN KEY (suplierId) REFERENCES Suppliers(suplierId));");
+                statement.execute("CREATE TABLE Books  ( " +
+                        "id int AUTO_INCREMENT Primary Key,"+
+                        "title VARCHAR(50) ," +
+                        "description TEXT," +
+                        "image VARCHAR(50)," +
+                        "bookLength int,"+
+                        "quantity int," +
+                        "category varchar(30)," +
+                        "authorName varchar(30), " +
+                        "librarianId int)");
             }
 
-            resultSet = statement.executeQuery("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'Borrowers')");
+            resultSet = statement.executeQuery("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'Borrows')");
             if(!(resultSet.next() && resultSet.getBoolean(1))){
-                statement.execute("CREATE TABLE Borrowers (" +
-                        "  SN int," +
-                        "  id int," +
-                        "  borrowDate DATETIME," +
-                        "  returnTime DATETIME," +
-                        "  FOREIGN KEY (SN) REFERENCES Books(SN)" +
-                        ");");
-            }
-    }
+            statement.execute("CREATE TABLE Borrows ("+
+                    "id int AUTO_INCREMENT Primary Key,"+
+                    "bookId int,"+
+                    "userId int,"+
+                    "librarian int,"+
+                    "startDate DATETIME,"+
+                    "endDate DATETIME);");
+        }
 
+    }
     public void addData() throws SQLException{
-        createSuppliers();
-        createBooks();
         createUsers();
+        createBooks();
     }
-
     public void createUsers() throws SQLException{
             ResultSet resultSet = statement.executeQuery("Select * from Users");
             if(resultSet.next()){
                 return ;
             }
-            statement.execute("INSERT INTO Users (id, username, email, password, type) VALUES\n" +
-                    "( 1, 'john.doe', 'john.doe@example.com', 'password1', 'admin'),\n" +
-                    "( 2, 'jane.doe', 'jane.doe@example.com', 'password2', 'borrower'),\n" +
-                    "( 3, 'alice', 'alice@example.com', 'password3', 'borrower'),\n" +
-                    "( 4, 'bob', 'bob@example.com', 'password4', 'librarian'),\n" +
-                    "( 5, 'charlie', 'charlie@example.com', 'password5', 'librarian');\n");
+            statement.execute("INSERT INTO Users (username, email, password, type) VALUES\n" +
+                    "('john.doe', 'john.doe@example.com', 'password1', 'admin'),\n" +
+                    "('jane.doe', 'jane.doe@example.com', 'password2', 'borrower'),\n" +
+                    "('alice', 'alice@example.com', 'password3', 'borrower'),\n" +
+                    "('bob', 'bob@example.com', 'password4', 'librarian'),\n" +
+                    "('charlie', 'charlie@example.com', 'password5', 'librarian');\n");
 
-    }
-    public void createSuppliers() throws SQLException{
-        ResultSet resultSet = statement.executeQuery("Select * from Suppliers");
-        if(resultSet.next()){
-            return ;
-        }
-        statement.execute("INSERT INTO Suppliers (suplierId, name, phoneNumber) VALUES\n" +
-                "(1, 'Acme Inc.', '555-1234'),\n" +
-                "(2, 'Globex Corporation', '555-5678'),\n" +
-                "(3, 'Soylent Industries', '555-9012'),\n" +
-                "(4, 'Initech LLC', '555-3456');\n");
     }
     public void createBooks() throws SQLException {
         ResultSet resultSet = statement.executeQuery("Select * from Books");
         if(resultSet.next()){
             return ;
         }
-        statement.execute("INSERT INTO Books (SN, title, description,image,bookLength,quantity, category, autherName, suplierId)\n" +
+        statement.execute("INSERT INTO Books (title, description,image,bookLength,quantity, category, authorName, librarianId)\n" +
                 "VALUES\n" +
-                "  (1, 'Alice In WonderLand', 'A novel by Lewis Carroll','images/books/aliceinwonderland.jpg',200, 5, 'Fiction', 'Lewis Carroll', 1),\n" +
-                "  (2, 'How To Kill A Mockingbird', 'A novel by Harper Lee','images/books/how to kill.jpg',244, 10, 'Fiction','Harper Lee', 2),\n" +
-                "  (3, 'Harry Potter', 'A dystopian novel by J. K. Rowling','images/books/harrypotter.png',142,3, 'Science Fiction', 'J. K. Rowling', 3),\n" +
-                "  (4, 'IT', 'A novel by Stephen King','images/books/it.jpg' ,111,7, 'Horror', 'Stephen King', 4),\n" +
-                "  (5, 'Java', 'A novel by Mr Kotiyana','images/books/java.jpg', 231,2, 'Nonfiction','Mr Kotiyana', 1),\n" +
-                "  (6, 'Le monde Secret De Sombreterre', 'Children book by Cassandra ODonnell','images/books/lemondesecret.jpg',122, 8, 'Fiction', 'Cassandra ODonnell', 1),\n" +
-                "  (7, 'Percy Jackson', 'A fantasy novel by Rick Riordan', 'images/books/percyjackson.jpg',122,4, 'Fantasy', 'Rick Riordan', 2)\n");
+                "  ('Alice In WonderLand', 'A novel by Lewis Carroll','images/books/aliceinwonderland.jpg',200, 5, 'Fiction', 'Lewis Carroll', 3),\n" +
+                "  ('How To Kill A Mockingbird', 'A novel by Harper Lee','images/books/how to kill.jpg',244, 10, 'Fiction','Harper Lee', 4),\n" +
+                "  ('Harry Potter', 'A dystopian novel by J. K. Rowling','images/books/harrypotter.png',142,3, 'Science Fiction', 'J. K. Rowling', 3),\n" +
+                "  ('IT', 'A novel by Stephen King','images/books/it.jpg' ,111,7, 'Horror', 'Stephen King', 4),\n" +
+                "  ('Java', 'A novel by Mr Kotiyana','images/books/java.jpg', 231,2, 'Nonfiction','Mr Kotiyana', 4),\n" +
+                "  ('Le monde Secret De Sombreterre', 'Children book by Cassandra ODonnell','images/books/lemondesecret.jpg',122, 8, 'Fiction', 'Cassandra ODonnell', 3),\n" +
+                "  ('Percy Jackson', 'A fantasy novel by Rick Riordan', 'images/books/percyjackson.jpg',122,4, 'Fantasy', 'Rick Riordan',3)\n");
     }
     public ResultSet selectAllBooks() throws SQLException{
         return statement.executeQuery("Select * from Books ");
@@ -241,7 +234,7 @@ public class Database {
         return true;
     }
     public ResultSet get_books_by_author(String authorName) throws SQLException {
-        String query = "SELECT * FROM Books WHERE REPLACE(LOWER(autherName), ' ', '') = ?";
+        String query = "SELECT * FROM Books WHERE REPLACE(LOWER(authorName), ' ', '') = ?";
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setString(1, authorName.toLowerCase().replaceAll("\\s+", ""));
         ResultSet resultSet = stmt.executeQuery();

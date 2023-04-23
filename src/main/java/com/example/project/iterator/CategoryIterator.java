@@ -64,11 +64,11 @@ public class CategoryIterator implements Iterator {
         ResultSet resultSet ;
         while (has_Next()) {
             resultSet = getNext();
-            String bookTitle= resultSet.getString(2);
-            String bookDesc = resultSet.getString(3);
-            String bookImage = resultSet.getString(5);
-            String bookCat = resultSet.getString(7);
-            String bookAuth = resultSet.getString(8);
+            String bookTitle= resultSet.getString("title");
+            String bookDesc = resultSet.getString("description");
+            String bookImage = resultSet.getString("image");
+            String bookCat = resultSet.getString("category");
+            String bookAuth = resultSet.getString("authorName");
 
 
 
