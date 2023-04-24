@@ -108,6 +108,7 @@
 
 .book-vbox {
     cursor: pointer;
-    -fx-background-color: #ffeae0;
+    -fx-background-color: white;
+    -fx-padding: 10;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 7, 0, 0, 0);
 }
