@@ -109,6 +109,7 @@ public class LoginController {
                 AnchorPane root = fxmlLoader.load();
 
 
+
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.setFullScreen(true);
