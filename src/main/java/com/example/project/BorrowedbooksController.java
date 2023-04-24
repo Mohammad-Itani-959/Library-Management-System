@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class Borrowedbooks {
+public class BorrowedbooksController {
 
     public ProxyUser proxyUser;
     @javafx.fxml.FXML
