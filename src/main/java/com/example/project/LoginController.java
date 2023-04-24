@@ -109,7 +109,6 @@ public class LoginController {
                 AnchorPane root = fxmlLoader.load();
 
 
-
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.setFullScreen(true);
@@ -131,7 +130,6 @@ public class LoginController {
         stage.show();
     }
 
-    public void setType(String type){this.type = type;}
 
     public void removeRegister(){
         Vbox.getChildren().remove(register);
