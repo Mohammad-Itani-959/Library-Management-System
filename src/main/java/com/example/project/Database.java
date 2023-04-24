@@ -250,7 +250,7 @@ public class Database {
     public ResultSet get_books_by_length(int length) throws SQLException{
         return statement.executeQuery("Select * From Books where bookLength <='"+length+"'");
     }
-    static int idBorrowers = 8;
-    static int idLibrarians = 8;
+    static int idBorrowers = 10;
+    static int idLibrarians = 10;
 }
 
