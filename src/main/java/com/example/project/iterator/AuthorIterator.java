@@ -1,5 +1,6 @@
 package com.example.project.iterator;
 
+import com.example.project.Book;
 import com.example.project.Database;
 import com.example.project.BookDetailController;
 import com.example.project.proxyUser.ProxyUser;
@@ -70,6 +71,16 @@ public class AuthorIterator implements Iterator {
             String bookCat = resultSet.getString("category");
             String bookAuth = resultSet.getString("authorName");;
 
+            Book book = new Book(
+                    bookTitle,
+                    bookAuth,
+                    bookDesc,
+                    bookCat,
+                    resultSet.getString("id"),
+                    bookImage,
+                    resultSet.getString("bookLength"),
+                    resultSet.getString("librarianId")
+            );
 
             ImageView imageView = new ImageView();
             Image image = new Image(getClass().getResourceAsStream("/" + bookImage));
@@ -95,11 +106,8 @@ public class AuthorIterator implements Iterator {
                     throw new RuntimeException(e);
                 }
                 BookDetailController bookcontroller = fxmlLoader.getController();
-                bookcontroller.setAuthor(bookAuth);
-                bookcontroller.setTitle(bookTitle);
-                bookcontroller.setDescription(bookDesc);
-                bookcontroller.setCategory(bookCat);
-                bookcontroller.setImage(bookImage);
+                bookcontroller.setBook(book);
+                bookcontroller.putBookDetails();
                 bookcontroller.setProxyUser(this.proxyUser);
 
 

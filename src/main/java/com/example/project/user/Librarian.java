@@ -4,8 +4,8 @@ import java.sql.ResultSet;
 
 public class Librarian extends User{
 
-    public Librarian(String username , String password){
-        super(username,password);
+    public Librarian(String email , String password){
+        super(email,password);
     }
     public Librarian(String username , String password, String email){
         super(username,password,email);

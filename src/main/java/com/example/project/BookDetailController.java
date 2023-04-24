@@ -34,6 +34,17 @@ public class BookDetailController {
 
     private Iterator iterator;
     private String email ;
+    Database database;
+
+    {
+        try {
+            database = new Database();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private Book book ;
 
     public void backHandler(ActionEvent actionEvent) throws IOException, SQLException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("allbooks.fxml"));
@@ -51,16 +62,36 @@ public class BookDetailController {
         stage.show();
     }
 
-
-    public void setAuthor(String name ){this.bookAuthor.setText(name);}
-    public void setTitle(String title){this.bookTitle.setText(title);}
-    public void setDescription(String description){this.bookDescription.setText(description);}
-    public void setCategory(String category){this.bookCategory.setText(category);}
-    public void setImage(String bookImage){
-        Image image= new Image(getClass().getResourceAsStream("/"+bookImage));
+    public void setBook(Book book){this.book = book;}
+    public void putBookDetails(){
+        this.bookTitle.setText(book.getBookTitle());
+        this.bookAuthor.setText(book.getBookAuthor());
+        this.bookDescription.setText(book.getBookDesc());
+        this.bookCategory.setText(book.getBookCat());
+        Image image= new Image(getClass().getResourceAsStream("/"+book.getBookImage()));
         this.bookImage.setImage(image);
-    }
 
+    }
+    public void borrowHandler(ActionEvent actionEvent)throws SQLException,IOException{
+        if(database.Borrow(book,proxyUser.getRealUser(),"1","2")){
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("allbooks.fxml"));
+            AnchorPane root = fxmlLoader.load();
+
+            AllBooksController allBooksController = fxmlLoader.getController();
+            allBooksController.setProxyUser(this.proxyUser);
+            allBooksController.start();
+
+            Stage stage =(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setFullScreen(true);
+            stage.show();
+        }
+        else{
+            System.out.println("Borrow Failed...!!");
+        }
+    }
     public void setProxyUser(ProxyUser proxyUser){
         this.proxyUser = proxyUser;
         this.email = proxyUser.getRealUser().getEmail();

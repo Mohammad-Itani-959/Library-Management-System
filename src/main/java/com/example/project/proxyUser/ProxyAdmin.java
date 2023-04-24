@@ -17,9 +17,9 @@ public class ProxyAdmin extends ProxyUser {
     }
     public ProxyAdmin(){}
 
-    public void login(String username ,String password) throws SQLException{
-        if(database.adminLogin(username,password)){
-            realAdmin= new Admin(username, password);
+    public void login(String email ,String password) throws SQLException{
+        if(database.adminLogin(email,password)){
+            realAdmin= new Admin(email, password);
             return;
         }
         else{

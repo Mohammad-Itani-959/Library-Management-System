@@ -17,9 +17,9 @@ public class ProxyLibrarian extends ProxyUser{
         }
     }
     public ProxyLibrarian(){}
-    public void login(String username , String password) throws SQLException{
-        if(database.librarianLogin(username,password)){
-            realLibrarian = new Librarian(username, password);
+    public void login(String email , String password) throws SQLException{
+        if(database.librarianLogin(email,password)){
+            realLibrarian = new Librarian(email, password);
             return ;
         }
         else{

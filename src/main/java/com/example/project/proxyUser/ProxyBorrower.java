@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 public class ProxyBorrower extends ProxyUser {
     private Borrower realBorrower;
+
     {
         try {
             database = new Database();
@@ -17,9 +18,11 @@ public class ProxyBorrower extends ProxyUser {
     }
 
     public ProxyBorrower(){}
-    public void login(String username , String password) throws SQLException{
-        if(database.borrowerLogin(username,password)){
-            realBorrower = new Borrower(username, password);
+    public void login(String email , String password) throws SQLException{
+        String username = database.borrowerLogin(email,password);
+        if(username!= null){
+            realBorrower = new Borrower(username, password,email);
+            System.out.println(username);
             return ;
         }
         else{

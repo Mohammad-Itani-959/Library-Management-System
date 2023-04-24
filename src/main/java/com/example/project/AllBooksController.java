@@ -2,6 +2,7 @@ package com.example.project;
 
 import com.example.project.iterator.*;
 import com.example.project.proxyUser.ProxyUser;
+import com.example.project.user.Borrower;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -221,6 +222,11 @@ public class AllBooksController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("borrowedbooks.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
         AnchorPane root = fxmlLoader.load();
+
+        BorrowedbooksController borrowedbooksController = fxmlLoader.getController();
+        borrowedbooksController.setProxyUser(this.proxyUser);
+        borrowedbooksController.start();
+
         Scene scene = new Scene(root);
         stage.setFullScreen(true);
         stage.setScene(scene);

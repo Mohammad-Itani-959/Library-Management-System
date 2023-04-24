@@ -2,8 +2,9 @@ package com.example.project.user;
 
 public abstract class User {
     String username , password,email;
-    public User(String username , String password){
-        this.username = username;
+    int id;
+    public User(String email , String password ){
+        this.email = email;
         this.password = password;
     }
     public User(String username , String password, String email){

@@ -202,7 +202,7 @@
                               <Insets top="15.0" />
                            </VBox.margin>
                         </HBox>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="borrow-btn" text="Borrow">
+                        <Button onAction="#borrowHandler" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="borrow-btn" text="Borrow">
                            <VBox.margin>
                               <Insets left="4.0" top="28.0" />
                            </VBox.margin>

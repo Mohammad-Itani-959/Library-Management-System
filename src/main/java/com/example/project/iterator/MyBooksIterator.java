@@ -1,9 +1,10 @@
 package com.example.project.iterator;
 
 import com.example.project.Book;
-import com.example.project.Database;
 import com.example.project.BookDetailController;
+import com.example.project.Database;
 import com.example.project.proxyUser.ProxyUser;
+import com.example.project.user.User;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -22,10 +23,20 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class GeneralIterator implements Iterator{
-    Database database;
+public class MyBooksIterator implements Iterator {
+    private User user;
+    private ResultSet resultSet;
     private ProxyUser proxyUser;
-    FXMLLoader fxmlLoader;
+    private FXMLLoader fxmlLoader;
+    Database database;
+    public MyBooksIterator(ProxyUser proxyUser ){
+        this.setProxyUser(proxyUser);
+        try {
+            this.resultSet = this.getBooks();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     {
         try {
             database = new Database();
@@ -33,12 +44,16 @@ public class GeneralIterator implements Iterator{
             throw new RuntimeException(e);
         }
     }
-    private ResultSet resultSet;
-    public GeneralIterator()throws SQLException{
-        this.resultSet = this.getBooks();
-    }
     @Override
     public void showBooks(GridPane gridPane) throws SQLException {
+
+        int i = 0 ;
+        int a = gridPane.getChildren().size();
+        while(i<a){
+            gridPane.getChildren().remove(0);
+            i++;
+        }
+
         int columnIndex = 0;
         int rowIndex = 0;
 
@@ -66,7 +81,6 @@ public class GeneralIterator implements Iterator{
                     resultSet.getString("librarianId")
             );
 
-
             ImageView imageView = new ImageView();
             Image image = new Image(getClass().getResourceAsStream("/" + bookImage));
             imageView.setImage(image);
@@ -81,6 +95,8 @@ public class GeneralIterator implements Iterator{
             newVbox.setPrefWidth(207);
             newVbox.setPrefHeight(320);
             newVbox.getStyleClass().add("book-vbox");
+
+
             imageView.setOnMouseClicked(event-> {
                 AnchorPane root;
                 try {
@@ -91,7 +107,8 @@ public class GeneralIterator implements Iterator{
                 BookDetailController bookcontroller = fxmlLoader.getController();
                 bookcontroller.setBook(book);
                 bookcontroller.putBookDetails();
-                bookcontroller.setProxyUser(getProxyUser());
+                bookcontroller.setProxyUser(this.proxyUser);
+
 
                 Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
@@ -100,9 +117,9 @@ public class GeneralIterator implements Iterator{
                 stage.show();
             });
 
-            gridPane.add(newVbox, columnIndex % 4, rowIndex);
+            gridPane.add(newVbox, columnIndex % 5, rowIndex);
 
-            if (columnIndex % 4 == 3) {
+            if (columnIndex % 5 == 4) {
                 rowIndex++;
                 columnIndex = 0;
             } else {
@@ -110,10 +127,18 @@ public class GeneralIterator implements Iterator{
             }
         }
     }
+
     @Override
-    public ResultSet getBooks() throws SQLException{
-        return database.selectAllBooks();
+    public void setFXMLLoader(FXMLLoader fxmlLoader) {
+        this.fxmlLoader = fxmlLoader;
     }
+
+    @Override
+    public void setProxyUser(ProxyUser proxyUser) {
+        this.proxyUser = proxyUser;
+        this.user = proxyUser.getRealUser();
+    }
+
     @Override
     public boolean has_Next(){
         try {
@@ -127,13 +152,14 @@ public class GeneralIterator implements Iterator{
             throw new RuntimeException(e);
         }
     }
+
     @Override
-    public ResultSet get_Next(){
+    public ResultSet get_Next() {
         return resultSet;
     }
+
     @Override
-    public void setFXMLLoader(FXMLLoader fxmlLoader){this.fxmlLoader =fxmlLoader;}
-    @Override
-    public void setProxyUser(ProxyUser proxyUser){this.proxyUser = proxyUser;}
-    public ProxyUser getProxyUser(){return this.proxyUser ;}
- }
+    public ResultSet getBooks() throws SQLException {
+        return database.getBorrowedBooks(this.user);
+    }
+}

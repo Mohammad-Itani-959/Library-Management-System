@@ -1,4 +1,6 @@
 package com.example.project;
+import com.example.project.user.User;
+
 import java.sql.*;
 
 
@@ -149,10 +151,10 @@ public class Database {
             statement.execute("CREATE TABLE Borrows ("+
                     "id int AUTO_INCREMENT Primary Key,"+
                     "bookId int,"+
-                    "userId int,"+
+                    "userName Varchar(50),"+
                     "librarian int,"+
-                    "startDate DATETIME,"+
-                    "endDate DATETIME);");
+                    "startDate varchar(50),"+
+                    "endDate varchar(50));");
         }
 
     }
@@ -194,11 +196,15 @@ public class Database {
     public ResultSet getSelectedBook(String bookName) throws SQLException{
         return statement.executeQuery("Select * from book where title = '"+bookName+"'");
     }
-    public boolean borrowerLogin(String email , String password) throws SQLException{
+    public String borrowerLogin(String email , String password ) throws SQLException{
         ResultSet resultSet = statement.executeQuery("Select * from Users where email = '"+email+"' and password = '"+password+"' and " +
                 "type = 'borrower'");
-        if(resultSet.next()) return true;
-        return false;
+
+       if(resultSet.next()){
+
+           return resultSet.getString("username");
+       }
+       return null;
     }
     public boolean borrowerRegister(String username , String email , String password)throws SQLException{
         statement.execute("INSERT INTO Users(username , email , password ,type) " +
@@ -252,6 +258,38 @@ public class Database {
         ResultSet resultSet = statement.executeQuery("SELECT * FROM Borrows WHERE id =(" +
                 "SELECT id FROM Users WHERE type='librarian' and username ='"+username +"')");
         return resultSet;
+    }
+    public boolean Borrow(Book book , User user,String startDate, String endDate)throws SQLException{
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM Books Where title ='"+book.getBookTitle()+"' and quantity = 0 ");
+        if(!resultSet.next()) {
+            statement.execute("INSERT INTO Borrows(bookId,userName,librarian,startDate,endDate)" +
+                    "Values('" + book.getBookId() + "','" + user.getUsername() + "','" + book.getBookLibrarian() + "','" +
+                    startDate + "','" + endDate + "')");
+            statement.execute("Update Books SET quantity = quantity -1 WHERE title = '"+book.getBookTitle()+"'");
+            return true;
+        }
+        return false;
+    }
+    public ResultSet getBorrowedBooks(User user)throws SQLException{
+        ResultSet resultSet = statement.executeQuery("SELECT bookId,userName,startDate,endDate,title," +
+                "description,image,category,authorName,librarian" +
+                " FROM Borrows , books " +
+                " WHERE userName = '"+user.getUsername()+"' and bookId ='Borrows.id'");
+
+        display(
+                resultSet
+        );
+        return resultSet;
+    }
+
+    public void display(ResultSet resultSet) throws SQLException{
+        while(resultSet.next()){
+            for(int i = 0 ; i<10 ;i++){
+                System.out.println(resultSet.getString(i)+"\n");
+            }
+            System.out.println("---------------------------------\n");
+
+        }
     }
 
 }
