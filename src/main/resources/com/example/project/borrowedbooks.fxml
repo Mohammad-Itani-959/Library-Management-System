@@ -89,19 +89,19 @@
                                 <Insets top="4.0" />
                             </VBox.margin>
                         </Separator>
-                  <VBox alignment="TOP_CENTER" prefHeight="416.0" prefWidth="300.0" styleClass="book-vbox">
+                  <VBox alignment="TOP_CENTER" prefHeight="422.0" prefWidth="268.0" styleClass="book-vbox">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" top="22.0" />
                      </VBox.margin>
                      <children>
-                        <ImageView fitHeight="343.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="NEVER">
+                        <ImageView fitHeight="343.0" fitWidth="264.0" pickOnBounds="true" preserveRatio="true" scaleX="1.1" scaleY="1.07" VBox.vgrow="NEVER">
                            <VBox.margin>
                               <Insets top="12.0" />
                            </VBox.margin>
                         </ImageView>
                         <Button mnemonicParsing="false" style="-fx-background-radius: 5;" styleClass="borrow-btn" text="Return">
                            <VBox.margin>
-                              <Insets top="18.0" />
+                              <Insets bottom="3.0" top="21.0" />
                            </VBox.margin>
                            <font>
                               <Font name="Corbel Bold" size="16.0" />

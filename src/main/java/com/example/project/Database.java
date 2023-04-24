@@ -107,12 +107,12 @@ public class Database {
     }
     public void createTables() throws SQLException{
             ResultSet resultSet ;
-         /*     statement.execute("CREATE TABLE Users ("+
+             /*statement.execute("CREATE TABLE Users ("+
                 "id int AUTO_INCREMENT Primary Key,"+
                 " username VARCHAR(50) NOT NULL," +
                 " email VARCHAR(50) NOT NULL," +
                 " password VARCHAR(255) NOT NULL," +
-                " type VARCHAR(20));");
+                " type VARCHAR(20));");*/
           resultSet = statement.executeQuery("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'Users')");
             if(!(resultSet.next() && resultSet.getBoolean(1))){
                 statement.execute("CREATE TABLE Users ("+
@@ -120,7 +120,7 @@ public class Database {
                         " email VARCHAR(50) NOT NULL," +
                         " password VARCHAR(255) NOT NULL," +
                         " type VARCHAR(20));");
-            }*/
+            }
 
             resultSet = statement.executeQuery("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'Messages')");
             if(!(resultSet.next() && resultSet.getBoolean(1))){
