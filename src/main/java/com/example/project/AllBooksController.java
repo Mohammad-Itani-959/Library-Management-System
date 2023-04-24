@@ -1,6 +1,9 @@
 package com.example.project;
 
 import com.example.project.iterator.*;
+import com.example.project.proxyUser.ProxyUser;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -60,7 +63,7 @@ public class AllBooksController {
 
 
 
-    public void start(){
+    public void start() throws SQLException {
         try {
             this.getAllbooks(gridPane);
         } catch (SQLException e) {
@@ -77,9 +80,14 @@ public class AllBooksController {
         iterator.setFXMLLoader(fxmlLoader);
     }
     //Handler for filtering that works with the iteration design pattern //
-    private void setChoiceBoxElements(){
-        String[] elements = {"Fiction" ,"Science Fiction" ,"Romance","Fantasy","Satire"};
-        choiceBox.getItems().addAll(elements);
+    private void setChoiceBoxElements() throws SQLException{
+        ResultSet rs = database.getCategories();
+        ObservableList<String> elements = FXCollections.observableArrayList();
+        while (rs.next()) {
+            String category = rs.getString("category");
+            elements.add(category);
+        }
+        choiceBox.setItems(elements);
     }
     public void searchCategoryHandler(ActionEvent actionEvent) throws SQLException{
         String selectedItem = choiceBox.getValue();
@@ -119,7 +127,7 @@ public class AllBooksController {
             iterator.setFXMLLoader(fxmlLoader);
         }
     }
-    public void updateBooks(GridPane gridPane , ResultSet allbooks) throws  SQLException {
+   /* public void updateBooks(GridPane gridPane , ResultSet allbooks) throws  SQLException {
 
         int i = 0 ;
         int a = gridPane.getChildren().size();
@@ -195,7 +203,7 @@ public class AllBooksController {
             }
         }
 
-    }
+    }*/
     public void Logout(ActionEvent actionEvent) throws SQLException,IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("entry.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
@@ -208,5 +216,15 @@ public class AllBooksController {
     public void setProxyUser(ProxyUser proxyUser){
         this.proxyUser = proxyUser;
         this.email.setText(proxyUser.getRealUser().getEmail());
+    }
+
+    public void YourBooks(ActionEvent actionEvent) throws SQLException, IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("borrowedbooks.fxml"));
+        Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+        AnchorPane root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        stage.setFullScreen(true);
+        stage.setScene(scene);
+        stage.show();
     }
 }

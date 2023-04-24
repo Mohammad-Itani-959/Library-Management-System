@@ -2,7 +2,7 @@ package com.example.project.iterator;
 
 import com.example.project.Database;
 import com.example.project.BookDetailController;
-import com.example.project.ProxyUser;
+import com.example.project.proxyUser.ProxyUser;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -61,15 +61,14 @@ public class AuthorIterator implements Iterator {
         gridPane.setHgap(15);
         gridPane.setVgap(10);
 
-        ResultSet resultSet ;
-        while (has_Next()) {
-            resultSet = getNext();
-            String bookTitle= resultSet.getString(2);
-            String bookDesc = resultSet.getString(3);
-            String bookImage = resultSet.getString(5);
-            String bookCat = resultSet.getString(7);
-            String bookAuth = resultSet.getString(8);
 
+        while (has_Next()) {
+            resultSet = get_Next();
+            String bookTitle= resultSet.getString("title");
+            String bookDesc = resultSet.getString("description");
+            String bookImage = resultSet.getString("image");
+            String bookCat = resultSet.getString("category");
+            String bookAuth = resultSet.getString("authorName");;
 
 
             ImageView imageView = new ImageView();
@@ -129,9 +128,11 @@ public class AuthorIterator implements Iterator {
     public void setProxyUser(ProxyUser proxyUser) {
         this.proxyUser = proxyUser;
     }
+    @Override
     public ResultSet getBooks() throws SQLException{
         return database.get_books_by_author(this.authorName);
     }
+    @Override
     public boolean has_Next(){
         try {
             if(resultSet.next()){
@@ -144,7 +145,8 @@ public class AuthorIterator implements Iterator {
             throw new RuntimeException(e);
         }
     }
-    public ResultSet getNext(){
+    @Override
+    public ResultSet get_Next(){
         return resultSet;
     }
 }

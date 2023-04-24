@@ -83,7 +83,7 @@
     -fx-border-color: #f0824f;
 }
 
-.mouse-moved: hover{
+.mouse-moved:hover{
     -fx-background-color: #e4e4e4;
 }
 
@@ -91,9 +91,15 @@
      -fx-border-radius: 50;
      -fx-border-color: #f0824f;
      -fx-background-color: #f0824f;
+     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 2);
+}
+
+.detail-btn:hover{
+     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.8), 10, 0, 0, 2);
 }
 
 /*book detail*/
+
 .borrow-btn{
      -fx-border-radius: 50;
      -fx-border-color: #f0824f;

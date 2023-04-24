@@ -2,6 +2,7 @@ package com.example.project.iterator;
 
 import com.example.project.Database;
 import com.example.project.BookDetailController;
+import com.example.project.proxyUser.ProxyUser;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -19,8 +20,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import com.example.project.ProxyUser;
 
 public class GeneralIterator implements Iterator{
     Database database;
@@ -48,12 +47,12 @@ public class GeneralIterator implements Iterator{
 
         ResultSet resultSet ;
         while (has_Next()) {
-            resultSet = getNext();
-            String bookTitle= resultSet.getString(2);
-            String bookDesc = resultSet.getString(3);
-            String bookImage = resultSet.getString(5);
-            String bookCat = resultSet.getString(7);
-            String bookAuth = resultSet.getString(8);
+            resultSet = get_Next();
+            String bookTitle= resultSet.getString("title");
+            String bookDesc = resultSet.getString("description");
+            String bookImage = resultSet.getString("image");
+            String bookCat = resultSet.getString("category");
+            String bookAuth = resultSet.getString("authorName");
 
 
 
@@ -93,9 +92,9 @@ public class GeneralIterator implements Iterator{
                 stage.show();
             });
 
-            gridPane.add(newVbox, columnIndex % 5, rowIndex);
+            gridPane.add(newVbox, columnIndex % 4, rowIndex);
 
-            if (columnIndex % 5 == 4) {
+            if (columnIndex % 4 == 3) {
                 rowIndex++;
                 columnIndex = 0;
             } else {
@@ -103,9 +102,11 @@ public class GeneralIterator implements Iterator{
             }
         }
     }
+    @Override
     public ResultSet getBooks() throws SQLException{
         return database.selectAllBooks();
     }
+    @Override
     public boolean has_Next(){
         try {
             if(resultSet.next()){
@@ -118,10 +119,10 @@ public class GeneralIterator implements Iterator{
             throw new RuntimeException(e);
         }
     }
-    public ResultSet getNext(){
+    @Override
+    public ResultSet get_Next(){
         return resultSet;
     }
-
     @Override
     public void setFXMLLoader(FXMLLoader fxmlLoader){this.fxmlLoader =fxmlLoader;}
     @Override

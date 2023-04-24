@@ -1,5 +1,7 @@
 package com.example.project;
 
+import com.example.project.proxyUser.ProxyBorrower;
+import com.example.project.proxyUser.ProxyUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -63,7 +65,8 @@ public class RegisterController {
         if(Username.length()>0 && (Password.length()>0 && Email.length()>0)){
             boolean flag = database.borrowerRegister(Username , Email , Password);
             if(flag == true){
-                proxyUser = new ProxyUser(Email,Password,"borrower");
+                proxyUser = new ProxyBorrower();
+                proxyUser.login(Email,Password);
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("allbooks.fxml"));
                 AnchorPane root = fxmlLoader.load();
                 AllBooksController allBooksController = fxmlLoader.getController();

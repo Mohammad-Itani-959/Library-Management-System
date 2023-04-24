@@ -1,5 +1,8 @@
 package com.example.project;
 
+import com.example.project.proxyUser.ProxyAdmin;
+import com.example.project.proxyUser.ProxyBorrower;
+import com.example.project.proxyUser.ProxyLibrarian;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,7 +34,7 @@ public class EntryController {
         AnchorPane root = loader.load();
 
         LoginController loginController = loader.getController();
-        loginController.setType("borrower");
+        loginController.proxyUser = new ProxyBorrower();
 
         Scene scene = new Scene(root);
         Stage stage1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -49,7 +52,7 @@ public class EntryController {
             AnchorPane root = loader.load();
 
             LoginController loginController = loader.getController();
-            loginController.setType("librarian");
+            loginController.proxyUser = new ProxyLibrarian();
             loginController.removeRegister();
 
             Scene scene = new Scene(root);
@@ -71,7 +74,7 @@ public class EntryController {
         AnchorPane root = loader.load();
 
         LoginController loginController = loader.getController();
-        loginController.setType("admin");
+        loginController.proxyUser = new ProxyAdmin();
         loginController.removeRegister();
 
         Scene scene = new Scene(root);

@@ -1,110 +1,251 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.librarianController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" stylesheets="@../../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.LibrarianController">
    <children>
-      <HBox alignment="CENTER" layoutX="447.0" prefHeight="59.0" prefWidth="458.0">
-         <children>
-            <Label text="Add Book" textFill="#f0824f">
-               <font>
-                  <Font name="Cambria Bold Italic" size="36.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
-      <HBox layoutX="428.0" layoutY="76.0" prefHeight="441.0" prefWidth="522.0" style="-fx-background-color: #f0824f;">
-         <children>
-            <VBox alignment="CENTER" prefHeight="288.0" prefWidth="171.0">
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox alignment="CENTER" prefHeight="86.0" prefWidth="1315.0" styleClass="white-bg" BorderPane.alignment="CENTER">
                <children>
-                  <Label text="Book Title :" textFill="WHITE">
+                  <Label alignment="CENTER" text="Add Books" textFill="#f0824f">
                      <font>
-                        <Font name="Cambria" size="18.0" />
+                        <Font name="Corbel Bold" size="52.0" />
                      </font>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Pane prefHeight="29.0" prefWidth="174.0" />
-                  <Label text="Book Category :" textFill="WHITE">
-                     <font>
-                        <Font name="Cambria Bold Italic" size="18.0" />
-                     </font>
-                  </Label>
-                  <Pane prefHeight="33.0" prefWidth="171.0" />
-                  <Label text="Book Author :" textFill="WHITE">
-                     <font>
-                        <Font name="Cambria Bold Italic" size="18.0" />
-                     </font>
-                  </Label>
-                  <Pane prefHeight="22.0" prefWidth="173.0" />
-                  <Label text="Book Descreption :" textFill="WHITE">
-                     <font>
-                        <Font name="Cambria Bold Italic" size="18.0" />
-                     </font>
-                  </Label>
-                  <Pane prefHeight="19.0" prefWidth="171.0" />
-                  <Label text="Book Image :" textFill="WHITE">
-                     <font>
-                        <Font name="Cambria Bold Italic" size="18.0" />
-                     </font>
+                     <HBox.margin>
+                        <Insets left="22.0" />
+                     </HBox.margin>
                   </Label>
                </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="465.0" prefWidth="352.0">
+            </HBox>
+         </top>
+         <left>
+            <VBox prefHeight="734.0" prefWidth="310.0" styleClass="white-bg" BorderPane.alignment="CENTER">
                <children>
-                  <TextField prefHeight="31.0" prefWidth="173.0" promptText="Enter Book Title">
+                  <Separator prefWidth="200.0" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="310.0" styleClass="mouse-moved">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/logout.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets top="2.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Button mnemonicParsing="false" onAction="#Logout" prefHeight="25.0" prefWidth="78.0" styleClass="transparent" text="Logout" textFill="#f0824f">
+                           <HBox.margin>
+                              <Insets left="-1.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Cambria Bold" size="16.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
                      <VBox.margin>
-                        <Insets top="60.0" />
+                        <Insets left="6.0" />
                      </VBox.margin>
-                  </TextField>
-                  <Pane prefHeight="14.0" prefWidth="173.0" />
-                  <TextField prefHeight="32.0" prefWidth="173.0" promptText="Enter book Category" />
-                  <Pane prefHeight="17.0" prefWidth="173.0" />
-                  <TextField prefHeight="37.0" prefWidth="173.0" promptText="Enter Book Author" />
-                  <Pane prefHeight="12.0" prefWidth="280.0" />
-                  <TextField prefHeight="35.0" prefWidth="280.0" promptText="Enter Book Descreption" />
-                  <Pane prefHeight="16.0" prefWidth="352.0" />
-                  <TextField prefHeight="40.0" prefWidth="351.0" promptText="Enter image path" />
-                  <HBox alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="352.0">
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox alignment="CENTER_LEFT" layoutX="16.0" layoutY="13.0" prefHeight="53.0" prefWidth="310.0" styleClass="mouse-moved">
+                     <children>
+                        <ImageView fitHeight="31.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0">
+                           <image>
+                              <Image url="@../../../images/book.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets top="2.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="106.0" styleClass="transparent" text="Add Books" textFill="#f0824f">
+                           <HBox.margin>
+                              <Insets left="-1.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Cambria Bold" size="16.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets left="6.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Separator layoutX="10.0" layoutY="10.0" prefWidth="200.0" />
+                  <HBox alignment="CENTER_LEFT" layoutX="16.0" layoutY="70.0" prefHeight="53.0" prefWidth="310.0" styleClass="mouse-moved">
+                     <children>
+                        <ImageView fitHeight="31.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0">
+                           <image>
+                              <Image url="@../../../images/users.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="11.0" top="2.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="126.0" styleClass="transparent" text="List of Users" textFill="#f0824f">
+                           <HBox.margin>
+                              <Insets left="-1.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Cambria Bold" size="16.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Separator layoutX="10.0" layoutY="67.0" prefWidth="200.0" />
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </VBox>
+         </left>
+         <center>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="white-bg" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="66.0" prefWidth="752.0">
+                     <children>
+                        <Label text="Book Title :" textFill="WHITE">
+                           <font>
+                              <Font name="Corbel Bold" size="25.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="8.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField prefHeight="48.0" prefWidth="250.0" promptText="Enter Book Title" style="-fx-background-radius: 50;" styleClass="searchbox">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="70.0" top="2.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="9.0" />
+                           </padding>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="260.0" prefHeight="86.0" prefWidth="752.0">
+                     <children>
+                        <Label text="Book Category:" textFill="WHITE">
+                           <font>
+                              <Font name="Corbel Bold" size="25.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="8.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField prefHeight="51.0" prefWidth="245.0" promptText="Enter Book Category" style="-fx-background-radius: 50;" styleClass="searchbox">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="29.0" top="2.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="9.0" />
+                           </padding>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="310.0" prefHeight="80.0" prefWidth="752.0">
+                     <children>
+                        <Label text="Book Description :" textFill="WHITE">
+                           <font>
+                              <Font name="Corbel Bold" size="25.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="8.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField prefHeight="50.0" prefWidth="242.0" promptText="Enter Book Title" style="-fx-background-radius: 50;" styleClass="searchbox">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="2.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="9.0" />
+                           </padding>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="66.0" prefWidth="752.0">
+                     <children>
+                        <Label text="Choose An Image:" textFill="WHITE">
+                           <font>
+                              <Font name="Corbel Bold" size="25.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="8.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="102.0" style="-fx-background-radius: 20;" styleClass="detail-btn" text="Choose..." textFill="WHITE">
+                           <font>
+                              <Font name="Corbel Bold" size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="detail-btn" text="ADD">
+                           <font>
+                              <Font name="Cambria Bold Italic" size="24.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="85.0" />
+                           </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="detail-btn" text="Cancel">
+                           <font>
+                              <Font name="Cambria Bold Italic" size="23.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="16.0" />
                      </VBox.margin>
                   </HBox>
                </children>
+               <BorderPane.margin>
+                  <Insets bottom="62.0" left="109.0" right="144.0" top="62.0" />
+               </BorderPane.margin>
             </VBox>
-         </children>
-      </HBox>
-      <HBox prefHeight="70.0" prefWidth="224.0">
-         <children>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/logout.png" />
-               </image>
-            </ImageView>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Logout" textFill="#f0824f">
-               <HBox.margin>
-                  <Insets right="10.0" top="5.0" />
-               </HBox.margin>
-               <font>
-                  <Font name="Cambria Italic" size="12.0" />
-               </font>
-            </Button>
-         </children>
-      </HBox>
-      <Button layoutX="471.0" layoutY="544.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="118.0" text="Cancel">
-         <font>
-            <Font name="Cambria Bold Italic" size="24.0" />
-         </font>
-      </Button>
-      <Button layoutX="813.0" layoutY="544.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="118.0" text="ADD">
-         <font>
-            <Font name="Cambria Bold Italic" size="24.0" />
-         </font>
-      </Button>
+         </center>
+      </BorderPane>
    </children>
 </AnchorPane>

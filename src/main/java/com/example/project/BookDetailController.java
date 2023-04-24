@@ -1,6 +1,7 @@
 package com.example.project;
 
 import com.example.project.iterator.Iterator;
+import com.example.project.proxyUser.ProxyUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class BookDetailController {
 
@@ -33,7 +35,7 @@ public class BookDetailController {
     private Iterator iterator;
     private String email ;
 
-    public void backHandler(ActionEvent actionEvent)throws IOException {
+    public void backHandler(ActionEvent actionEvent) throws IOException, SQLException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("allbooks.fxml"));
         AnchorPane root = fxmlLoader.load();
 
