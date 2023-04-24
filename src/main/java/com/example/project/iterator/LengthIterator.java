@@ -2,7 +2,7 @@ package com.example.project.iterator;
 
 import com.example.project.Database;
 import com.example.project.BookDetailController;
-import com.example.project.ProxyUser;
+import com.example.project.proxyUser.ProxyUser;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -65,7 +65,7 @@ public class LengthIterator implements Iterator {
 
         ResultSet resultSet ;
         while (has_Next()) {
-            resultSet = getNext();
+            resultSet = get_Next();
             String bookTitle= resultSet.getString("title");
             String bookDesc = resultSet.getString("description");
             String bookImage = resultSet.getString("image");
@@ -123,6 +123,7 @@ public class LengthIterator implements Iterator {
             }
         }
     }
+    @Override
     public ResultSet getBooks() throws SQLException{
         return database.get_books_by_length(this.length);
     }
@@ -135,6 +136,7 @@ public class LengthIterator implements Iterator {
     public void setProxyUser(ProxyUser proxyUser) {
         this.proxyUser = proxyUser;
     }
+    @Override
     public boolean has_Next(){
         try {
             if(resultSet.next()){
@@ -147,7 +149,10 @@ public class LengthIterator implements Iterator {
             throw new RuntimeException(e);
         }
     }
-    public ResultSet getNext(){
+
+    @Override
+    public ResultSet get_Next() {
         return resultSet;
     }
+
 }

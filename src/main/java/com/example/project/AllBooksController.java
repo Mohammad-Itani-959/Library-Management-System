@@ -1,6 +1,7 @@
 package com.example.project;
 
 import com.example.project.iterator.*;
+import com.example.project.proxyUser.ProxyUser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -126,7 +127,7 @@ public class AllBooksController {
             iterator.setFXMLLoader(fxmlLoader);
         }
     }
-    public void updateBooks(GridPane gridPane , ResultSet allbooks) throws  SQLException {
+   /* public void updateBooks(GridPane gridPane , ResultSet allbooks) throws  SQLException {
 
         int i = 0 ;
         int a = gridPane.getChildren().size();
@@ -202,7 +203,7 @@ public class AllBooksController {
             }
         }
 
-    }
+    }*/
     public void Logout(ActionEvent actionEvent) throws SQLException,IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("entry.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();

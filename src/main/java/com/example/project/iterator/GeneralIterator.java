@@ -2,6 +2,7 @@ package com.example.project.iterator;
 
 import com.example.project.Database;
 import com.example.project.BookDetailController;
+import com.example.project.proxyUser.ProxyUser;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -19,8 +20,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import com.example.project.ProxyUser;
 
 public class GeneralIterator implements Iterator{
     Database database;
@@ -48,7 +47,7 @@ public class GeneralIterator implements Iterator{
 
         ResultSet resultSet ;
         while (has_Next()) {
-            resultSet = getNext();
+            resultSet = get_Next();
             String bookTitle= resultSet.getString("title");
             String bookDesc = resultSet.getString("description");
             String bookImage = resultSet.getString("image");
@@ -103,9 +102,11 @@ public class GeneralIterator implements Iterator{
             }
         }
     }
+    @Override
     public ResultSet getBooks() throws SQLException{
         return database.selectAllBooks();
     }
+    @Override
     public boolean has_Next(){
         try {
             if(resultSet.next()){
@@ -118,7 +119,8 @@ public class GeneralIterator implements Iterator{
             throw new RuntimeException(e);
         }
     }
-    public ResultSet getNext(){
+    @Override
+    public ResultSet get_Next(){
         return resultSet;
     }
     @Override

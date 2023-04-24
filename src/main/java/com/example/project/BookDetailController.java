@@ -1,6 +1,7 @@
 package com.example.project;
 
 import com.example.project.iterator.Iterator;
+import com.example.project.proxyUser.ProxyUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

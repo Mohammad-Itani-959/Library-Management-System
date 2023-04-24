@@ -2,7 +2,7 @@ package com.example.project.iterator;
 
 import com.example.project.Database;
 import com.example.project.BookDetailController;
-import com.example.project.ProxyUser;
+import com.example.project.proxyUser.ProxyUser;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -35,7 +35,6 @@ public class CategoryIterator implements Iterator {
             throw new RuntimeException(e);
         }
     }
-
     {
         try {
             database = new Database();
@@ -43,7 +42,6 @@ public class CategoryIterator implements Iterator {
             throw new RuntimeException(e);
         }
     }
-
     @Override
     public void showBooks(GridPane gridPane) throws SQLException {
 
@@ -63,7 +61,7 @@ public class CategoryIterator implements Iterator {
 
         ResultSet resultSet ;
         while (has_Next()) {
-            resultSet = getNext();
+            resultSet = get_Next();
             String bookTitle= resultSet.getString("title");
             String bookDesc = resultSet.getString("description");
             String bookImage = resultSet.getString("image");
@@ -121,20 +119,19 @@ public class CategoryIterator implements Iterator {
             }
         }
     }
+    @Override
     public ResultSet getBooks() throws SQLException{
         return database.get_books_by_category(this.category);
     }
-
     @Override
     public void setFXMLLoader(FXMLLoader fxmlLoader) {
         this.fxmlLoader = fxmlLoader;
     }
-
     @Override
     public void setProxyUser(ProxyUser proxyUser) {
         this.proxyUser = proxyUser;
     }
-
+    @Override
     public boolean has_Next(){
         try {
             if(resultSet.next()){
@@ -147,7 +144,8 @@ public class CategoryIterator implements Iterator {
             throw new RuntimeException(e);
         }
     }
-    public ResultSet getNext(){
+    @Override
+    public ResultSet get_Next(){
         return resultSet;
     }
 }

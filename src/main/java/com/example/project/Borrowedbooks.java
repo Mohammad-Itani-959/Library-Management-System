@@ -1,5 +1,6 @@
 package com.example.project;
 
+import com.example.project.proxyUser.ProxyUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

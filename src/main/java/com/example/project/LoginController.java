@@ -1,6 +1,7 @@
 package com.example.project;
 
-
+import com.example.project.proxyUser.*;
+import com.example.project.user.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -61,13 +62,14 @@ public class LoginController {
             return ;
         }
 
-        this.proxyUser = new ProxyUser(Email,Password,this.type);
+        proxyUser.login(Email,Password);
+
         if(this.proxyUser.getRealUser()==null){
             errorMessage.setText("Invalid username or password ... !");
             return ;
         }
         else{
-            if(this.type.equals("borrower")){
+            if(this.proxyUser instanceof ProxyBorrower){
                 errorMessage.setText("");
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("allbooks.fxml"));
                 Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -86,7 +88,7 @@ public class LoginController {
                 stage.show();
                 return ;
             }
-            if(this.type.equals("librarian")){
+            if(this.proxyUser instanceof ProxyLibrarian){
                 errorMessage.setText("");
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("librarianLayout.fxml"));
                 Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -100,7 +102,7 @@ public class LoginController {
 
                 stage.show();
             }
-            if(this.type.equals("admin")){
+            if(this.proxyUser instanceof ProxyAdmin){
                 errorMessage.setText("");
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("admin.fxml"));
                 Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
