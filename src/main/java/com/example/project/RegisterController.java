@@ -33,7 +33,7 @@ public class RegisterController {
     private TextField confirmPassword;
     @javafx.fxml.FXML
     @FXML
-    private Label error;
+    private Label errorr;
 
     private ProxyUser proxyUser;
     Database database;
@@ -52,13 +52,13 @@ public class RegisterController {
         String ConfirmPassword = confirmPassword.getText();
         String Email = email.getText();
         if(!EMAIL_PATTERN.matcher(Email).matches() && !(Password.equals(ConfirmPassword))){
-            error.setText("the email and password are not valid");
+            errorr.setText("the email and password are not valid");
             return;
         } else if (!EMAIL_PATTERN.matcher(Email).matches()) {
-            error.setText("the email is not valid");
+            errorr.setText("the email is not valid");
             return;
         }else if(!(Password.equals(ConfirmPassword))){
-            error.setText("the password is not valid");
+            errorr.setText("the password is not validd");
             return;
         }
 

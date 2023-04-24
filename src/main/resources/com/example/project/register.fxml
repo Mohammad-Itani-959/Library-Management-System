@@ -33,7 +33,7 @@
             <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="error" alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="512.0" textFill="#e80b0b">
+                  <Label fx:id="errorr" alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="512.0" textFill="#e80b0b">
                      <font>
                         <Font name="Cambria Bold Italic" size="24.0" />
                      </font>
