@@ -51,6 +51,7 @@ public class BookDetailController {
         stage.show();
     }
 
+
     public void setAuthor(String name ){this.bookAuthor.setText(name);}
     public void setTitle(String title){this.bookTitle.setText(title);}
     public void setDescription(String description){this.bookDescription.setText(description);}

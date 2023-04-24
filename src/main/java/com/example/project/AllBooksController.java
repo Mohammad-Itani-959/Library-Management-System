@@ -217,7 +217,6 @@ public class AllBooksController {
         this.proxyUser = proxyUser;
         this.email.setText(proxyUser.getRealUser().getEmail());
     }
-
     public void YourBooks(ActionEvent actionEvent) throws SQLException, IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("borrowedbooks.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();

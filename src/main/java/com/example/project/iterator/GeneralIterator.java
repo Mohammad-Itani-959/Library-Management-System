@@ -1,5 +1,6 @@
 package com.example.project.iterator;
 
+import com.example.project.Book;
 import com.example.project.Database;
 import com.example.project.BookDetailController;
 import com.example.project.proxyUser.ProxyUser;
@@ -54,6 +55,16 @@ public class GeneralIterator implements Iterator{
             String bookCat = resultSet.getString("category");
             String bookAuth = resultSet.getString("authorName");
 
+            Book book = new Book(
+                    bookTitle,
+                    bookAuth,
+                    bookDesc,
+                    bookCat,
+                    resultSet.getString("id"),
+                    bookImage,
+                    resultSet.getString("bookLength"),
+                    resultSet.getString("librarianId")
+            );
 
 
             ImageView imageView = new ImageView();
