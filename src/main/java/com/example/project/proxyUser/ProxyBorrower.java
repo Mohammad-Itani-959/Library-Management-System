@@ -4,6 +4,7 @@ import com.example.project.Database;
 import com.example.project.user.Borrower;
 import com.example.project.user.User;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ProxyBorrower extends ProxyUser {
@@ -19,10 +20,12 @@ public class ProxyBorrower extends ProxyUser {
 
     public ProxyBorrower(){}
     public void login(String email , String password) throws SQLException{
-        String username = database.borrowerLogin(email,password);
-        if(username!= null){
-            realBorrower = new Borrower(username, password,email);
-            System.out.println(username);
+        ResultSet resultSet = database.borrowerLogin(email,password);
+        if(resultSet.next()){
+            realBorrower = new Borrower(Integer.parseInt(resultSet.getString("id")),
+                    resultSet.getString("username"),
+                    resultSet.getString("password"),
+                    resultSet.getString("email"));
             return ;
         }
         else{

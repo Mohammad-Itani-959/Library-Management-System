@@ -2,11 +2,11 @@ package com.example.project.user;
 
 public class Borrower extends User {
 
-    public Borrower(String email ,String password){
+    public Borrower(String email , String password){
         super(email,password);
     }
-    public Borrower(String username ,String password ,String email){
-        super(username,password,email);
+    public Borrower(int id ,String username ,String password ,String email){
+        super(id,username,password,email);
     }
     public void borrowBook(){
         //Code Here

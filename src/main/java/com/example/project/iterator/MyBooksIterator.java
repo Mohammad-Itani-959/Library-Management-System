@@ -61,7 +61,7 @@ public class MyBooksIterator implements Iterator {
         gridPane.setHgap(15);
         gridPane.setVgap(10);
 
-        ResultSet resultSet ;
+
         while (has_Next()) {
             resultSet = get_Next();
             String bookTitle= resultSet.getString("title");

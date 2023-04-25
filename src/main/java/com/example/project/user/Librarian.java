@@ -7,8 +7,8 @@ public class Librarian extends User{
     public Librarian(String email , String password){
         super(email,password);
     }
-    public Librarian(String username , String password, String email){
-        super(username,password,email);
+    public Librarian(int id , String username , String password, String email){
+        super(id,username,password,email);
     }
 
     public ResultSet getUsersWithBorrowedBooks(){

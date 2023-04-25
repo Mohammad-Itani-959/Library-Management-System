@@ -58,7 +58,7 @@ public class RegisterController {
             errorr.setText("the email is not valid");
             return;
         }else if(!(Password.equals(ConfirmPassword))){
-            errorr.setText("the password is not validd");
+            errorr.setText("the password is not valid");
             return;
         }
 

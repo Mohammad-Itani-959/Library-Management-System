@@ -7,12 +7,14 @@ public abstract class User {
         this.email = email;
         this.password = password;
     }
-    public User(String username , String password, String email){
+    public User(int id, String username , String password, String email){
         this.username = username ;
         this.password = password;
         this.email =email;
+        this.id = id ;
     }
     public String getUsername(){return this.username;}
     public String getPassword(){return this.password;}
     public String getEmail(){return this.email;}
+    public int getId(){return this.id;}
 }
