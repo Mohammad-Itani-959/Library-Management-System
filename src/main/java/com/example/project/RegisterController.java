@@ -71,7 +71,7 @@ public class RegisterController {
                 AnchorPane root = fxmlLoader.load();
                 AllBooksController allBooksController = fxmlLoader.getController();
                 allBooksController.setProxyUser(proxyUser);
-
+                allBooksController.start();
                 Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setFullScreen(true);

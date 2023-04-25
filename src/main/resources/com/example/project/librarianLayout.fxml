@@ -13,21 +13,30 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" stylesheets="@../../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.LibrarianController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <HBox alignment="CENTER" prefHeight="86.0" prefWidth="1315.0" styleClass="white-bg" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="89.0" prefWidth="1315.0" styleClass="white-bg" BorderPane.alignment="CENTER">
                <children>
-                  <Label alignment="CENTER" text="Add Books" textFill="#f0824f">
+                  <ImageView fitHeight="71.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/logo1.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="8.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" text="World Of Books" wrappingWidth="370.93674659729004">
                      <font>
-                        <Font name="Corbel Bold" size="52.0" />
+                        <Font name="Harlow Solid Italic" size="42.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="22.0" />
+                        <Insets left="24.0" top="6.0" />
                      </HBox.margin>
-                  </Label>
+                  </Text>
                </children>
             </HBox>
          </top>
@@ -132,7 +141,7 @@
                               <Insets right="8.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField prefHeight="48.0" prefWidth="250.0" promptText="Enter Book Title" style="-fx-background-radius: 50;" styleClass="searchbox">
+                        <TextField fx:id="bookTitle" prefHeight="48.0" prefWidth="250.0" promptText="Enter Title" style="-fx-background-radius: 50;" styleClass="searchbox">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -155,7 +164,7 @@
                               <Insets right="8.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField prefHeight="51.0" prefWidth="245.0" promptText="Enter Book Category" style="-fx-background-radius: 50;" styleClass="searchbox">
+                        <TextField fx:id="bookCat" prefHeight="51.0" prefWidth="245.0" promptText="Enter Category" style="-fx-background-radius: 50;" styleClass="searchbox">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -178,7 +187,7 @@
                               <Insets right="8.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField prefHeight="50.0" prefWidth="242.0" promptText="Enter Book Title" style="-fx-background-radius: 50;" styleClass="searchbox">
+                        <TextField fx:id="bookDesc" prefHeight="50.0" prefWidth="242.0" promptText="Enter Description" style="-fx-background-radius: 50;" styleClass="searchbox">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -201,7 +210,7 @@
                               <Insets right="8.0" />
                            </HBox.margin>
                         </Label>
-                        <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="102.0" style="-fx-background-radius: 20;" styleClass="detail-btn" text="Choose..." textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#chooseimg" prefHeight="41.0" prefWidth="102.0" style="-fx-background-radius: 20;" styleClass="detail-btn" text="Choose..." textFill="WHITE">
                            <font>
                               <Font name="Corbel Bold" size="17.0" />
                            </font>
@@ -216,7 +225,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="detail-btn" text="ADD">
+                        <Button mnemonicParsing="false" onAction="#addbook" prefHeight="55.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="detail-btn" text="ADD">
                            <font>
                               <Font name="Cambria Bold Italic" size="24.0" />
                            </font>
@@ -227,7 +236,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="detail-btn" text="Cancel">
+                        <Button mnemonicParsing="false" onAction="#cancel" prefHeight="55.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="detail-btn" text="Cancel">
                            <font>
                               <Font name="Cambria Bold Italic" size="23.0" />
                            </font>
