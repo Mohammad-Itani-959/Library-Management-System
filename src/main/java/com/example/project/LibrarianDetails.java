@@ -1,5 +1,6 @@
 package com.example.project;
 
+import com.example.project.iterator.Iterator;
 import com.example.project.proxyUser.ProxyUser;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -11,7 +12,23 @@ public class LibrarianDetails {
     Label labelname;
     @FXML
     Label labelemail;
-    ProxyUser proxyuser;
+    ProxyUser proxyUser;
+    private Iterator iterator;
+    private librarian lb;
+    private String email;
+
+    public void setLb(librarian lb) {
+        this.lb = lb;
+    }
+    public void setinfo(){
+        this.labelname.setText(lb.getName());
+        this.labelemail.setText(lb.getEmail());
+    }
+    public void setProxyUser(ProxyUser proxyUser){
+        this.proxyUser = proxyUser;
+        this.email = proxyUser.getRealUser().getEmail();
+    }
+
     Database database;
     {
         try {
@@ -29,11 +46,9 @@ public class LibrarianDetails {
         labelemail.setText(librarianEmail);
     }
 
-    public void setProxyUser(ProxyUser proxyUser) {
-        this.proxyuser = proxyUser;
-    }
+
     public void delete() throws SQLException {
-        String email = this.proxyuser.getEmail().toString();
+        String email = this.proxyUser.getEmail().toString();
         database.DeleteLibrarian(email);
     }
 }

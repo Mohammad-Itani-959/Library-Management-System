@@ -2,6 +2,7 @@ package com.example.project.iterator;
 
 import com.example.project.Database;
 import com.example.project.LibrarianDetails;
+import com.example.project.librarian;
 import com.example.project.proxyUser.ProxyUser;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -52,11 +53,12 @@ public class LibrarianIterator implements Iterator{
         gridPane.setPadding(new Insets(10));
         gridPane.setHgap(15);
         gridPane.setVgap(10);
-
+        ResultSet resultSet ;
         while (has_Next()) {
             resultSet = getNext();
-            String librarianName= resultSet.getString(2);
-            String librarianEmail= resultSet.getString(3);
+            String librarianName= resultSet.getString("username");
+            String librarianEmail= resultSet.getString("email");
+            librarian l = new librarian(librarianName,librarianEmail);
 
 
 
@@ -79,10 +81,12 @@ public class LibrarianIterator implements Iterator{
                     throw new RuntimeException(e);
                 }
                 LibrarianDetails librariancontroller = fxmlLoader.getController();
-
-                librariancontroller.setName(librarianName);
-                librariancontroller.setEmail(librarianEmail);
+                librariancontroller.setLb(l);
+                librariancontroller.setinfo();
                 librariancontroller.setProxyUser(getProxyUser());
+                //librariancontroller.setName(librarianName);
+                //librariancontroller.setEmail(librarianEmail);
+                //librariancontroller.setProxyUser(getProxyUser());
 
                 Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
@@ -91,9 +95,9 @@ public class LibrarianIterator implements Iterator{
                 stage.show();
             });
             //add the content in the gridpane
-            gridPane.add(newVbox, columnIndex % 5, rowIndex);
+            gridPane.add(newVbox, columnIndex % 4, rowIndex);
 
-            if (columnIndex % 5 == 4) {
+            if (columnIndex % 4 == 3) {
                 rowIndex++;
                 columnIndex = 0;
             } else {

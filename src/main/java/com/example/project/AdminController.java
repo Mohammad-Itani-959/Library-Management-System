@@ -62,10 +62,11 @@ public class AdminController {
 
 
     private void getAllLibrarian(GridPane gridPane) throws SQLException {
-
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LibrarianDetails.fxml"));
         iterator = new LibrarianIterator();
         iterator.setProxyUser(this.proxyUser);
         iterator.showBooks(gridPane);
+        iterator.setFXMLLoader(fxmlLoader);
 
     }
     public void Logout(ActionEvent event) throws IOException {
