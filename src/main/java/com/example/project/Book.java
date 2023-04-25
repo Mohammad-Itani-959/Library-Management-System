@@ -1,7 +1,7 @@
 package com.example.project;
 
 public class Book {
-    private String bookDesc,bookAuthor,bookTitle,bookLength,bookCat,bookId,bookImage,bookLibrarian;
+    private String bookDesc,bookAuthor,bookTitle,bookLength,bookCat,bookId,bookImage,bookLibrarian, quantity;
     public Book(
             String bookTitle,
             String bookAuthor,
@@ -15,6 +15,24 @@ public class Book {
         this.bookAuthor =bookAuthor;
         this.bookCat = bookCat;
         this.bookId = bookId;
+        this.bookImage = bookImage;
+        this.bookLength = bookLength;
+        this.bookLibrarian = bookLibrarian;
+        this.bookTitle = bookTitle;
+        this.bookDesc=bookDesc;
+    }
+
+    public Book(
+            String bookTitle,
+            String bookAuthor,
+            String bookDesc,
+            String bookCat,
+            String bookImage,
+            String bookLength ,
+            String bookLibrarian
+    ){
+        this.bookAuthor =bookAuthor;
+        this.bookCat = bookCat;
         this.bookImage = bookImage;
         this.bookLength = bookLength;
         this.bookLibrarian = bookLibrarian;
@@ -44,4 +62,9 @@ public class Book {
     public String getBookLibrarian() {
         return bookLibrarian;
     }
+
+    public void setQuantity(String q){
+        this.quantity=q;
+    }
+    public String getQuantity(){return quantity;}
 }
