@@ -33,7 +33,7 @@ public class ProxyBorrower extends ProxyUser {
             return ;
         }
     }
-    public User getRealUser(){
+    public Borrower getRealUser(){
         return realBorrower;
     }
 

@@ -38,7 +38,7 @@ public class BorrowedbooksController {
     @FXML
     private Label email;
     public void Logout(ActionEvent actionEvent) throws SQLException, IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("allbooks.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AllBooks.fxml"));
         AnchorPane root = fxmlLoader.load();
 
         AllBooksController allBooksController = fxmlLoader.getController();
@@ -55,7 +55,7 @@ public class BorrowedbooksController {
 
     public void start()throws SQLException{
         MyBooksIterator iterator = new MyBooksIterator(this.proxyUser);
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Book.fxml"));
         iterator.setProxyUser(this.proxyUser);
         iterator.setFXMLLoader(fxmlLoader);
         iterator.showBooks(gridPane);

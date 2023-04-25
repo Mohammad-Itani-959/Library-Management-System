@@ -120,14 +120,14 @@
                               <Insets left="6.0" top="1.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" text="No new notification">
+                        <Label fx:id="text" text="No new notification">
                            <HBox.margin>
                               <Insets left="13.0" top="4.0" />
                            </HBox.margin>
                            <font>
                               <Font name="Corbel Bold" size="17.0" />
                            </font>
-                        </Text>
+                        </Label>
                      </children>
                      <VBox.margin>
                         <Insets bottom="2.0" top="9.0" />
@@ -274,7 +274,7 @@
                         </Text>
                         <ScrollPane prefHeight="698.0" prefWidth="882.0" styleClass="transparent" VBox.vgrow="ALWAYS">
                      <content>
-                        <GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="979.0">
+                        <GridPane fx:id="gridPane"  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="979.0">
                            <padding>
                               <Insets bottom="15.0" left="19.0" top="19.0" />
                            </padding>

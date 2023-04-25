@@ -1,6 +1,7 @@
 package com.example.project;
 
 import com.example.project.iterator.*;
+import com.example.project.proxyUser.ProxyBorrower;
 import com.example.project.proxyUser.ProxyUser;
 import com.example.project.user.Borrower;
 import javafx.collections.FXCollections;
@@ -16,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -27,6 +29,9 @@ public class AllBooksController {
     @FXML
     private GridPane gridPane;
 
+    @javafx.fxml.FXML
+    @FXML
+    private Label text;
     @javafx.fxml.FXML
     @FXML
     private ScrollPane scrollPane;
@@ -49,7 +54,7 @@ public class AllBooksController {
     @FXML
     private TextField searchLength;
 
-    public ProxyUser proxyUser;
+    public ProxyBorrower proxyUser;
     Database database;
 
     Iterator iterator;
@@ -64,7 +69,8 @@ public class AllBooksController {
 
 
 
-    public void start() throws SQLException {
+    public void start() throws SQLException,IOException{
+        this.proxyUser.getRealUser().notifyUser(this.proxyUser.getRealUser().getId(),text);
         try {
             this.getAllbooks(gridPane);
         } catch (SQLException e) {
@@ -74,7 +80,7 @@ public class AllBooksController {
     }
 
     public void getAllbooks(GridPane gridPane) throws SQLException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Book.fxml"));
         iterator = new GeneralIterator();
         iterator.setProxyUser(this.proxyUser);
         iterator.showBooks(gridPane);
@@ -93,7 +99,7 @@ public class AllBooksController {
     public void searchCategoryHandler(ActionEvent actionEvent) throws SQLException{
         String selectedItem = choiceBox.getValue();
         iterator = new CategoryIterator(selectedItem);
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Book.fxml"));
         iterator.setProxyUser(this.proxyUser);
         iterator.setFXMLLoader(fxmlLoader);
         iterator.showBooks(gridPane);
@@ -106,7 +112,7 @@ public class AllBooksController {
                 this.getAllbooks(gridPane);
             }
             else{
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Book.fxml"));
                 iterator = new AuthorIterator(authorName);
                 iterator.setProxyUser(this.proxyUser);
                 iterator.showBooks(gridPane);
@@ -121,7 +127,7 @@ public class AllBooksController {
         }
         else{
             Integer length = Integer.parseInt(searchLength.getText());
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Book.fxml"));
             iterator = new LengthIterator(length);
             iterator.setProxyUser(this.proxyUser);
             iterator.showBooks(gridPane);
@@ -170,7 +176,7 @@ public class AllBooksController {
 
 
             imageView.setOnMouseClicked(event-> {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Book.fxml"));
                 AnchorPane root ;
                 try {
                     root = fxmlLoader.load();
@@ -206,7 +212,7 @@ public class AllBooksController {
 
     }*/
     public void Logout(ActionEvent actionEvent) throws SQLException,IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("entry.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Entry.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
         AnchorPane root = fxmlLoader.load();
         Scene scene = new Scene(root);
@@ -215,11 +221,11 @@ public class AllBooksController {
         stage.show();
     }
     public void setProxyUser(ProxyUser proxyUser){
-        this.proxyUser = proxyUser;
+        this.proxyUser =(ProxyBorrower)proxyUser;
         this.email.setText(proxyUser.getRealUser().getEmail());
     }
     public void YourBooks(ActionEvent actionEvent) throws SQLException, IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("borrowedbooks.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("BorrowedBooks.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
         AnchorPane root = fxmlLoader.load();
 

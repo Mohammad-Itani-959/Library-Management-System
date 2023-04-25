@@ -17,7 +17,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" stylesheets="@../../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.LibrarianController">
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane fx:id="borderPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <HBox alignment="CENTER" prefHeight="89.0" prefWidth="1315.0" styleClass="white-bg" BorderPane.alignment="CENTER">
                <children>
@@ -81,7 +81,7 @@
                               <Insets top="2.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="106.0" styleClass="transparent" text="Add Books" textFill="#f0824f">
+                        <Button onAction="#addBookHandler" mnemonicParsing="false" prefHeight="30.0" prefWidth="106.0" styleClass="transparent" text="Add Books" textFill="#f0824f">
                            <HBox.margin>
                               <Insets left="-1.0" />
                            </HBox.margin>
@@ -108,7 +108,7 @@
                               <Insets left="11.0" top="2.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="126.0" styleClass="transparent" text="List of Users" textFill="#f0824f">
+                        <Button onAction="#fetchSubscribers" mnemonicParsing="false" prefHeight="30.0" prefWidth="126.0" styleClass="transparent" text="List of Users" textFill="#f0824f">
                            <HBox.margin>
                               <Insets left="-1.0" />
                            </HBox.margin>
@@ -129,7 +129,7 @@
             </VBox>
          </left>
          <center>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="white-bg" BorderPane.alignment="CENTER">
+            <VBox fx:id="addBook" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="white-bg" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" prefHeight="66.0" prefWidth="752.0">
                      <children>
@@ -256,7 +256,7 @@
                               <Insets right="8.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="bookQuatity" prefHeight="50.0" prefWidth="242.0" promptText="Enter Quantity" style="-fx-background-radius: 50;" styleClass="searchbox">
+                        <TextField fx:id="bookQuantity" prefHeight="50.0" prefWidth="242.0" promptText="Enter Quantity" style="-fx-background-radius: 50;" styleClass="searchbox">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -279,7 +279,7 @@
                               <Insets right="8.0" />
                            </HBox.margin>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#chooseimg" prefHeight="41.0" prefWidth="102.0" style="-fx-background-radius: 20;" styleClass="detail-btn" text="Choose..." textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#chooseImg" prefHeight="41.0" prefWidth="102.0" style="-fx-background-radius: 20;" styleClass="detail-btn" text="Choose..." textFill="WHITE">
                            <font>
                               <Font name="Corbel Bold" size="17.0" />
                            </font>
@@ -297,7 +297,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#addbook" prefHeight="55.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="detail-btn" text="ADD">
+                        <Button mnemonicParsing="false" onAction="#addBook" prefHeight="55.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="detail-btn" text="ADD">
                            <font>
                               <Font name="Cambria Bold Italic" size="24.0" />
                            </font>
@@ -330,3 +330,6 @@
       </BorderPane>
    </children>
 </AnchorPane>
+
+
+

@@ -47,7 +47,7 @@ public class BookDetailController {
     private Book book ;
 
     public void backHandler(ActionEvent actionEvent) throws IOException, SQLException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("allbooks.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AllBooks.fxml"));
         AnchorPane root = fxmlLoader.load();
 
         AllBooksController allBooksController = fxmlLoader.getController();
@@ -75,7 +75,7 @@ public class BookDetailController {
     public void borrowHandler(ActionEvent actionEvent)throws SQLException,IOException{
         if(database.Borrow(book,proxyUser.getRealUser(),"1","2")){
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("allbooks.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AllBooks.fxml"));
             AnchorPane root = fxmlLoader.load();
 
             AllBooksController allBooksController = fxmlLoader.getController();

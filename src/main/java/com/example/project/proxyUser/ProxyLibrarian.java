@@ -5,6 +5,7 @@ import com.example.project.user.Borrower;
 import com.example.project.user.Librarian;
 import com.example.project.user.User;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ProxyLibrarian extends ProxyUser{
@@ -18,8 +19,9 @@ public class ProxyLibrarian extends ProxyUser{
     }
     public ProxyLibrarian(){}
     public void login(String email , String password) throws SQLException{
-        if(database.librarianLogin(email,password)){
-            realLibrarian = new Librarian(email, password);
+        ResultSet resultSet = database.librarianLogin(email, password) ;
+        if(resultSet.next()){
+            realLibrarian = new Librarian(Integer.parseInt(resultSet.getString("id")),resultSet.getString("username"),resultSet.getString("password"),resultSet.getString("email"));
             return ;
         }
         else{
@@ -27,7 +29,8 @@ public class ProxyLibrarian extends ProxyUser{
             return ;
         }
     }
-    public User getRealUser(){
+    public Librarian getRealUser(){
         return this.realLibrarian;
     }
+
 }

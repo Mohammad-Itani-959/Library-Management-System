@@ -71,7 +71,7 @@ public class LoginController {
         else{
             if(this.proxyUser instanceof ProxyBorrower){
                 errorMessage.setText("");
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("allbooks.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AllBooks.fxml"));
                 Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
                 AnchorPane root = fxmlLoader.load();
 
@@ -90,10 +90,12 @@ public class LoginController {
             }
             if(this.proxyUser instanceof ProxyLibrarian){
                 errorMessage.setText("");
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("librarianLayout.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Librarian.fxml"));
                 Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
                 AnchorPane root = fxmlLoader.load();
 
+                LibrarianController librarianController = fxmlLoader.getController();
+                librarianController.setProxyUser((ProxyLibrarian) this.proxyUser);
 
 
                 Scene scene = new Scene(root);
@@ -106,7 +108,7 @@ public class LoginController {
             }
             if(this.proxyUser instanceof ProxyAdmin){
                 errorMessage.setText("");
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("admin.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin.fxml"));
                 Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
                 AnchorPane root = fxmlLoader.load();
 
@@ -124,7 +126,7 @@ public class LoginController {
     }
 
     public void register(ActionEvent actionEvent)throws SQLException ,IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("register.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Register.fxml"));
         AnchorPane root = fxmlLoader.load();
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
