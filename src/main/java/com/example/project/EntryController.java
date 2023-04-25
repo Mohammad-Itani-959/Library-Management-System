@@ -41,8 +41,8 @@ public class EntryController {
         stage1.setTitle("Borrower Login");
         stage1.setWidth(1350);
         stage1.setHeight(810);
-
         stage1.setScene(scene);
+        stage1.setMaximized(true);
         stage1.show();
 
     }
@@ -54,14 +54,13 @@ public class EntryController {
             LoginController loginController = loader.getController();
             loginController.proxyUser = new ProxyLibrarian();
             loginController.removeRegister();
-
             Scene scene = new Scene(root);
             Stage stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage1.setTitle("librarian Login");
             stage1.setWidth(1350);
             stage1.setHeight(810);
-
             stage1.setScene(scene);
+            stage1.setMaximized(true);
             stage1.show();
         }catch (Exception e) {
             e.printStackTrace();
@@ -82,8 +81,8 @@ public class EntryController {
         stage1.setTitle("admin Login");
         stage1.setWidth(1350);
         stage1.setHeight(810);
-
         stage1.setScene(scene);
+        stage1.setMaximized(true);
         stage1.show();
 
     }

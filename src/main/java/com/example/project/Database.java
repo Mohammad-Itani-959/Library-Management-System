@@ -10,7 +10,7 @@ public class Database {
     Statement statement ;
 
     public Database() throws SQLException {
-        this.connection= DriverManager.getConnection(String.format("jdbc:mysql://localhost:3306/%s", "guiprroject"), "root", "");
+        this.connection= DriverManager.getConnection(String.format("jdbc:mysql://localhost:3306/%s", "guiprroject"), "root", "AlaaKanso2002.@.");
         this.statement = this.connection.createStatement();
         /* statement.execute("create function numberOfBooks (@category varchar(30))" +
                 "returns int" +
@@ -257,13 +257,16 @@ public class Database {
     }
     public boolean Borrow(Book book , User user,String startDate, String endDate)throws SQLException{
         ResultSet resultSet = statement.executeQuery("SELECT * FROM Books Where title ='"+book.getBookTitle()+"' and quantity = 0 ");
+
         if(!resultSet.next()) {
             statement.execute("INSERT INTO Borrows(bookId,userId,librarian,startDate,endDate)" +
                     "Values('" + book.getBookId() + "','" + user.getId() + "','" + book.getBookLibrarian() + "','" +
                     startDate + "','" + endDate + "')");
             statement.execute("Update Books SET quantity = quantity -1 WHERE title = '"+book.getBookTitle()+"'");
+            System.out.println("1"+user.getUsername());
             return true;
         }
+        System.out.println(user.getUsername());
         return false;
     }
     public ResultSet getBorrowedBooks(User user)throws SQLException{

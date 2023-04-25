@@ -276,10 +276,13 @@
                      <content>
                         <GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="979.0">
                            <padding>
-                              <Insets left="19.0" top="19.0" />
+                              <Insets bottom="15.0" left="19.0" top="19.0" />
                            </padding>
                         </GridPane>
                      </content>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
                         </ScrollPane>
                     </children>
                 </VBox>
