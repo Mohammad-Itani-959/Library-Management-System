@@ -12,6 +12,7 @@ public class Database {
     public Database() throws SQLException {
         this.connection= DriverManager.getConnection(String.format("jdbc:mysql://localhost:3306/%s", "guiprroject"), "root", "AlaaKanso2002.@.");
         this.statement = this.connection.createStatement();
+
         /* statement.execute("create function numberOfBooks (@category varchar(30))" +
                 "returns int" +
                 "as" +
@@ -109,7 +110,12 @@ public class Database {
     }
     public void createTables() throws SQLException{
             ResultSet resultSet ;
-             /*statement.execute("");*/
+             /*statement.execute("CREATE TABLE Users ("+
+                "id int AUTO_INCREMENT Primary Key,"+
+                " username VARCHAR(50) NOT NULL," +
+                " email VARCHAR(50) NOT NULL," +
+                " password VARCHAR(255) NOT NULL," +
+                " type VARCHAR(20));");*/
           resultSet = statement.executeQuery("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'Users')");
             if(!(resultSet.next() && resultSet.getBoolean(1))){
                 statement.execute("CREATE TABLE Users ("+
@@ -273,10 +279,23 @@ public class Database {
         return resultSet;
     }
 
-    //to add a book to the database from the librarian
-   /* public void addBookLibrarian(Book book) throws SQLException{
-        statement.execute("Insert Into Books(title,description, image, bookLength,quantity,category, authorName, librarianId) VALUES" +
-                "('"+book.getBookTitle()+"','"+book.getBookDesc()+"','"+book.getBookImage()+"','"+book.getBookLength()+"','")
-    }*/
+    public void DeleteLibrarian(String email) throws SQLException {
+        statement.executeQuery("delete from Users where email="+email);
+    }
+
+    public ResultSet getAllLibrarians() throws SQLException {
+        return statement.executeQuery("select * from Users where type='librarian'");
+    }
+
+  /*  public void display(ResultSet resultSet) throws SQLException{
+        while(resultSet.next()){
+            for(int i = 1 ; i<11 ;i++){
+                System.out.println(resultSet.getString(i)+"\n");
+            }
+            System.out.println("---------------------------------\n");
+
+        }
+    }
+    */
 }
 

@@ -33,11 +33,6 @@
                         </HBox.margin>
                      </Button>
                   <Pane prefHeight="61.0" prefWidth="367.0" />
-                  <Label alignment="CENTER" prefHeight="61.0" prefWidth="307.0" textFill="#f0824f">
-                     <font>
-                        <Font name="Harlow Solid Italic" size="36.0" />
-                     </font>
-                  </Label>
                   </children>
 
             </HBox>
@@ -56,7 +51,7 @@
                      <Font name="Harlow Solid Italic" size="36.0" />
                   </font>
                </Label>
-               <Label contentDisplay="RIGHT" prefHeight="154.0" prefWidth="449.0" textFill="#f0824f">
+               <Label fx:id="labelname" contentDisplay="RIGHT" prefHeight="154.0" prefWidth="449.0" textFill="#f0824f">
                   <font>
                      <Font name="Harlow Solid Italic" size="36.0" />
                   </font>
@@ -66,27 +61,12 @@
                </Label>
             </HBox>
             <HBox>
-               <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="154.0" prefWidth="596.0" text="librarian name :" textFill="#f0824f">
+               <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="154.0" prefWidth="596.0" text="librarian Email :" textFill="#f0824f">
                   <font>
                      <Font name="Harlow Solid Italic" size="36.0" />
                   </font>
                </Label>
-               <Label contentDisplay="RIGHT" prefHeight="154.0" prefWidth="449.0" textFill="#f0824f">
-                  <font>
-                     <Font name="Harlow Solid Italic" size="36.0" />
-                  </font>
-                  <HBox.margin>
-                     <Insets left="50.0" />
-                  </HBox.margin>
-               </Label>
-            </HBox>
-            <HBox>
-               <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="154.0" prefWidth="596.0" text="librarian name :" textFill="#f0824f">
-                  <font>
-                     <Font name="Harlow Solid Italic" size="36.0" />
-                  </font>
-               </Label>
-               <Label contentDisplay="RIGHT" prefHeight="154.0" prefWidth="449.0" textFill="#f0824f">
+               <Label fx:id="labelemail" contentDisplay="RIGHT" prefHeight="154.0" prefWidth="449.0" textFill="#f0824f">
                   <font>
                      <Font name="Harlow Solid Italic" size="36.0" />
                   </font>
@@ -95,7 +75,7 @@
                   </HBox.margin>
                </Label>
             </HBox>
-            <Button mnemonicParsing="false" prefHeight="95.0" prefWidth="162.0" styleClass="btn" stylesheets="@../../../styles/style.css" text="Detete" textFill="#f0824f">
+            <Button mnemonicParsing="false" onAction="#delete" prefHeight="95.0" prefWidth="162.0" styleClass="btn" stylesheets="@../../../styles/style.css" text="Detete" textFill="#f0824f">
                <font>
                   <Font name="Cambria Bold Italic" size="36.0" />
                </font>
