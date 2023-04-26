@@ -74,8 +74,11 @@ public class RegisterController {
                 allBooksController.start();
                 Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
-                stage.setFullScreen(true);
                 stage.setScene(scene);
+                stage.setWidth(1350);
+                stage.setHeight(810);
+                stage.setScene(scene);
+                stage.setMaximized(true);
                 stage.show();
             }
         }

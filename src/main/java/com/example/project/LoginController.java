@@ -83,8 +83,10 @@ public class LoginController {
 
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
-                stage.setFullScreen(true);
-
+                stage.setWidth(1350);
+                stage.setHeight(810);
+                stage.setScene(scene);
+                stage.setMaximized(true);
                 stage.show();
                 return ;
             }
@@ -117,8 +119,10 @@ public class LoginController {
 
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
-                stage.setFullScreen(true);
-
+                stage.setWidth(1350);
+                stage.setHeight(810);
+                stage.setScene(scene);
+                stage.setMaximized(true);
                 stage.show();
             }
 
@@ -132,8 +136,10 @@ public class LoginController {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setFullScreen(true);
-
+        stage.setWidth(1350);
+        stage.setHeight(810);
+        stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
     }
 
@@ -144,7 +150,10 @@ public class LoginController {
         Stage stage =(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setFullScreen(true);
+        stage.setWidth(1350);
+        stage.setHeight(810);
+        stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
     }
 

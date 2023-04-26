@@ -62,8 +62,11 @@ public class LibrarianDetails {
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
         AnchorPane root = fxmlLoader.load();
         Scene scene = new Scene(root);
-        stage.setFullScreen(true);
         stage.setScene(scene);
+        stage.setWidth(1350);
+        stage.setHeight(810);
+        stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
 
     }
@@ -74,8 +77,12 @@ public class LibrarianDetails {
         AdminController adminhandler = fxmlLoader.getController();
         adminhandler.setProxyUser(getProxyUser());
         Scene scene = new Scene(root);
-        stage.setFullScreen(true);
         stage.setScene(scene);
+        stage.setWidth(1350);
+        stage.setHeight(810);
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.show();
     }
     public ProxyUser getProxyUser(){return this.proxyUser ;}
 

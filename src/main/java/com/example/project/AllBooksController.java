@@ -164,8 +164,11 @@ public class AllBooksController {
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
         AnchorPane root = fxmlLoader.load();
         Scene scene = new Scene(root);
-        stage.setFullScreen(true);
         stage.setScene(scene);
+        stage.setWidth(1350);
+        stage.setHeight(810);
+        stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
     }
     public void setProxyUser(ProxyUser proxyUser){
@@ -182,8 +185,11 @@ public class AllBooksController {
         borrowedbooksController.start();
 
         Scene scene = new Scene(root);
-        stage.setFullScreen(true);
         stage.setScene(scene);
+        stage.setWidth(1350);
+        stage.setHeight(810);
+        stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
     }
 
