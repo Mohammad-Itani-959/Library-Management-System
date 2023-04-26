@@ -3,6 +3,8 @@ package com.example.project;
 import com.example.project.iterator.Iterator;
 import com.example.project.proxyUser.ProxyAdmin;
 import com.example.project.proxyUser.ProxyUser;
+import com.example.project.user.Admin;
+import com.example.project.user.Librarian;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,27 +17,15 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class LibrarianDetails {
+public class LibrarianDetailController {
     @FXML
-    Label labelname;
+    Label labelName;
     @FXML
     Label labelemail;
     ProxyUser proxyUser;
     private Iterator iterator;
-    private librarian lb;
+    private Librarian librarian;
     private String email;
-
-    public void setLb(librarian lb) {
-        this.lb = lb;
-    }
-    public void setinfo(){
-        this.labelname.setText(lb.getName());
-        this.labelemail.setText(lb.getEmail());
-    }
-    public void setProxyUser(ProxyUser proxyUser){
-        this.proxyUser = proxyUser;
-        this.email = proxyUser.getRealUser().getEmail();
-    }
 
     Database database;
     {
@@ -45,22 +35,27 @@ public class LibrarianDetails {
             throw new RuntimeException(e);
         }
     }
-    public void setName(String librarianName) {
-        labelemail.setText(librarianName);
+
+    public void start(){
+        this.labelName.setText(proxyUser.getRealUser().getUsername());
+        this.labelemail.setText(proxyUser.getRealUser().getEmail());
     }
-
-
-    public void setEmail(String librarianEmail) {
-        labelemail.setText(librarianEmail);
+    public void setProxyUser(ProxyAdmin proxyUser){
+        this.proxyUser = proxyUser;
+        this.email = proxyUser.getRealUser().getEmail();
     }
-
-
     public void delete(ActionEvent actionEvent) throws SQLException, IOException {
-        String email = lb.getEmail();
-        database.DeleteLibrarian(email);
+        Admin admin = (Admin)this.proxyUser.getRealUser();
+        admin.removeLibrarian(this.librarian);
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("admin.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
         AnchorPane root = fxmlLoader.load();
+
+        AdminController adminController = fxmlLoader.getController();
+        adminController.setProxyUser((ProxyAdmin)this.proxyUser);
+        adminController.start();
+
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setWidth(1350);
@@ -74,8 +69,10 @@ public class LibrarianDetails {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("admin.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
         AnchorPane root = fxmlLoader.load();
-        AdminController adminhandler = fxmlLoader.getController();
-        adminhandler.setProxyUser(getProxyUser());
+        AdminController adminController = fxmlLoader.getController();
+        adminController.setProxyUser(this.proxyUser);
+        adminController.start();
+
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setWidth(1350);
@@ -84,6 +81,6 @@ public class LibrarianDetails {
         stage.setMaximized(true);
         stage.show();
     }
-    public ProxyUser getProxyUser(){return this.proxyUser ;}
+    public void createLibrarian(Librarian librarian){this.librarian=librarian;}
 
 }

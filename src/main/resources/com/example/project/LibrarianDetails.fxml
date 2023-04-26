@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.LibrarianDetails">
+<AnchorPane prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.LibrarianDetailController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="810.0" prefWidth="1315.0" styleClass="btn" stylesheets="@../../../styles/style.css">
          <children>
@@ -51,7 +51,7 @@
                      <Font name="Harlow Solid Italic" size="36.0" />
                   </font>
                </Label>
-               <Label fx:id="labelname" contentDisplay="RIGHT" prefHeight="154.0" prefWidth="449.0" textFill="#f0824f">
+               <Label fx:id="labelName" contentDisplay="RIGHT" prefHeight="154.0" prefWidth="449.0" textFill="#f0824f">
                   <font>
                      <Font name="Harlow Solid Italic" size="36.0" />
                   </font>

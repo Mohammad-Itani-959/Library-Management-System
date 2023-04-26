@@ -57,7 +57,6 @@ public class BookDetailController {
 
         Stage stage =(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
-        stage.setScene(scene);
         stage.setWidth(1350);
         stage.setHeight(810);
         stage.setScene(scene);
@@ -78,18 +77,13 @@ public class BookDetailController {
         boolean flag =false;
         ResultSet resultSet = database.getBorrowedBooks(this.proxyUser.getRealUser());
         while(resultSet.next()){
-            System.out.println("the book id of each book in the result set: "+resultSet.getString("id")+"."+" initial flag: "+flag);
-            System.out.println("id of result set: "+resultSet.getString("id")+" result of book id: "+book.getBookId());
             if(resultSet.getString("id").equals(book.getBookId())){
-                System.out.println("for books with the same id as selected book... do you go here?");
                 flag= true;
-                System.out.println("id of result set: "+resultSet.getString("id")+" curr flag: "+flag);
                 break;
             }
         }
-        System.out.println(flag+"OUTTTT");
+
         if(flag == false){
-            System.out.println(flag+"OUTTTT");
             if(database.Borrow(book,proxyUser.getRealUser(),"1","2")){
 
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AllBooks.fxml"));
@@ -102,10 +96,7 @@ public class BookDetailController {
                 Stage stage =(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
-                stage.setWidth(1350);
-                stage.setHeight(810);
-                stage.setScene(scene);
-                stage.setMaximized(true);
+                stage.setFullScreen(true);
                 stage.show();
             }
             else{
@@ -113,7 +104,6 @@ public class BookDetailController {
             }
         }
         else{
-            System.out.println("am I even here at one point");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setContentText("Cannot Borrow This Book ... Already Borrowed");
@@ -122,7 +112,6 @@ public class BookDetailController {
         }
 
     }
-
     public void setProxyUser(ProxyUser proxyUser){
         this.proxyUser = proxyUser;
         this.email = proxyUser.getRealUser().getEmail();

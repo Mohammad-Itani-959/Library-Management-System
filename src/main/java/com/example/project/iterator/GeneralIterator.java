@@ -67,10 +67,13 @@ public class GeneralIterator implements Iterator{
 
 
             ImageView imageView = new ImageView();
-            Image image = new Image(getClass().getResourceAsStream("/" + bookImage));
+            Image image;
+            image = new Image(getClass().getResourceAsStream("/" + bookImage));
+
             imageView.setImage(image);
             imageView.setFitWidth(207);
             imageView.setFitHeight(300);
+
             Label label = new Label(bookTitle);
             label.setFont(Font.font("Corbel", 16));
             label.setTextFill(Color.web("#f0824f"));

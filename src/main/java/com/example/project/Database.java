@@ -11,7 +11,7 @@ public class Database {
     Statement statement ;
 
     public Database() throws SQLException {
-        this.connection= DriverManager.getConnection(String.format("jdbc:mysql://localhost:3306/%s", "guiprroject"), "root", "AlaaKanso2002.@.");
+        this.connection= DriverManager.getConnection(String.format("jdbc:mysql://localhost:3306/%s", "guiprroject"), "root", "");
         this.statement = this.connection.createStatement();
 
         /* statement.execute("create function numberOfBooks (@category varchar(30))" +
@@ -280,10 +280,10 @@ public class Database {
 
         return resultSet;
     }
-    public void DeleteLibrarian(String email) throws SQLException {
+    public void DeleteLibrarian(Librarian librarian) throws SQLException {
         String query = "DELETE FROM Users WHERE email = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setString(1, email);
+            stmt.setString(1, librarian.getEmail());
             stmt.executeUpdate();
         }
     }
