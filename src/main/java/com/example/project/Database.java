@@ -287,15 +287,20 @@ public class Database {
         return statement.executeQuery("select * from Users where type='librarian'");
     }
 
-  /*  public void display(ResultSet resultSet) throws SQLException{
-        while(resultSet.next()){
-            for(int i = 1 ; i<11 ;i++){
-                System.out.println(resultSet.getString(i)+"\n");
-            }
-            System.out.println("---------------------------------\n");
-
-        }
+    public void addBookLibrarian(Book book) throws SQLException {
+        String sql = "INSERT INTO Books (title, description, image, bookLength, quantity, category, authorName, librarianId) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, book.getBookTitle());
+        statement.setString(2, book.getBookDesc());
+        statement.setString(3, book.getBookImage());
+        statement.setInt(4, Integer.parseInt(book.getBookLength()));
+        statement.setInt(5, Integer.parseInt(book.getQuantity()));
+        statement.setString(6, book.getBookCat());
+        statement.setString(7, book.getBookAuthor());
+        statement.setInt(8, Integer.parseInt(book.getBookLibrarian()));
+        statement.executeUpdate();
     }
-    */
-}
 
+
+}

@@ -1,5 +1,6 @@
 package com.example.project;
 
+import com.example.project.iterator.Iterator;
 import com.example.project.proxyUser.ProxyUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,10 +39,19 @@ public class LibrarianController {
     @FXML
     private TextField bookQuantity;
 
-
     private File selectedFile;
 
     public ProxyUser proxyUser;
+
+    Database database;
+
+    {
+        try {
+            database = new Database();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public void Logout(ActionEvent actionEvent) throws SQLException, IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("entry.fxml"));
@@ -73,6 +83,7 @@ public class LibrarianController {
         String quantity= bookQuantity.getText();
         String imagePath = "images/books/" + selectedFile.getName();
         String destinationDirPath = "src/main/resources/images/books";
+        System.out.println(this.proxyUser);
 
         try {
             // Create the destination directory if it does not exist
@@ -89,14 +100,18 @@ public class LibrarianController {
         }
         if(!title.isEmpty() && !author.isEmpty() && !length.isEmpty() && !cat.isEmpty() && !quantity.isEmpty() && !desc.isEmpty() && selectedFile != null){
             Book newbook= new Book(title,author,desc,cat,imagePath,length,""+proxyUser.getRealUser().getId());
-            newbook.setQuantity(quantity);
-
+            newbook.setQuantity(""+quantity);
+            database.addBookLibrarian(newbook);
         }
     }
 
     //remove the info the librarian entered in the fields
     public void cancel() {
 
+    }
+
+    public void setProxyUser(ProxyUser proxyUser){
+        this.proxyUser = proxyUser;
     }
 
 }

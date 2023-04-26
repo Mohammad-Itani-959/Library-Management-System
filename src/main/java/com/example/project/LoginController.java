@@ -93,7 +93,8 @@ public class LoginController {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("librarianLayout.fxml"));
                 Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
                 AnchorPane root = fxmlLoader.load();
-
+                LibrarianController librarianController = fxmlLoader.getController();
+                librarianController.setProxyUser(this.proxyUser);
 
 
                 Scene scene = new Scene(root);

@@ -256,7 +256,7 @@
                               <Insets right="8.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="bookQuatity" prefHeight="50.0" prefWidth="242.0" promptText="Enter Quantity" style="-fx-background-radius: 50;" styleClass="searchbox">
+                        <TextField fx:id="bookQuantity" prefHeight="50.0" prefWidth="242.0" promptText="Enter Quantity" style="-fx-background-radius: 50;" styleClass="searchbox">
                            <font>
                               <Font size="14.0" />
                            </font>
