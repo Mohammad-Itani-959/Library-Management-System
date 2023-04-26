@@ -6,6 +6,7 @@ import com.example.project.proxyUser.ProxyUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
@@ -14,11 +15,13 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class AdminController {
+public class AdminController implements Initializable {
     @FXML
-    GridPane gridpane;
+    GridPane gridPane;
     @FXML
     TextField username;
     @FXML
@@ -39,9 +42,13 @@ public class AdminController {
         }
     }
 
+    public void setProxyUser(ProxyUser proxyUser) {
+        this.proxyUser = proxyUser;
+    }
+
     public void start() throws SQLException {
         try {
-            this.getAllLibrarian(this.gridpane);
+            this.getAllLibrarian(this.gridPane);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -63,12 +70,12 @@ public class AdminController {
 
     private void getAllLibrarian(GridPane gridPane) throws SQLException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LibrarianDetails.fxml"));
-        iterator = new LibrarianIterator();
-        iterator.setProxyUser(this.proxyUser);
-        iterator.showBooks(gridPane);
+        iterator = new LibrarianIterator(this.proxyUser);
+        iterator.show(gridPane);
         iterator.setFXMLLoader(fxmlLoader);
 
     }
+    public ProxyUser getProxyUser(){return this.proxyUser ;}
     public void Logout(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("entry.fxml"));
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
@@ -77,6 +84,18 @@ public class AdminController {
         stage.setFullScreen(true);
         stage.setScene(scene);
         stage.show();
+    }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //gridPane.getChildren().add(new Text("HELLOOOO"));
+        try {
+            this.getAllLibrarian(this.gridPane);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
 

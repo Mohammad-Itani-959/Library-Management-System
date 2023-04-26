@@ -24,7 +24,7 @@
                            <Insets top="2.0" />
                         </HBox.margin>
                      </ImageView>
-                     <Button mnemonicParsing="false" styleClass="transparent" stylesheets="@../../../styles/style.css" text="Go back" textFill="#f0824f">
+                     <Button mnemonicParsing="false" onAction="#goBack" styleClass="transparent" stylesheets="@../../../styles/style.css" text="Go back" textFill="#f0824f">
                         <font>
                            <Font name="Corbel Bold" size="18.0" />
                         </font>
@@ -75,7 +75,7 @@
                   </HBox.margin>
                </Label>
             </HBox>
-            <Button mnemonicParsing="false" onAction="#delete" prefHeight="95.0" prefWidth="162.0" styleClass="btn" stylesheets="@../../../styles/style.css" text="Detete" textFill="#f0824f">
+            <Button mnemonicParsing="false" onAction="#delete" onMouseClicked="#delete" prefHeight="95.0" prefWidth="162.0" styleClass="btn" stylesheets="@../../../styles/style.css" text="Detete" textFill="#f0824f">
                <font>
                   <Font name="Cambria Bold Italic" size="36.0" />
                </font>

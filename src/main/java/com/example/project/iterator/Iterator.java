@@ -17,7 +17,7 @@ public interface Iterator {
     // getBooks is used to get the books from the database
     */ //<<<--- here are the definitions of the functions below !!!
 
-    public void showBooks(GridPane gridPane) throws SQLException;
+    public void show(GridPane gridPane) throws SQLException;
     public void setFXMLLoader(FXMLLoader fxmlLoader);
     public void setProxyUser(ProxyUser proxyUser);
     public boolean has_Next();

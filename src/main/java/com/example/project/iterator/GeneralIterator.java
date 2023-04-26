@@ -38,7 +38,7 @@ public class GeneralIterator implements Iterator{
         this.resultSet = this.getBooks();
     }
     @Override
-    public void showBooks(GridPane gridPane) throws SQLException {
+    public void show(GridPane gridPane) throws SQLException {
         int columnIndex = 0;
         int rowIndex = 0;
 

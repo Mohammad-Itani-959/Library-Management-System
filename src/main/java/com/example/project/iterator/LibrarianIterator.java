@@ -23,7 +23,7 @@ import java.sql.SQLException;
 
 public class LibrarianIterator implements Iterator{
     Database database;
-    private ProxyUser proxyUser;
+    public ProxyUser proxyUser;
     FXMLLoader fxmlLoader;
     {
         try {
@@ -33,8 +33,9 @@ public class LibrarianIterator implements Iterator{
         }
     }
     private ResultSet resultSet;
-    public LibrarianIterator()throws SQLException{
+    public LibrarianIterator(ProxyUser proxyUser)throws SQLException{
         this.resultSet = this.getLibrarians();
+        this.proxyUser = proxyUser;
     }
     public ResultSet getLibrarians() throws SQLException {
         return database.getAllLibrarians();
@@ -46,7 +47,7 @@ public class LibrarianIterator implements Iterator{
     }
 
     @Override
-    public void showBooks(GridPane gridPane) throws SQLException {//I will rename it to show the librarian
+    public void show(GridPane gridPane) throws SQLException {//I will rename it to show the librarian
         int columnIndex = 0;
         int rowIndex = 0;
 
@@ -86,18 +87,16 @@ public class LibrarianIterator implements Iterator{
                 librariancontroller.setProxyUser(getProxyUser());
                 //librariancontroller.setName(librarianName);
                 //librariancontroller.setEmail(librarianEmail);
-                //librariancontroller.setProxyUser(getProxyUser());
 
                 Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setFullScreen(true);
                 stage.setScene(scene);
-                stage.show();
             });
             //add the content in the gridpane
             gridPane.add(newVbox, columnIndex % 4, rowIndex);
 
-            if (columnIndex % 4 == 3) {
+            if (columnIndex % 4 == 1) {
                 rowIndex++;
                 columnIndex = 0;
             } else {

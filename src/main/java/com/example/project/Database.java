@@ -279,9 +279,17 @@ public class Database {
         return resultSet;
     }
 
+    /*public void DeleteLibrarian(String email) throws SQLException {
+        statement.executeUpdate("DELETE FROM Users WHERE email =' "+email+"'");
+    }*/
     public void DeleteLibrarian(String email) throws SQLException {
-        statement.executeQuery("delete from Users where email="+email);
+        String query = "DELETE FROM Users WHERE email = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, email);
+            stmt.executeUpdate();
+        }
     }
+
 
     public ResultSet getAllLibrarians() throws SQLException {
         return statement.executeQuery("select * from Users where type='librarian'");

@@ -109,8 +109,9 @@ public class LoginController {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("admin.fxml"));
                 Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
                 AnchorPane root = fxmlLoader.load();
-
-
+                AdminController adminhandler = fxmlLoader.getController();
+                adminhandler.setProxyUser(this.proxyUser);
+                //adminhandler.start();
 
                 Scene scene = new Scene(root);
                 stage.setScene(scene);

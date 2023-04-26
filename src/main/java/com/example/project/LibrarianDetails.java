@@ -1,10 +1,18 @@
 package com.example.project;
 
 import com.example.project.iterator.Iterator;
+import com.example.project.proxyUser.ProxyAdmin;
 import com.example.project.proxyUser.ProxyUser;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class LibrarianDetails {
@@ -47,8 +55,28 @@ public class LibrarianDetails {
     }
 
 
-    public void delete() throws SQLException {
-        String email = this.proxyUser.getEmail().toString();
+    public void delete(ActionEvent actionEvent) throws SQLException, IOException {
+        String email = lb.getEmail();
         database.DeleteLibrarian(email);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("admin.fxml"));
+        Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+        AnchorPane root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        stage.setFullScreen(true);
+        stage.setScene(scene);
+        stage.show();
+
     }
+    public void goBack(ActionEvent actionEvent) throws SQLException, IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("admin.fxml"));
+        Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+        AnchorPane root = fxmlLoader.load();
+        AdminController adminhandler = fxmlLoader.getController();
+        adminhandler.setProxyUser(getProxyUser());
+        Scene scene = new Scene(root);
+        stage.setFullScreen(true);
+        stage.setScene(scene);
+    }
+    public ProxyUser getProxyUser(){return this.proxyUser ;}
+
 }

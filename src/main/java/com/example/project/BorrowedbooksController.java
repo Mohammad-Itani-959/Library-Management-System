@@ -1,6 +1,5 @@
 package com.example.project;
 
-import com.example.project.iterator.GeneralIterator;
 import com.example.project.iterator.MyBooksIterator;
 import com.example.project.proxyUser.ProxyUser;
 import javafx.event.ActionEvent;
@@ -12,7 +11,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-import javax.xml.transform.Result;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -58,7 +56,7 @@ public class BorrowedbooksController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
         iterator.setProxyUser(this.proxyUser);
         iterator.setFXMLLoader(fxmlLoader);
-        iterator.showBooks(gridPane);
+        iterator.show(gridPane);
         
     }
 

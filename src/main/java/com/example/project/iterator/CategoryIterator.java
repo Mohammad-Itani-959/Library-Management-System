@@ -44,7 +44,7 @@ public class CategoryIterator implements Iterator {
         }
     }
     @Override
-    public void showBooks(GridPane gridPane) throws SQLException {
+    public void show(GridPane gridPane) throws SQLException {
 
         int i = 0 ;
         int a = gridPane.getChildren().size();
