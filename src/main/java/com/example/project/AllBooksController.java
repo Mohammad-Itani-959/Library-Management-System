@@ -77,7 +77,7 @@ public class AllBooksController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
         iterator = new GeneralIterator();
         iterator.setProxyUser(this.proxyUser);
-        iterator.showBooks(gridPane);
+        iterator.show(gridPane);
         iterator.setFXMLLoader(fxmlLoader);
     }
     //Handler for filtering that works with the iteration design pattern //
@@ -96,7 +96,7 @@ public class AllBooksController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
         iterator.setProxyUser(this.proxyUser);
         iterator.setFXMLLoader(fxmlLoader);
-        iterator.showBooks(gridPane);
+        iterator.show(gridPane);
 
     }
     public void searchAuthorHandler(ActionEvent actionEvent )throws SQLException{
@@ -109,7 +109,7 @@ public class AllBooksController {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
                 iterator = new AuthorIterator(authorName);
                 iterator.setProxyUser(this.proxyUser);
-                iterator.showBooks(gridPane);
+                iterator.show(gridPane);
                 iterator.setFXMLLoader(fxmlLoader);
             }
     }
@@ -124,7 +124,7 @@ public class AllBooksController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
             iterator = new LengthIterator(length);
             iterator.setProxyUser(this.proxyUser);
-            iterator.showBooks(gridPane);
+            iterator.show(gridPane);
             iterator.setFXMLLoader(fxmlLoader);
         }
     }
