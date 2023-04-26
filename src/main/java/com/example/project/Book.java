@@ -39,7 +39,6 @@ public class Book {
         this.bookTitle = bookTitle;
         this.bookDesc=bookDesc;
     }
-
     public String getBookDesc(){return this.bookDesc;}
     public String getBookAuthor() {
         return bookAuthor;

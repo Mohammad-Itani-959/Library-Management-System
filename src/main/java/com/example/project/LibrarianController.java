@@ -68,10 +68,15 @@ public class LibrarianController {
     public void Logout(ActionEvent actionEvent) throws SQLException, IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Entry.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+
         AnchorPane root = fxmlLoader.load();
         Scene scene = new Scene(root);
-        stage.setFullScreen(true);
         stage.setScene(scene);
+        stage.setWidth(1350);
+        stage.setHeight(810);
+        stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
     }
 
@@ -83,8 +88,6 @@ public class LibrarianController {
         );
         selectedFile = fileChooser.showOpenDialog(null);
     }
-
-
     //add book to the db
     public void addBook(ActionEvent actionEvent) throws SQLException{
         String title= bookTitle.getText();
@@ -116,34 +119,37 @@ public class LibrarianController {
             proxyUser.getRealUser().notifyUsers();
         }
     }
-    public void addBookHandler(ActionEvent actionEvent)throws SQLException{
-        this.borderPane.getChildren().add(2,addBook);
-    }
-
-    //remove the info the librarian entered in the fields
     public void cancel() {
 
     }
-    public void fetchSubscribers(ActionEvent actionEvent)throws SQLException{
-        this.borderPane.getChildren().remove(this.addBook);
-        VBox vBox = new VBox();
-        vBox.setPrefWidth(207);
-        vBox.setPrefHeight(320);
-
-        this.borderPane.getChildren().add(2,vBox);
-        resultSet = database.getBorrowers(""+this.proxyUser.getRealUser().getId());
-        vBox.setPadding(new Insets(10));
-
-
-        while (resultSet.next()) {
-            System.out.println(resultSet.getString("username"));
-            Label label = new Label(resultSet.getString("username"));
-            label.setFont(Font.font("Corbel", 16));
-            label.setTextFill(Color.web("#f0824f"));
-            vBox.getChildren().add(label);
+    public void addBookHandler(ActionEvent actionEvent)throws SQLException ,IOException{
+        if (this.borderPane.getChildren().get(2) == null) {
+            this.borderPane.getChildren().add(2, addBook);
+        } else {
+            return;
         }
-
     }
+
+    //fetchSubscribers is activated whenever i click on list of Users
+    public void fetchSubscribers(ActionEvent actionEvent) throws SQLException {
+        this.borderPane.getChildren().remove(this.addBook);
+
+        VBox vBox = new VBox();
+
+        resultSet = database.getBorrowers("" + this.proxyUser.getRealUser().getId(),this.proxyUser.getRealUser());
+        resultSet.next();
+        do {
+                Label label = new Label(resultSet.getString("username"));
+                label.setFont(Font.font("Corbel", 16));
+                label.setTextFill(Color.web("#f0824f"));
+                vBox.getChildren().add(label);
+                vBox.setStyle("-fx-background-color:black");
+        } while (resultSet.next());
+
+        vBox.setPadding(new Insets(10));
+        this.borderPane.getChildren().add(2, vBox);
+    }
+
     public void setProxyUser(ProxyUser proxyUser){
         this.proxyUser = (ProxyLibrarian)proxyUser;
     }

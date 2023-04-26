@@ -17,6 +17,29 @@
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="810.0" prefWidth="634.0" styleClass="vleft">
          <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="310.0">
+               <VBox.margin>
+                  <Insets left="8.0" top="10.0" />
+               </VBox.margin>
+               <children>
+                  <ImageView fitHeight="113.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" scaleX="1.1" scaleY="1.1">
+                     <image>
+                        <Image url="@../../../images/back.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="2.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Button onAction="#backHandler" mnemonicParsing="false" styleClass="transparent" text="Go back" textFill="#f0824f">
+                     <font>
+                        <Font name="Corbel Bold" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="4.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" scaleX="0.5" scaleY="0.5">
                <image>
                   <Image url="@../../../images/logo1.png" />

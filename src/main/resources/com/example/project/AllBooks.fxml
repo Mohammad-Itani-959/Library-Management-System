@@ -60,7 +60,7 @@
                                 <Insets left="21.0" right="21.0" top="22.0" />
                             </VBox.margin>
                             <children>
-                                <TextField prefHeight="30.0" prefWidth="221.0" promptText="Search" styleClass="transparent">
+                                <TextField fx:id="searchText" onAction="#searchBookNameHandler" prefHeight="30.0" prefWidth="221.0" promptText="Book's Name" styleClass="transparent">
                                     <font>
                                         <Font size="14.0" />
                                     </font>
@@ -173,7 +173,7 @@
                         <Insets left="-1.0" />
                      </VBox.margin>
                         </HBox>
-                      <HBox prefHeight="26.0" prefWidth="310.0">
+                      <HBox prefHeight="26.0" prefWidth="310.0" styleClass="mouse-moved">
                          <children>
                             <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                <image>
@@ -183,7 +183,7 @@
                                   <Insets top="1.0" />
                                </HBox.margin>
                             </ImageView>
-                            <TextField fx:id="searchAuthor" onAction="#searchAuthorHandler" prefHeight="19.0" prefWidth="186.0" promptText="Author">
+                            <TextField fx:id="searchAuthor" onAction="#searchAuthorHandler" prefHeight="19.0" prefWidth="186.0" promptText="Author's Name">
                                <HBox.margin>
                                   <Insets left="1.0" top="9.0" />
                                </HBox.margin>
@@ -197,7 +197,7 @@
                             </TextField>
                          </children>
                       </HBox>
-                        <HBox prefHeight="26.0" prefWidth="310.0">
+                        <HBox prefHeight="26.0" prefWidth="310.0" styleClass="mouse-moved">
                             <children>
                                 <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -207,7 +207,7 @@
                                         <Insets top="1.0" />
                                     </HBox.margin>
                                 </ImageView>
-                                <TextField fx:id="searchLength" onAction="#searchLengthHandler" prefHeight="19.0" prefWidth="186.0" promptText="Length">
+                                <TextField fx:id="searchLength" onAction="#searchLengthHandler" prefHeight="19.0" prefWidth="186.0" promptText="Pages' Number">
                                     <HBox.margin>
                                         <Insets left="1.0" top="9.0" />
                                     </HBox.margin>
@@ -272,18 +272,15 @@
                                 <Insets left="8.0" top="9.0" />
                             </VBox.margin>
                         </Text>
-                        <ScrollPane prefHeight="698.0" prefWidth="882.0" styleClass="transparent" VBox.vgrow="ALWAYS">
+                  <ScrollPane prefHeight="701.0" prefWidth="1005.0">
                      <content>
-                        <GridPane fx:id="gridPane"  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="979.0">
+                        <GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
                            <padding>
                               <Insets bottom="15.0" left="19.0" top="19.0" />
                            </padding>
                         </GridPane>
                      </content>
-                     <VBox.margin>
-                        <Insets bottom="15.0" />
-                     </VBox.margin>
-                        </ScrollPane>
+                  </ScrollPane>
                     </children>
                 </VBox>
             </center>

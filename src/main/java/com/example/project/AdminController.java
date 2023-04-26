@@ -81,8 +81,11 @@ public class AdminController implements Initializable {
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         AnchorPane root = fxmlLoader.load();
         Scene scene = new Scene(root);
-        stage.setFullScreen(true);
         stage.setScene(scene);
+        stage.setWidth(1350);
+        stage.setHeight(810);
+        stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
     }
 
