@@ -120,30 +120,33 @@ public class LibrarianController {
 
     }
     public void addBookHandler(ActionEvent actionEvent)throws SQLException ,IOException{
-        this.borderPane.getChildren().add(2,addBook);
+        if (this.borderPane.getChildren().get(2) == null) {
+            this.borderPane.getChildren().add(2, addBook);
+        } else {
+            return;
+        }
     }
 
     //fetchSubscribers is activated whenever i click on list of Users
-    public void fetchSubscribers(ActionEvent actionEvent)throws SQLException{
+    public void fetchSubscribers(ActionEvent actionEvent) throws SQLException {
         this.borderPane.getChildren().remove(this.addBook);
+
         VBox vBox = new VBox();
-        vBox.setPrefWidth(207);
-        vBox.setPrefHeight(320);
 
-        this.borderPane.getChildren().add(2,vBox);
-        resultSet = database.getBorrowers(""+this.proxyUser.getRealUser().getId());
+        resultSet = database.getBorrowers("" + this.proxyUser.getRealUser().getId(),this.proxyUser.getRealUser());
+        resultSet.next();
+        do {
+                Label label = new Label(resultSet.getString("username"));
+                label.setFont(Font.font("Corbel", 16));
+                label.setTextFill(Color.web("#f0824f"));
+                vBox.getChildren().add(label);
+                vBox.setStyle("-fx-background-color:black");
+        } while (resultSet.next());
+
         vBox.setPadding(new Insets(10));
-
-
-        while (resultSet.next()) {
-            System.out.println(resultSet.getString("username"));
-            Label label = new Label(resultSet.getString("username"));
-            label.setFont(Font.font("Corbel", 16));
-            label.setTextFill(Color.web("#f0824f"));
-            vBox.getChildren().add(label);
-        }
-
+        this.borderPane.getChildren().add(2, vBox);
     }
+
     public void setProxyUser(ProxyUser proxyUser){
         this.proxyUser = (ProxyLibrarian)proxyUser;
     }

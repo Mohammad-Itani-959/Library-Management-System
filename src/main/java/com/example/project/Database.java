@@ -1,4 +1,5 @@
 package com.example.project;
+import com.example.project.user.Librarian;
 import com.example.project.user.User;
 
 import java.sql.*;
@@ -246,13 +247,16 @@ public class Database {
     public ResultSet get_books_by_length(int length) throws SQLException{
         return statement.executeQuery("Select * From Books where bookLength <='"+length+"'");
     }
+    public ResultSet get_books_by_name(String name) throws SQLException{
+        return statement.executeQuery("Select * From Books where title ='"+name+"'");
+    }
     public ResultSet getCategories() throws SQLException{
         return statement.executeQuery("Select DISTINCT category From Books");
     }
-    public ResultSet getBorrowers(String username) throws SQLException{
+    public ResultSet getBorrowers(String username , Librarian librarian) throws SQLException{
 
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM Borrows WHERE id =(" +
-                "SELECT id FROM Users WHERE type='librarian' and username ='"+username +"')");
+        ResultSet resultSet = statement.executeQuery("SELECT DISTINCT * FROM Users WHERE id IN(" +
+                "SELECT userId FROM Borrows WHERE librarian = '"+librarian.getId()+"') and type ='borrower'");
         return resultSet;
         
     }
@@ -273,12 +277,9 @@ public class Database {
     public ResultSet getBorrowedBooks(User user)throws SQLException{
         ResultSet resultSet = statement.executeQuery("SELECT * FROM BOOKS WHERE id IN (" +
                 "SELECT bookId FROM Borrows WHERE userId = '"+user.getId()+"')");
-       /* display(
-                resultSet
-        );*/
+
         return resultSet;
     }
-
     public void DeleteLibrarian(String email) throws SQLException {
         String query = "DELETE FROM Users WHERE email = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
@@ -286,7 +287,6 @@ public class Database {
             stmt.executeUpdate();
         }
     }
-
     public ResultSet getAllLibrarians() throws SQLException {
         return statement.executeQuery("select * from Users where type='librarian'");
     }

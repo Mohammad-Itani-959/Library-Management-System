@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -14,6 +15,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class BookDetailController {
@@ -35,7 +37,6 @@ public class BookDetailController {
     private Iterator iterator;
     private String email ;
     Database database;
-
     {
         try {
             database = new Database();
@@ -43,7 +44,6 @@ public class BookDetailController {
             throw new RuntimeException(e);
         }
     }
-
     private Book book ;
 
     public void backHandler(ActionEvent actionEvent) throws IOException, SQLException {
@@ -61,7 +61,6 @@ public class BookDetailController {
         stage.setFullScreen(true);
         stage.show();
     }
-
     public void setBook(Book book){this.book = book;}
     public void putBookDetails(){
         this.bookTitle.setText(book.getBookTitle());
@@ -73,24 +72,43 @@ public class BookDetailController {
 
     }
     public void borrowHandler(ActionEvent actionEvent)throws SQLException,IOException{
-        if(database.Borrow(book,proxyUser.getRealUser(),"1","2")){
+        boolean flag =false;
+        ResultSet resultSet = database.getBorrowedBooks(this.proxyUser.getRealUser());
+        while(resultSet.next()){
+            if(resultSet.getString("id") != null){
+                flag= true;
+                break;
+            }
+        }
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AllBooks.fxml"));
-            AnchorPane root = fxmlLoader.load();
+        if(flag == false){
+            if(database.Borrow(book,proxyUser.getRealUser(),"1","2")){
 
-            AllBooksController allBooksController = fxmlLoader.getController();
-            allBooksController.setProxyUser(this.proxyUser);
-            allBooksController.start();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AllBooks.fxml"));
+                AnchorPane root = fxmlLoader.load();
 
-            Stage stage =(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setFullScreen(true);
-            stage.show();
+                AllBooksController allBooksController = fxmlLoader.getController();
+                allBooksController.setProxyUser(this.proxyUser);
+                allBooksController.start();
+
+                Stage stage =(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.setFullScreen(true);
+                stage.show();
+            }
+            else{
+                System.out.println("Borrow Failed...!!");
+            }
         }
         else{
-            System.out.println("Borrow Failed...!!");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Cannot Borrow This Book ... Already Borrowed");
+            alert.show();
+            return;
         }
+
     }
     public void setProxyUser(ProxyUser proxyUser){
         this.proxyUser = proxyUser;
