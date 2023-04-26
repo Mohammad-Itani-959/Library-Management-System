@@ -15,7 +15,7 @@
                   <Image url="@../../../images/logout.png" />
                </image>
             </ImageView>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Logout" textFill="#f0824f">
+            <Button mnemonicParsing="false" onAction="#Logout" prefHeight="25.0" prefWidth="78.0" text="Logout" textFill="#f0824f">
                <HBox.margin>
                   <Insets top="5.0" />
                </HBox.margin></Button>
@@ -30,7 +30,18 @@
          <children>
             <VBox prefHeight="486.0" prefWidth="541.0">
                <children>
-                  <ListView prefHeight="550.0" prefWidth="530.0" />
+                  <ScrollPane prefHeight="698.0" prefWidth="882.0" styleClass="transparent" VBox.vgrow="ALWAYS">
+                     <content>
+                        <GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="979.0">
+                           <padding>
+                              <Insets bottom="15.0" left="19.0" top="19.0" />
+                           </padding>
+                        </GridPane>
+                     </content>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </ScrollPane>
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="489.0" prefWidth="810.0" styleClass="white-bg" stylesheets="@../../../styles/style.css">
@@ -45,7 +56,7 @@
                                  <Insets left="19.0" />
                               </HBox.margin>
                            </ImageView>
-                           <TextField prefHeight="38.0" prefWidth="366.0" promptText="LibrarianUsername">
+                           <TextField fx:id="username" prefHeight="38.0" prefWidth="366.0" promptText="LibrarianUsername">
                               <HBox.margin>
                                  <Insets left="17.0" />
                               </HBox.margin>
@@ -65,7 +76,7 @@
                                  <Insets left="19.0" />
                               </HBox.margin>
                            </ImageView>
-                           <TextField prefHeight="38.0" prefWidth="366.0" promptText="LibrarianEmail">
+                           <TextField fx:id="email" prefHeight="38.0" prefWidth="366.0" promptText="LibrarianEmail">
                               <HBox.margin>
                                  <Insets left="17.0" />
                               </HBox.margin>
@@ -85,7 +96,7 @@
                                  <Insets left="7.0" />
                               </HBox.margin>
                            </ImageView>
-                           <PasswordField prefHeight="38.0" prefWidth="366.0" promptText="LibrarianPassword">
+                           <PasswordField fx:id="password" prefHeight="38.0" prefWidth="366.0" promptText="LibrarianPassword">
                               <HBox.margin>
                                  <Insets left="11.0" />
                               </HBox.margin>
@@ -105,7 +116,7 @@
                                  <Insets left="7.0" />
                               </HBox.margin>
                            </ImageView>
-                           <PasswordField prefHeight="38.0" prefWidth="366.0" promptText="Confirm Password">
+                           <PasswordField fx:id="confirmpassword" prefHeight="38.0" prefWidth="366.0" promptText="Confirm Password">
                               <HBox.margin>
                                  <Insets left="11.0" />
                               </HBox.margin>
@@ -115,7 +126,7 @@
                            </PasswordField>
                         </children>
                      </HBox>
-                     <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Add Librarian" textFill="#c37726">
+                     <Button mnemonicParsing="false" onAction="#add" prefHeight="50.0" prefWidth="300.0" text="Add Librarian" textFill="#c37726">
                         <VBox.margin>
                            <Insets left="32.0" top="22.0" />
                         </VBox.margin>

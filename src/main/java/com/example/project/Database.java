@@ -12,6 +12,7 @@ public class Database {
     public Database() throws SQLException {
         this.connection= DriverManager.getConnection(String.format("jdbc:mysql://localhost:3306/%s", "guiprroject"), "root", "");
         this.statement = this.connection.createStatement();
+
         /* statement.execute("create function numberOfBooks (@category varchar(30))" +
                 "returns int" +
                 "as" +
@@ -223,9 +224,10 @@ public class Database {
         }
 
     }
-    public ResultSet librarianLogin(String email , String password) throws SQLException{
+    public boolean librarianLogin(String email , String password) throws SQLException{
        ResultSet resultSet= statement.executeQuery("Select * from Users where email = '"+email+"' and password = '"+password+"' and type = 'librarian'");
-       return resultSet;
+        if(resultSet.next()) return true;
+        return  false ;
     }
     public boolean librarianRegister(String username , String password , String email) throws SQLException{
         statement.execute("INSERT INTO Users(username , email , password ,type) " +
@@ -248,14 +250,10 @@ public class Database {
     public ResultSet getCategories() throws SQLException{
         return statement.executeQuery("Select DISTINCT category From Books");
     }
-    public ResultSet getBorrowers(String id) throws SQLException{
+    public ResultSet getBorrowers(String username) throws SQLException{
 
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM Users WHERE id IN(" +
-                "SELECT userId FROM Borrows WHERE librarian ='"+id+"')");
-        return resultSet;
-    }
-    public ResultSet getAllBorrowers()throws SQLException{
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM Users ");
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM Borrows WHERE id =(" +
+                "SELECT id FROM Users WHERE type='librarian' and username ='"+username +"')");
         return resultSet;
     }
     public boolean Borrow(Book book , User user,String startDate, String endDate)throws SQLException{
@@ -275,24 +273,34 @@ public class Database {
     public ResultSet getBorrowedBooks(User user)throws SQLException{
         ResultSet resultSet = statement.executeQuery("SELECT * FROM BOOKS WHERE id IN (" +
                 "SELECT bookId FROM Borrows WHERE userId = '"+user.getId()+"')");
-
+       /* display(
+                resultSet
+        );*/
         return resultSet;
     }
-    public boolean addBook(Book book) throws SQLException{
-        statement.execute("Insert Into Books(title,description, image, bookLength,quantity,category, authorName, librarianId) VALUES" +
-                "('"+book.getBookTitle()+"','"+book.getBookDesc()+"','"+book.getBookImage()+"','"+book.getBookLength()+"','"+book.getQuantity()+"','"+ book.getBookCat()+"','"
-        +book.getBookAuthor()+"','"+book.getBookLibrarian()+"')");
-        return true;
-    }
-    public ResultSet getMessage(String id)throws SQLException{
-        return statement.executeQuery("SELECT * FROM Messages WHERE userId ='"+id+"'");
-    }
-    public void deleteMessage(String id) throws SQLException{
-        statement.execute("DELETE FROM Messages WHERE userId='"+id+"'");
-    }
-    public boolean addMessage(String message,User user)throws SQLException{
-        statement.execute("INSERT INTO Messages(message,userId) Values('"+message+"','"+user.getId()+"')");
-        return true;
-    }
-}
 
+    public void DeleteLibrarian(String email) throws SQLException {
+        statement.executeQuery("delete from Users where email="+email);
+    }
+
+    public ResultSet getAllLibrarians() throws SQLException {
+        return statement.executeQuery("select * from Users where type='librarian'");
+    }
+
+    public void addBookLibrarian(Book book) throws SQLException {
+        String sql = "INSERT INTO Books (title, description, image, bookLength, quantity, category, authorName, librarianId) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, book.getBookTitle());
+        statement.setString(2, book.getBookDesc());
+        statement.setString(3, book.getBookImage());
+        statement.setInt(4, Integer.parseInt(book.getBookLength()));
+        statement.setInt(5, Integer.parseInt(book.getQuantity()));
+        statement.setString(6, book.getBookCat());
+        statement.setString(7, book.getBookAuthor());
+        statement.setInt(8, Integer.parseInt(book.getBookLibrarian()));
+        statement.executeUpdate();
+    }
+
+
+}
