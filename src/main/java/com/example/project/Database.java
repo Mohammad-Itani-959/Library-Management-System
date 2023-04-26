@@ -255,6 +255,7 @@ public class Database {
         ResultSet resultSet = statement.executeQuery("SELECT * FROM Borrows WHERE id =(" +
                 "SELECT id FROM Users WHERE type='librarian' and username ='"+username +"')");
         return resultSet;
+        
     }
     public boolean Borrow(Book book , User user,String startDate, String endDate)throws SQLException{
         ResultSet resultSet = statement.executeQuery("SELECT * FROM Books Where title ='"+book.getBookTitle()+"' and quantity = 0 ");
@@ -300,6 +301,16 @@ public class Database {
         statement.setString(7, book.getBookAuthor());
         statement.setInt(8, Integer.parseInt(book.getBookLibrarian()));
         statement.executeUpdate();
+    }
+    public ResultSet getMessage(String id)throws SQLException{
+        return statement.executeQuery("SELECT * FROM Messages WHERE userId ='"+id+"'");
+    }
+    public void deleteMessage(String id) throws SQLException{
+        statement.execute("DELETE FROM Messages WHERE userId='"+id+"'");
+    }
+    public boolean addMessage(String message,User user)throws SQLException{
+        statement.execute("INSERT INTO Messages(message,userId) Values('"+message+"','"+user.getId()+"')");
+        return true;
     }
 
 

@@ -66,9 +66,6 @@ public class AllBooksController {
             throw new RuntimeException(e);
         }
     }
-
-
-
     public void start() throws SQLException,IOException{
         this.proxyUser.getRealUser().notifyUser(this.proxyUser.getRealUser().getId(),text);
         try {
@@ -78,7 +75,6 @@ public class AllBooksController {
         }
         setChoiceBoxElements();
     }
-
     public void getAllbooks(GridPane gridPane) throws SQLException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Book.fxml"));
         iterator = new GeneralIterator();

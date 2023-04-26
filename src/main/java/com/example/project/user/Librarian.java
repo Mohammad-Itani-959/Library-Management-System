@@ -17,11 +17,11 @@ public class Librarian extends User{
     }
     public Librarian(int id , String username , String password, String email){
         super(id,username,password,email);
-        try {
-            fillAllBorrowers();
+     /*   try {
+          ///  fillAllBorrowers();
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
+        }*/
 
     }
 
@@ -29,12 +29,11 @@ public class Librarian extends User{
         return null;
     }
     public void getUserBorrowedBooks(User user){return ;}
-    public boolean addBook(Book book) throws SQLException {
-        if(database.addBook(book))return true;
-        return false;
+    public void addBook(Book book) throws SQLException {
+        database.addBookLibrarian(book);
     }
 
-    public void fillAllBorrowers()throws SQLException{
+   /* public void fillAllBorrowers()throws SQLException{
         // id here is the id of the librarian
         ResultSet resultSet = database.getAllBorrowers();
         while(resultSet.next()){
@@ -44,7 +43,7 @@ public class Librarian extends User{
                     resultSet.getString("email"));
             allBorrowers.add(borrower);
         }
-    }
+    }*/
 
     public void notifyUsers()throws SQLException{
         for(int i = 0 ; i<this.allBorrowers.size();i++){
