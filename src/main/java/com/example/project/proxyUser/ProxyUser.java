@@ -22,4 +22,5 @@ public abstract class ProxyUser {
     }
     public User getRealUser(){
         return null;}
+
 }

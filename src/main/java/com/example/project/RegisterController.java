@@ -67,7 +67,7 @@ public class RegisterController {
             if(flag == true){
                 proxyUser = new ProxyBorrower();
                 proxyUser.login(Email,Password);
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("allbooks.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AllBooks.fxml"));
                 AnchorPane root = fxmlLoader.load();
                 AllBooksController allBooksController = fxmlLoader.getController();
                 allBooksController.setProxyUser(proxyUser);

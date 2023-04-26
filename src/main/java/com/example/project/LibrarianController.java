@@ -1,14 +1,20 @@
 package com.example.project;
 
+import com.example.project.proxyUser.ProxyLibrarian;
 import com.example.project.proxyUser.ProxyUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -18,11 +24,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LibrarianController {
     @FXML
     private TextField bookTitle;
+    @FXML
+    private BorderPane borderPane;
 
     @FXML
     private TextField bookAuthor;
@@ -38,13 +47,26 @@ public class LibrarianController {
     @FXML
     private TextField bookQuantity;
 
+    @FXML
+    private VBox addBook;
+
+    ResultSet resultSet ;
+    Database database;
+
+    {
+        try {
+            database = new Database();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     private File selectedFile;
 
-    public ProxyUser proxyUser;
+    public ProxyLibrarian proxyUser;
 
     public void Logout(ActionEvent actionEvent) throws SQLException, IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("entry.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Entry.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
         AnchorPane root = fxmlLoader.load();
         Scene scene = new Scene(root);
@@ -54,7 +76,7 @@ public class LibrarianController {
     }
 
     //let the librarian choose an image to upload
-    public void chooseimg(ActionEvent actionEvent) {
+    public void chooseImg(ActionEvent actionEvent) {
         FileChooser fileChooser= new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
@@ -64,7 +86,7 @@ public class LibrarianController {
 
 
     //add book to the db
-    public void addbook(ActionEvent actionEvent) throws SQLException{
+    public void addBook(ActionEvent actionEvent) throws SQLException{
         String title= bookTitle.getText();
         String cat= bookCat.getText();
         String desc= bookDesc.getText();
@@ -90,13 +112,40 @@ public class LibrarianController {
         if(!title.isEmpty() && !author.isEmpty() && !length.isEmpty() && !cat.isEmpty() && !quantity.isEmpty() && !desc.isEmpty() && selectedFile != null){
             Book newbook= new Book(title,author,desc,cat,imagePath,length,""+proxyUser.getRealUser().getId());
             newbook.setQuantity(quantity);
-
+            proxyUser.getRealUser().addBook(newbook);
+            proxyUser.getRealUser().notifyUsers();
         }
+    }
+    public void addBookHandler(ActionEvent actionEvent)throws SQLException{
+        this.borderPane.getChildren().add(2,addBook);
     }
 
     //remove the info the librarian entered in the fields
     public void cancel() {
 
+    }
+    public void fetchSubscribers(ActionEvent actionEvent)throws SQLException{
+        this.borderPane.getChildren().remove(this.addBook);
+        VBox vBox = new VBox();
+        vBox.setPrefWidth(207);
+        vBox.setPrefHeight(320);
+
+        this.borderPane.getChildren().add(2,vBox);
+        resultSet = database.getBorrowers(""+this.proxyUser.getRealUser().getId());
+        vBox.setPadding(new Insets(10));
+
+
+        while (resultSet.next()) {
+            System.out.println(resultSet.getString("username"));
+            Label label = new Label(resultSet.getString("username"));
+            label.setFont(Font.font("Corbel", 16));
+            label.setTextFill(Color.web("#f0824f"));
+            vBox.getChildren().add(label);
+        }
+
+    }
+    public void setProxyUser(ProxyUser proxyUser){
+        this.proxyUser = (ProxyLibrarian)proxyUser;
     }
 
 }

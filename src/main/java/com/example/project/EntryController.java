@@ -30,7 +30,7 @@ public class EntryController {
 
 
     public void userHandler(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
         AnchorPane root = loader.load();
 
         LoginController loginController = loader.getController();
@@ -48,7 +48,7 @@ public class EntryController {
     }
     public void librarianHandler(ActionEvent event) throws IOException{
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
             AnchorPane root = loader.load();
 
             LoginController loginController = loader.getController();
@@ -69,7 +69,7 @@ public class EntryController {
     }
 
     public void adminHandler(ActionEvent event) throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
         AnchorPane root = loader.load();
 
         LoginController loginController = loader.getController();

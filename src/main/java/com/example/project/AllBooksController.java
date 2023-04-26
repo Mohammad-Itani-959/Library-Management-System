@@ -2,14 +2,20 @@ package com.example.project;
 
 import com.example.project.iterator.*;
 import com.example.project.proxyUser.ProxyUser;
+import com.example.project.user.Borrower;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -71,7 +77,7 @@ public class AllBooksController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
         iterator = new GeneralIterator();
         iterator.setProxyUser(this.proxyUser);
-        iterator.show(gridPane);
+        iterator.showBooks(gridPane);
         iterator.setFXMLLoader(fxmlLoader);
     }
     //Handler for filtering that works with the iteration design pattern //
@@ -90,7 +96,7 @@ public class AllBooksController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
         iterator.setProxyUser(this.proxyUser);
         iterator.setFXMLLoader(fxmlLoader);
-        iterator.show(gridPane);
+        iterator.showBooks(gridPane);
 
     }
     public void searchAuthorHandler(ActionEvent actionEvent )throws SQLException{
@@ -103,7 +109,7 @@ public class AllBooksController {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
                 iterator = new AuthorIterator(authorName);
                 iterator.setProxyUser(this.proxyUser);
-                iterator.show(gridPane);
+                iterator.showBooks(gridPane);
                 iterator.setFXMLLoader(fxmlLoader);
             }
     }
@@ -118,7 +124,7 @@ public class AllBooksController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
             iterator = new LengthIterator(length);
             iterator.setProxyUser(this.proxyUser);
-            iterator.show(gridPane);
+            iterator.showBooks(gridPane);
             iterator.setFXMLLoader(fxmlLoader);
         }
     }

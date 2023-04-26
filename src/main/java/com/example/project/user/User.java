@@ -1,8 +1,22 @@
 package com.example.project.user;
 
+import com.example.project.Database;
+
+import java.sql.SQLException;
+
 public abstract class User {
     String username , password,email;
+    String message;
     int id;
+
+    Database database;
+    {
+        try {
+            database = new Database();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public User(String email , String password ){
         this.email = email;
         this.password = password;
@@ -17,4 +31,5 @@ public abstract class User {
     public String getPassword(){return this.password;}
     public String getEmail(){return this.email;}
     public int getId(){return this.id;}
+
 }
