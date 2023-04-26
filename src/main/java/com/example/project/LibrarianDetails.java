@@ -72,11 +72,12 @@ public class LibrarianDetails {
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
         AnchorPane root = fxmlLoader.load();
         AdminController adminhandler = fxmlLoader.getController();
-        adminhandler.setProxyUser(getProxyUser());
+        adminhandler.setProxyUser(this.proxyUser);
+
         Scene scene = new Scene(root);
         stage.setFullScreen(true);
         stage.setScene(scene);
-    }
-    public ProxyUser getProxyUser(){return this.proxyUser ;}
+        stage.show();
 
+    }
 }

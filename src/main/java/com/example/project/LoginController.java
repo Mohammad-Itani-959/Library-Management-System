@@ -71,7 +71,7 @@ public class LoginController {
         else{
             if(this.proxyUser instanceof ProxyBorrower){
                 errorMessage.setText("");
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AllBooks.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("allbooks.fxml"));
                 Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
                 AnchorPane root = fxmlLoader.load();
 
@@ -90,12 +90,10 @@ public class LoginController {
             }
             if(this.proxyUser instanceof ProxyLibrarian){
                 errorMessage.setText("");
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Librarian.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("librarianLayout.fxml"));
                 Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
                 AnchorPane root = fxmlLoader.load();
 
-                LibrarianController librarianController = fxmlLoader.getController();
-                librarianController.setProxyUser((ProxyLibrarian) this.proxyUser);
 
 
                 Scene scene = new Scene(root);
@@ -108,16 +106,17 @@ public class LoginController {
             }
             if(this.proxyUser instanceof ProxyAdmin){
                 errorMessage.setText("");
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("admin.fxml"));
                 Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
                 AnchorPane root = fxmlLoader.load();
                 AdminController adminhandler = fxmlLoader.getController();
                 adminhandler.setProxyUser(this.proxyUser);
-                //adminhandler.start();
+                adminhandler.start();
 
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.setFullScreen(true);
+
 
                 stage.show();
             }
@@ -127,7 +126,7 @@ public class LoginController {
     }
 
     public void register(ActionEvent actionEvent)throws SQLException ,IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Register.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("register.fxml"));
         AnchorPane root = fxmlLoader.load();
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);

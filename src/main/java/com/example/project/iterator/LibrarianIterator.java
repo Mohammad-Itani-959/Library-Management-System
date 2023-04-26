@@ -87,11 +87,13 @@ public class LibrarianIterator implements Iterator{
                 librariancontroller.setProxyUser(getProxyUser());
                 //librariancontroller.setName(librarianName);
                 //librariancontroller.setEmail(librarianEmail);
+                //librariancontroller.setProxyUser(getProxyUser());
 
                 Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setFullScreen(true);
                 stage.setScene(scene);
+                stage.show();
             });
             //add the content in the gridpane
             gridPane.add(newVbox, columnIndex % 4, rowIndex);

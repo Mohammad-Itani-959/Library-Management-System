@@ -224,10 +224,10 @@ public class Database {
         }
 
     }
-    public boolean librarianLogin(String email , String password) throws SQLException{
+    public ResultSet librarianLogin(String email , String password) throws SQLException{
        ResultSet resultSet= statement.executeQuery("Select * from Users where email = '"+email+"' and password = '"+password+"' and type = 'librarian'");
-        if(resultSet.next()) return true;
-        return  false ;
+        if(resultSet.next()) return resultSet;
+        return  null ;
     }
     public boolean librarianRegister(String username , String password , String email) throws SQLException{
         statement.execute("INSERT INTO Users(username , email , password ,type) " +
