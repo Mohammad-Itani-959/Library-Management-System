@@ -272,18 +272,15 @@
                                 <Insets left="8.0" top="9.0" />
                             </VBox.margin>
                         </Text>
-                        <ScrollPane prefHeight="698.0" prefWidth="882.0" styleClass="transparent" VBox.vgrow="ALWAYS">
+                  <ScrollPane prefHeight="701.0" prefWidth="1005.0">
                      <content>
-                        <GridPane fx:id="gridPane"  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="979.0">
+                        <GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
                            <padding>
                               <Insets bottom="15.0" left="19.0" top="19.0" />
                            </padding>
                         </GridPane>
                      </content>
-                     <VBox.margin>
-                        <Insets bottom="15.0" />
-                     </VBox.margin>
-                        </ScrollPane>
+                  </ScrollPane>
                     </children>
                 </VBox>
             </center>
