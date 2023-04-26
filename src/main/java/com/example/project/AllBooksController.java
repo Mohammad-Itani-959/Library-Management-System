@@ -36,7 +36,6 @@ public class AllBooksController {
     @javafx.fxml.FXML
     @FXML
     private ChoiceBox<String> choiceBox = new ChoiceBox<String>();
-
     @javafx.fxml.FXML
     @FXML
     private HBox hbox ;
@@ -54,6 +53,10 @@ public class AllBooksController {
 
     Iterator iterator;
 
+
+    @javafx.fxml.FXML
+    @FXML
+    private Label text;
     {
         try {
             database = new Database();
@@ -62,9 +65,8 @@ public class AllBooksController {
         }
     }
 
-
-
-    public void start() throws SQLException {
+    public void start() throws SQLException,IOException {
+        this.showMessage(text);
         try {
             this.getAllbooks(gridPane);
         } catch (SQLException e) {
@@ -231,5 +233,23 @@ public class AllBooksController {
         stage.setFullScreen(true);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void showMessage(Label label)throws SQLException,IOException{
+        ResultSet resultSet = database.getMessage(""+this.proxyUser.getRealUser().getId());
+        String Message="";
+        while(resultSet.next()){
+            if(resultSet==null)return ;
+            Message = Message+""+ resultSet.getString("message")+"\n";
+        }
+        label.setText(Message);
+        label.setOnMouseClicked(event->{
+            try {
+                database.deleteMessage(""+this.proxyUser.getRealUser().getId());
+                label.setText("No New Notifications");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 }

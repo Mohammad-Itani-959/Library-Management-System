@@ -137,6 +137,16 @@ public class LoginController {
         stage.show();
     }
 
+    public void backHandler(ActionEvent actionEvent)throws SQLException,IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Entry.fxml"));
+        AnchorPane root = fxmlLoader.load();
+
+        Stage stage =(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setFullScreen(true);
+        stage.show();
+    }
 
     public void removeRegister(){
         Vbox.getChildren().remove(register);

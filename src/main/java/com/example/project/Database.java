@@ -224,10 +224,9 @@ public class Database {
         }
 
     }
-    public boolean librarianLogin(String email , String password) throws SQLException{
+    public ResultSet librarianLogin(String email , String password) throws SQLException{
        ResultSet resultSet= statement.executeQuery("Select * from Users where email = '"+email+"' and password = '"+password+"' and type = 'librarian'");
-        if(resultSet.next()) return true;
-        return  false ;
+       return  resultSet;
     }
     public boolean librarianRegister(String username , String password , String email) throws SQLException{
         statement.execute("INSERT INTO Users(username , email , password ,type) " +
@@ -280,9 +279,6 @@ public class Database {
         return resultSet;
     }
 
-    /*public void DeleteLibrarian(String email) throws SQLException {
-        statement.executeUpdate("DELETE FROM Users WHERE email =' "+email+"'");
-    }*/
     public void DeleteLibrarian(String email) throws SQLException {
         String query = "DELETE FROM Users WHERE email = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
@@ -291,11 +287,9 @@ public class Database {
         }
     }
 
-
     public ResultSet getAllLibrarians() throws SQLException {
         return statement.executeQuery("select * from Users where type='librarian'");
     }
-
     public void addBookLibrarian(Book book) throws SQLException {
         String sql = "INSERT INTO Books (title, description, image, bookLength, quantity, category, authorName, librarianId) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -309,6 +303,9 @@ public class Database {
         statement.setString(7, book.getBookAuthor());
         statement.setInt(8, Integer.parseInt(book.getBookLibrarian()));
         statement.executeUpdate();
+    }
+    public ResultSet getAllBorrowers()throws SQLException{
+        return statement.executeQuery("Select * FROM Users WHERE type ='borrower'");
     }
     public ResultSet getMessage(String id)throws SQLException{
         return statement.executeQuery("SELECT * FROM Messages WHERE userId ='"+id+"'");

@@ -68,6 +68,8 @@ public class LibrarianController {
     public void Logout(ActionEvent actionEvent) throws SQLException, IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Entry.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+
+
         AnchorPane root = fxmlLoader.load();
         Scene scene = new Scene(root);
         stage.setFullScreen(true);
@@ -83,8 +85,6 @@ public class LibrarianController {
         );
         selectedFile = fileChooser.showOpenDialog(null);
     }
-
-
     //add book to the db
     public void addBook(ActionEvent actionEvent) throws SQLException{
         String title= bookTitle.getText();
@@ -116,14 +116,14 @@ public class LibrarianController {
             proxyUser.getRealUser().notifyUsers();
         }
     }
-    public void addBookHandler(ActionEvent actionEvent)throws SQLException{
-        this.borderPane.getChildren().add(2,addBook);
-    }
-
-    //remove the info the librarian entered in the fields
     public void cancel() {
 
     }
+    public void addBookHandler(ActionEvent actionEvent)throws SQLException ,IOException{
+        this.borderPane.getChildren().add(2,addBook);
+    }
+
+    //fetchSubscribers is activated whenever i click on list of Users
     public void fetchSubscribers(ActionEvent actionEvent)throws SQLException{
         this.borderPane.getChildren().remove(this.addBook);
         VBox vBox = new VBox();
