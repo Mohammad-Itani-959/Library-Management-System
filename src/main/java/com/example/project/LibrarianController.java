@@ -2,6 +2,8 @@ package com.example.project;
 
 import com.example.project.proxyUser.ProxyLibrarian;
 import com.example.project.proxyUser.ProxyUser;
+import com.example.project.user.Borrower;
+import com.example.project.user.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +11,11 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -18,14 +24,24 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.math.BigDecimal;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
+
+
 
 public class LibrarianController {
+    @FXML
     @com.example.project.FXML
     private Pane pane;
     @FXML
@@ -139,17 +155,34 @@ public class LibrarianController {
             pane.getChildren().removeAll(pane.getChildren());
             VBox vBox = new VBox();
 
-            resultSet = database.getBorrowers("" + this.proxyUser.getRealUser().getId(), this.proxyUser.getRealUser());
-            resultSet.next();
-            do {
-                Label label = new Label(resultSet.getString("username"));
+            ArrayList<User> users = database.getUsersOfLibrarian(this.proxyUser.getRealUser());
+            int i = 0;
+            for (; i < users.size(); i++) {
+                Borrower borrower = (Borrower) users.get(i);
+                Label label = new Label(borrower.getUsername());
                 label.setFont(Font.font("Corbel", 16));
                 label.setTextFill(Color.web("#f0824f"));
                 vBox.getChildren().add(label);
-            } while (resultSet.next());
 
-            vBox.setPadding(new Insets(10));
-            pane.getChildren().add(vBox);
+
+                GridPane gridPane = new GridPane();
+                ///////////////////////////////////////////////////
+                show(gridPane,borrower);
+                gridPane.setPadding(new Insets(10));
+                gridPane.setHgap(15);
+                gridPane.setVgap(10);
+
+                ///////////////////////////////////////////////////
+                vBox.getChildren().add(gridPane);
+                vBox.setPadding(new Insets(10));
+            }
+            ScrollPane scrollPane = new ScrollPane(vBox);
+
+            scrollPane.setPrefSize(pane.getWidth()-10,pane.getHeight()-30);
+
+
+
+            pane.getChildren().add(scrollPane);
         }
         else return;
 
@@ -157,6 +190,70 @@ public class LibrarianController {
 
     public void setProxyUser(ProxyUser proxyUser){
         this.proxyUser = (ProxyLibrarian)proxyUser;
+    }
+
+    public void show(GridPane gridPane , User user) throws SQLException {
+
+        ResultSet resultSet1 = database.getBorrowedBooks(user);
+        int i = 0 ;
+        int a = gridPane.getChildren().size();
+        while(i<a){
+            gridPane.getChildren().remove(0);
+            i++;
+        }
+
+        int columnIndex = 0;
+        int rowIndex = 0;
+
+        gridPane.setPadding(new Insets(10));
+        gridPane.setHgap(15);
+        gridPane.setVgap(10);
+
+
+        while (resultSet1.next()) {
+            String bookTitle= resultSet1.getString("title");
+            String bookDesc = resultSet1.getString("description");
+            String bookImage = resultSet1.getString("image");
+            String bookCat = resultSet1.getString("category");
+            String bookAuth = resultSet1.getString("authorName");
+
+            Book book = new Book(
+                    bookTitle,
+                    bookAuth,
+                    bookDesc,
+                    bookCat,
+                    resultSet1.getString("id"),
+                    bookImage,
+                    resultSet1.getString("bookLength"),
+                    resultSet1.getString("librarianId")
+            );
+
+            ImageView imageView = new ImageView();
+            Image image = new Image(getClass().getResourceAsStream("/" + bookImage));
+            imageView.setImage(image);
+            imageView.setFitWidth(207);
+            imageView.setFitHeight(300);
+            Label label = new Label(bookTitle);
+            label.setFont(Font.font("Corbel", 16));
+            label.setTextFill(Color.web("#f0824f"));
+            VBox newVbox = new VBox();
+            newVbox.getChildren().add(imageView);
+            newVbox.getChildren().add(label);
+            newVbox.setPrefWidth(207);
+            newVbox.setPrefHeight(320);
+            newVbox.getStyleClass().add("book-vbox");
+
+
+            gridPane.add(newVbox, columnIndex % 5, rowIndex);
+
+            if (columnIndex % 5 == 4) {
+                rowIndex++;
+                columnIndex = 0;
+            } else {
+                columnIndex++;
+            }
+        }
+        resultSet1.close();
     }
 
 }

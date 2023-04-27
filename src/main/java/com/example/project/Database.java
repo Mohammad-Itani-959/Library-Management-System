@@ -1,8 +1,10 @@
 package com.example.project;
+import com.example.project.user.Borrower;
 import com.example.project.user.Librarian;
 import com.example.project.user.User;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 
 public class Database {
@@ -166,7 +168,7 @@ public class Database {
     public ResultSet getCategories() throws SQLException{
         return statement.executeQuery("Select DISTINCT category From Books");
     }
-    public ResultSet getBorrowers(String username , Librarian librarian) throws SQLException{
+    public ResultSet getBorrowers( Librarian librarian) throws SQLException{
 
         ResultSet resultSet = statement.executeQuery("SELECT DISTINCT * FROM Users WHERE id IN(" +
                 "SELECT userId FROM Borrows WHERE librarian = '"+librarian.getId()+"') and type ='borrower'");
@@ -231,5 +233,19 @@ public class Database {
         return true;
     }
 
-
+    public ArrayList<User> getUsersOfLibrarian(Librarian librarian)throws SQLException{
+        ResultSet resultSet = this.getBorrowers(librarian);
+        ArrayList<User> users = new ArrayList<User>();
+        int i = 0 ;
+        while(resultSet.next()){
+            User user = new Borrower(
+                    Integer.parseInt(resultSet.getString("id")),
+                    resultSet.getString("username"),
+                    resultSet.getString("password"),
+                    resultSet.getString("email")
+            );
+            users.add(user);
+        }
+        return users;
+    }
 }

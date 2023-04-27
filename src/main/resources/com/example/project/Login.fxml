@@ -30,7 +30,7 @@
                         <Insets top="2.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Button onAction="#backHandler" mnemonicParsing="false" styleClass="transparent" text="Go back" textFill="#f0824f">
+                  <Button onAction="#backHandler" mnemonicParsing="false" styleClass="transparent" text="Go back" textFill="black">
                      <font>
                         <Font name="Corbel Bold" size="18.0" />
                      </font>

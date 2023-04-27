@@ -45,6 +45,19 @@ public class RegisterController {
             throw new RuntimeException(e);
         }
     }
+    public void backHandler(ActionEvent actionEvent)throws SQLException,IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Entry.fxml"));
+        AnchorPane root = fxmlLoader.load();
+
+        Stage stage =(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setWidth(1350);
+        stage.setHeight(810);
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.show();
+    }
 
     public void registerHandler(ActionEvent actionEvent)throws IOException, SQLException{
         String Username = username.getText();
