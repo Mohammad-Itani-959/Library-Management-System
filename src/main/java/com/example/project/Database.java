@@ -13,101 +13,6 @@ public class Database {
     public Database() throws SQLException {
         this.connection= DriverManager.getConnection(String.format("jdbc:mysql://localhost:3306/%s", "guiprroject"), "root", "");
         this.statement = this.connection.createStatement();
-
-        /* statement.execute("create function numberOfBooks (@category varchar(30))" +
-                "returns int" +
-                "as" +
-                "begin" +
-                "" +
-                "declare @i int" +
-                "select @i=count(distinct(title))" +
-                "from book B" +
-                "where B.category=category" +
-                "" +
-                "return @i" +
-                "" +
-                "end" +
-                ");");
-        statement.execute(" create function numberOfBorrowers () " +
-                "returns int " +
-                "as " +
-                "begin " +
-                " " +
-                " declare @i int " +
-                " select @i=count(distinct(id)) " +
-                " from borrowers B " +
-                " return @i " +
-                " " +
-                "end");
-
-        statement.execute(" create function quantityOfABook (@SN int) " +
-                "returns int " +
-                "as " +
-                "begin " +
-                " " +
-                " declare @i int " +
-                " select @i=B.quantity " +
-                " from book B " +
-                " where B.SN = @SN " +
-                "  " +
-                " return @i " +
-                " " +
-                "end");
-        statement.execute("  create trigger InsertBorrower " +
-                "on borrowers " +
-                "after insert" +
-                "AS\n" +
-                "begin\n" +
-                "    -- Check if the quantity of the book is greater than 0\n" +
-                "    if exists (\n" +
-                "        select *\n" +
-                "        from inserted i\n" +
-                "        JOIN book b on i.SN = b.SN\n" +
-                "        where b.quantity > 0\n" +
-                "    )\n" +
-                "    begin\n" +
-                "        -- Decrement the quantity by 1\n" +
-                "        update book\n" +
-                "        set quantity = quantity - 1\n" +
-                "        where SN IN (\n" +
-                "            select SN\n" +
-                "            from inserted\n" +
-                "        );\n" +
-                "    end\n" +
-                "    else\n" +
-                "    begin\n" +
-                "        -- Rollback the insertion\n" +
-                "        raiserror ('Quantity is 0. Insertion rolled back.', 16, 1);\n" +
-                "        rollback transaction;\n" +
-                "    end\n" +
-                "end;");
-        statement.execute(" create trigger DeleteBorrower\n" +
-                "on borrowers\n" +
-                "after delete\n" +
-                "AS\n" +
-                "begin\n" +
-                "    \n" +
-                "    update book\n" +
-                "    set quantity = quantity + 1\n" +
-                "    where SN in (\n" +
-                "        select SN\n" +
-                "        from deleted\n" +
-                "    );\n" +
-                "end;\n");
-
-        statement.execute(" create procedure allBorrowers (@category varchar(30))\n" +
-                "as\n" +
-                "begin\n" +
-                "\tselect *\n" +
-                "\tfrom borrowers b,book t\n" +
-                "\twhere b.SN=t.SN and t.category=@category\n" +
-                "\n" +
-                "\t\n" +
-                "\n" +
-                "end");
-
-        */
-
     }
     public void createTables() throws SQLException{
             ResultSet resultSet ;
@@ -184,13 +89,21 @@ public class Database {
         }
         statement.execute("INSERT INTO Books (title, description,image,bookLength,quantity, category, authorName, librarianId)\n" +
                 "VALUES\n" +
-                "  ('Alice In WonderLand', 'A novel by Lewis Carroll','images/books/aliceinwonderland.jpg',200, 5, 'Fiction', 'Lewis Carroll', 5),\n" +
-                "  ('How To Kill A Mockingbird', 'A novel by Harper Lee','images/books/how to kill.jpg',244, 10, 'Fiction','Harper Lee', 4),\n" +
-                "  ('Harry Potter', 'A dystopian novel by J. K. Rowling','images/books/harrypotter.png',142,3, 'Science Fiction', 'J. K. Rowling', 5),\n" +
-                "  ('IT', 'A novel by Stephen King','images/books/it.jpg' ,111,7, 'Horror', 'Stephen King', 4),\n" +
-                "  ('Java', 'A novel by Mr Kotiyana','images/books/java.jpg', 231,2, 'Nonfiction','Mr Kotiyana', 4),\n" +
-                "  ('Le monde Secret De Sombreterre', 'Children book by Cassandra ODonnell','images/books/lemondesecret.jpg',122, 8, 'Fiction', 'Cassandra ODonnell', 5),\n" +
-                "  ('Percy Jackson', 'A fantasy novel by Rick Riordan', 'images/books/percyjackson.jpg',122,4, 'Fantasy', 'Rick Riordan',5)\n");
+                "  ('Alice In WonderLand', 'Alice In Wonderland is a classic novel written by Lewis Carroll. It tells the story of a young girl named Alice who falls down a rabbit hole and discovers a strange and fantastical world. The book is filled with whimsical characters, such as the Cheshire Cat, the Mad Hatter, and the Queen of Hearts, and is known for its use of surrealism and wordplay. Alice In Wonderland is a timeless tale that continues to captivate readers of all ages.','images/books/aliceinwonderland.jpg',200, 10, 'Fiction', 'Lewis Carroll', 5),\n" +
+                "  ('And Then There Were None', 'And Then There Were None is a thrilling mystery novel written by Agatha Christie. The story follows ten strangers who are invited to a remote island under false pretenses, only to find themselves trapped and hunted by an unknown killer. As the guests begin to die off one by one, the tension and suspense mount until the shocking conclusion. And Then There Were None is widely regarded as one of Christie greatest works, and is a must-read for fans of the mystery genre','images/books/and then there were none.jpg',300, 10, 'Mystery','Agatha Christie', 4),\n" +
+                "  ('Harry Potter', 'The Harry Potter book series is a beloved fantasy series written by J.K. Rowling. The story follows a young boy named Harry Potter, who discovers on his eleventh birthday that he is a wizard. He enrolls in Hogwarts School of Witchcraft and Wizardry, where he makes friends and enemies, learns magic, and uncovers the truth about his family and his destiny. The series is known for its intricate plot, well-developed characters, and immersive world-building. It has been widely acclaimed for its ability to captivate readers of all ages, and has become a cultural phenomenon, inspiring a film franchise, merchandise, and even a theme park','images/books/harrypotter.png',142,14, 'Fantasy', 'J. K. Rowling', 5),\n" +
+                "  ('IT', 'This book is a horror story about a group of friends who are terrorized by a malevolent entity that takes on the form of a clown named Pennywise. The book deals with themes of childhood trauma, friendship, and the struggle between good and evil','images/books/it.jpg' ,111,7, 'Horror', 'Stephen King', 4),\n" +
+                "  ('Java', 'This book is designed for individuals who are new to programming and wish to learn how to develop software using Java. The book covers the basics of object-oriented programming, data types, control structures, arrays, functions, classes, inheritance, polymorphism, and exception handling, among other topics','images/books/java.jpg', 231,2, 'Nonfiction','Mr Kotiyana', 4),\n" +
+                "  ('Le monde Secret De Sombreterre', 'It is a children fantasy novel that tells the story of two young siblings, Max and Lili, who discover a hidden world beneath the Earth surface called Sombreterre. In this world, they meet a variety of magical creatures and embark on a thrilling adventure to save Sombreterre from an evil queen who seeks to destroy it','images/books/lemondesecret.jpg',122, 8, 'Children', 'Cassandra ODonnell', 5),\n" +
+                "  ('Percy Jackson', 'Percy Jackson and the Olympians is a series of five books written by Rick Riordan. The series follows the adventures of a young boy named Percy Jackson who discovers that he is a demigod, the son of Poseidon, the god of the sea. As Percy navigates the challenges of being a demigod, he also becomes embroiled in a larger conflict between the gods of Olympus and the Titans, ancient beings who seek to overthrow the gods and rule the world', 'images/books/percyjackson.jpg',122,4, 'Fantasy', 'Rick Riordan',5),\n"+
+                "  ('Arthurs Eyes', '  It tells the story of Arthur, an eight-year-old aardvark, who gets glasses and is nervous about wearing them to school. The book deals with themes of self-acceptance and the fear of being different', 'images/books/arthur eyes.jpg',250,6, 'Children', 'Marc Brown',5),\n"+
+                "  ('Arthur Turns Green', 'It tells the story of Arthur, who eats too many sugary snacks and turns green. He becomes self-conscious and tries to hide his green skin from his friends. The book deals with themes of healthy eating and body image', 'images/books/arthur turns green.jpg',150,16, 'Children','Marc Brown',4),\n"+
+                "  ('Believe in Yourself', 'The book offers practical advice and techniques for developing a positive attitude and mindset, building self-confidence, and achieving success. It deals with themes of personal growth and empowerment', 'images/books/believe in yourself.jpg',248,20, 'Motivational','Dr. Joseph Murphy',5),\n"+
+                "  ('One of Us Is Lying', 'The book follows the story of five high school students who go into detention, but only four of them come out alive. The four remaining students become suspects in the death of their classmate and must work together to clear their names and find the true killer. The book deals with themes of friendship, betrayal, and trust', 'images/books/one of us is lying.jpg',400,25, 'Mystery','Karen M. McManus',4),\n"+
+                "  ('One of Us Is Next', 'The story follows a new group of students at Bayview High School who become embroiled in a new dangerous game of truth or dare that mimics the events of the previous year. The book deals with themes of friendship, secrets, and consequences', 'images/books/one of us is next.png',384 ,15, 'Mystery','Karen M. McManus',5),\n"+
+                "  ('Romeo and Juliet', 'The story is about two young lovers, Romeo and Juliet, who belong to feuding families in Verona. The play explores the themes of love, passion, violence, and fate', 'images/books/romeo and juliet.png',384 ,15, 'Classic','William Shakespeare',5),\n"+
+                "  ('The Little Prince', 'The book tells the story of a young prince who travels from planet to planet and ultimately comes to Earth. Along the way, he meets a pilot who has crashed in the desert, and the two form an unlikely friendship. The book deals with themes of loneliness, love, and the importance of human connections', 'images/books/thelittleprince.jpg',100 ,15, 'Children','Antoine de Saint-Exupéry',5),\n"+
+                "  ('How to Kill a Mockingbird', 'The novel tells the story of a young girl named Scout Finch and her experiences growing up in a small town in Alabama during the 1930s. The book deals with themes of racism, injustice, and the loss of innocence', 'images/books/how to kill.jpg',365 ,30, 'Coming-of-age','Harper Lee',4)\n");
     }
     public ResultSet selectAllBooks() throws SQLException{
         return statement.executeQuery("Select * from Books ");
@@ -281,9 +194,9 @@ public class Database {
         return resultSet;
     }
     public void DeleteLibrarian(Librarian librarian) throws SQLException {
-        String query = "DELETE FROM Users WHERE email = ?";
+        String query = "DELETE FROM Users WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setString(1, librarian.getEmail());
+            stmt.setString(1, ""+librarian.getId());
             stmt.executeUpdate();
         }
     }

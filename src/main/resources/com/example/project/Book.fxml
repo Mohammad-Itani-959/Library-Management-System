@@ -39,7 +39,7 @@
                 <VBox prefHeight="739.0" prefWidth="310.0" styleClass="white-bg" BorderPane.alignment="CENTER">
                     <children>
                         <Separator prefWidth="200.0" />
-                        <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="17.0" prefWidth="199.0" textFill="#f0824f">
+                        <Label fx:id="label" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="17.0" prefWidth="199.0" textFill="#f0824f">
                             <font>
                                 <Font name="Corbel Italic" size="17.0" />
                             </font>

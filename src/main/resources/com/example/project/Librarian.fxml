@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -81,7 +82,7 @@
                               <Insets top="2.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Button onAction="#addBookHandler" mnemonicParsing="false" prefHeight="30.0" prefWidth="106.0" styleClass="transparent" text="Add Books" textFill="#f0824f">
+                        <Button mnemonicParsing="false" onAction="#addBookHandler" prefHeight="30.0" prefWidth="106.0" styleClass="transparent" text="Add Books" textFill="#f0824f">
                            <HBox.margin>
                               <Insets left="-1.0" />
                            </HBox.margin>
@@ -108,7 +109,7 @@
                               <Insets left="11.0" top="2.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Button onAction="#fetchSubscribers" mnemonicParsing="false" prefHeight="30.0" prefWidth="126.0" styleClass="transparent" text="List of Users" textFill="#f0824f">
+                        <Button mnemonicParsing="false" onAction="#fetchSubscribers" prefHeight="30.0" prefWidth="126.0" styleClass="transparent" text="List of Users" textFill="#f0824f">
                            <HBox.margin>
                               <Insets left="-1.0" />
                            </HBox.margin>
@@ -129,207 +130,205 @@
             </VBox>
          </left>
          <center>
-            <VBox fx:id="addBook" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="white-bg" BorderPane.alignment="CENTER">
+            <Pane fx:id="pane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="66.0" prefWidth="752.0">
+                  <VBox fx:id="addBook" alignment="CENTER" layoutX="76.0" layoutY="34.0" prefHeight="643.0" prefWidth="864.0" styleClass="white-bg">
                      <children>
-                        <Label text="Book Title :" textFill="WHITE">
-                           <font>
-                              <Font name="Corbel Bold" size="25.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets right="8.0" />
-                           </HBox.margin>
-                        </Label>
-                        <TextField fx:id="bookTitle" prefHeight="48.0" prefWidth="250.0" promptText="Enter Title" style="-fx-background-radius: 50;" styleClass="searchbox">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="70.0" top="2.0" />
-                           </HBox.margin>
-                           <padding>
-                              <Insets left="9.0" />
-                           </padding>
-                        </TextField>
+                        <HBox alignment="CENTER" prefHeight="66.0" prefWidth="752.0">
+                           <children>
+                              <Label text="Book Title :" textFill="WHITE">
+                                 <font>
+                                    <Font name="Corbel Bold" size="25.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="8.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="bookTitle" prefHeight="48.0" prefWidth="250.0" promptText="Enter Title" style="-fx-background-radius: 50;" styleClass="searchbox">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="70.0" top="2.0" />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets left="9.0" />
+                                 </padding>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="100.0" prefHeight="66.0" prefWidth="752.0">
+                           <children>
+                              <Label text="Book Author:" textFill="WHITE">
+                                 <font>
+                                    <Font name="Corbel Bold" size="25.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="8.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="bookAuthor" prefHeight="48.0" prefWidth="250.0" promptText="Enter Author" style="-fx-background-radius: 50;" styleClass="searchbox">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="48.0" top="2.0" />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets left="9.0" />
+                                 </padding>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="260.0" prefHeight="86.0" prefWidth="752.0">
+                           <children>
+                              <Label text="Book Category:" textFill="WHITE">
+                                 <font>
+                                    <Font name="Corbel Bold" size="25.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="8.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="bookCat" prefHeight="51.0" prefWidth="245.0" promptText="Enter Category" style="-fx-background-radius: 50;" styleClass="searchbox">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="29.0" top="2.0" />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets left="9.0" />
+                                 </padding>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="310.0" prefHeight="80.0" prefWidth="752.0">
+                           <children>
+                              <Label text="Book Description :" textFill="WHITE">
+                                 <font>
+                                    <Font name="Corbel Bold" size="25.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="8.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="bookDesc" prefHeight="50.0" prefWidth="242.0" promptText="Enter Description" style="-fx-background-radius: 50;" styleClass="searchbox">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="2.0" />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets left="9.0" />
+                                 </padding>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="284.0" prefHeight="80.0" prefWidth="752.0">
+                           <children>
+                              <Label text="Book Length:" textFill="WHITE">
+                                 <font>
+                                    <Font name="Corbel Bold" size="25.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="8.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="bookLength" prefHeight="50.0" prefWidth="242.0" promptText="Enter Length" style="-fx-background-radius: 50;" styleClass="searchbox">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="58.0" top="2.0" />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets left="9.0" />
+                                 </padding>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="329.0" prefHeight="80.0" prefWidth="752.0">
+                           <children>
+                              <Label text="Book Quantity:" textFill="WHITE">
+                                 <font>
+                                    <Font name="Corbel Bold" size="25.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="8.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="bookQuantity" prefHeight="50.0" prefWidth="242.0" promptText="Enter Quantity" style="-fx-background-radius: 50;" styleClass="searchbox">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="42.0" top="2.0" />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets left="9.0" />
+                                 </padding>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="66.0" prefWidth="752.0">
+                           <children>
+                              <Label text="Choose An Image:" textFill="WHITE">
+                                 <font>
+                                    <Font name="Corbel Bold" size="25.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="8.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" onAction="#chooseImg" prefHeight="41.0" prefWidth="102.0" style="-fx-background-radius: 20;" styleClass="detail-btn" text="Choose..." textFill="WHITE">
+                                 <font>
+                                    <Font name="Corbel Bold" size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="7.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="679.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#addBook" prefHeight="55.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="detail-btn" text="ADD">
+                                 <font>
+                                    <Font name="Cambria Bold Italic" size="24.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="85.0" />
+                                 </HBox.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#cancel" prefHeight="55.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="detail-btn" text="Cancel">
+                                 <font>
+                                    <Font name="Cambria Bold Italic" size="23.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin>
+                        </HBox>
                      </children>
-                  </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="100.0" prefHeight="66.0" prefWidth="752.0">
-                     <children>
-                        <Label text="Book Author:" textFill="WHITE">
-                           <font>
-                              <Font name="Corbel Bold" size="25.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets right="8.0" />
-                           </HBox.margin>
-                        </Label>
-                        <TextField fx:id="bookAuthor" prefHeight="48.0" prefWidth="250.0" promptText="Enter Author" style="-fx-background-radius: 50;" styleClass="searchbox">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="48.0" top="2.0" />
-                           </HBox.margin>
-                           <padding>
-                              <Insets left="9.0" />
-                           </padding>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="260.0" prefHeight="86.0" prefWidth="752.0">
-                     <children>
-                        <Label text="Book Category:" textFill="WHITE">
-                           <font>
-                              <Font name="Corbel Bold" size="25.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets right="8.0" />
-                           </HBox.margin>
-                        </Label>
-                        <TextField fx:id="bookCat" prefHeight="51.0" prefWidth="245.0" promptText="Enter Category" style="-fx-background-radius: 50;" styleClass="searchbox">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="29.0" top="2.0" />
-                           </HBox.margin>
-                           <padding>
-                              <Insets left="9.0" />
-                           </padding>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="310.0" prefHeight="80.0" prefWidth="752.0">
-                     <children>
-                        <Label text="Book Description :" textFill="WHITE">
-                           <font>
-                              <Font name="Corbel Bold" size="25.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets right="8.0" />
-                           </HBox.margin>
-                        </Label>
-                        <TextField fx:id="bookDesc" prefHeight="50.0" prefWidth="242.0" promptText="Enter Description" style="-fx-background-radius: 50;" styleClass="searchbox">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets top="2.0" />
-                           </HBox.margin>
-                           <padding>
-                              <Insets left="9.0" />
-                           </padding>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="284.0" prefHeight="80.0" prefWidth="752.0">
-                     <children>
-                        <Label text="Book Length:" textFill="WHITE">
-                           <font>
-                              <Font name="Corbel Bold" size="25.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets right="8.0" />
-                           </HBox.margin>
-                        </Label>
-                        <TextField fx:id="bookLength" prefHeight="50.0" prefWidth="242.0" promptText="Enter Length" style="-fx-background-radius: 50;" styleClass="searchbox">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="58.0" top="2.0" />
-                           </HBox.margin>
-                           <padding>
-                              <Insets left="9.0" />
-                           </padding>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="329.0" prefHeight="80.0" prefWidth="752.0">
-                     <children>
-                        <Label text="Book Quantity:" textFill="WHITE">
-                           <font>
-                              <Font name="Corbel Bold" size="25.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets right="8.0" />
-                           </HBox.margin>
-                        </Label>
-                        <TextField fx:id="bookQuantity" prefHeight="50.0" prefWidth="242.0" promptText="Enter Quantity" style="-fx-background-radius: 50;" styleClass="searchbox">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="42.0" top="2.0" />
-                           </HBox.margin>
-                           <padding>
-                              <Insets left="9.0" />
-                           </padding>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="66.0" prefWidth="752.0">
-                     <children>
-                        <Label text="Choose An Image:" textFill="WHITE">
-                           <font>
-                              <Font name="Corbel Bold" size="25.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets right="8.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Button mnemonicParsing="false" onAction="#chooseImg" prefHeight="41.0" prefWidth="102.0" style="-fx-background-radius: 20;" styleClass="detail-btn" text="Choose..." textFill="WHITE">
-                           <font>
-                              <Font name="Corbel Bold" size="17.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="7.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#addBook" prefHeight="55.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="detail-btn" text="ADD">
-                           <font>
-                              <Font name="Cambria Bold Italic" size="24.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets right="85.0" />
-                           </HBox.margin>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#cancel" prefHeight="55.0" prefWidth="119.0" style="-fx-background-radius: 10;" styleClass="detail-btn" text="Cancel">
-                           <font>
-                              <Font name="Cambria Bold Italic" size="23.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="3.0" />
-                     </VBox.margin>
-                  </HBox>
+                  </VBox>
                </children>
-               <BorderPane.margin>
-                  <Insets bottom="62.0" left="109.0" right="144.0" top="62.0" />
-               </BorderPane.margin>
-            </VBox>
+            </Pane>
          </center>
       </BorderPane>
    </children>
 </AnchorPane>
-
-
-

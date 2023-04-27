@@ -37,8 +37,8 @@ public class LibrarianDetailController {
     }
 
     public void start(){
-        this.labelName.setText(proxyUser.getRealUser().getUsername());
-        this.labelemail.setText(proxyUser.getRealUser().getEmail());
+        this.labelName.setText(librarian.getUsername());
+        this.labelemail.setText(librarian.getEmail());
     }
     public void setProxyUser(ProxyAdmin proxyUser){
         this.proxyUser = proxyUser;

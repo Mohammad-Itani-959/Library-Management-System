@@ -14,7 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Main extends Application {
-
     @Override
     public void start(Stage stage) throws IOException {
 

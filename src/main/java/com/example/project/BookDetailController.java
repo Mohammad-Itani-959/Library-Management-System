@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -19,23 +20,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class BookDetailController {
-
     @FXML
     private ImageView bookImage;
     @FXML
     private Text bookTitle;
+    @FXML
+    private Label label;
     @FXML
     private Text bookAuthor;
     @FXML
     private Text bookCategory;
     @FXML
     private Text bookDescription;
-
     private ProxyUser proxyUser;
-
-
     private Iterator iterator;
-    private String email ;
     Database database;
     {
         try {
@@ -45,7 +43,6 @@ public class BookDetailController {
         }
     }
     private Book book ;
-
     public void backHandler(ActionEvent actionEvent) throws IOException, SQLException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AllBooks.fxml"));
         AnchorPane root = fxmlLoader.load();
@@ -114,6 +111,6 @@ public class BookDetailController {
     }
     public void setProxyUser(ProxyUser proxyUser){
         this.proxyUser = proxyUser;
-        this.email = proxyUser.getRealUser().getEmail();
+        this.label.setText(proxyUser.getRealUser().getEmail());
     }
 }
