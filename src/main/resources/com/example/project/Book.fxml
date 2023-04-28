@@ -17,7 +17,7 @@
     <children>
         <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
-                <HBox alignment="CENTER" prefHeight="81.0" prefWidth="1528.0" styleClass="white-bg" BorderPane.alignment="CENTER">
+                <HBox alignment="CENTER" fillHeight="false" maxWidth="1400.0" prefHeight="61.0" prefWidth="1400.0" styleClass="white-bg" BorderPane.alignment="CENTER">
                     <children>
                         <ImageView fitHeight="71.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -33,10 +33,13 @@
                             </HBox.margin>
                         </Text>
                     </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
                 </HBox>
             </top>
             <left>
-                <VBox prefHeight="739.0" prefWidth="310.0" styleClass="white-bg" BorderPane.alignment="CENTER">
+                <VBox prefHeight="724.0" prefWidth="228.0" styleClass="white-bg" BorderPane.alignment="CENTER">
                     <children>
                         <Separator prefWidth="200.0" />
                         <Label fx:id="label" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="17.0" prefWidth="199.0" textFill="#f0824f">
@@ -121,7 +124,7 @@
                 </VBox>
             </left>
          <center>
-            <HBox alignment="CENTER_LEFT" prefHeight="729.0" prefWidth="1079.0" BorderPane.alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT" maxWidth="1070.0" prefHeight="705.0" prefWidth="1070.0" BorderPane.alignment="CENTER_LEFT">
                <children>
                   <ImageView fx:id="bookImage" fitHeight="594.0" fitWidth="415.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
@@ -130,10 +133,10 @@
                   </ImageView>
                   <Separator orientation="VERTICAL" prefHeight="200.0">
                      <HBox.margin>
-                        <Insets left="74.0" />
+                        <Insets left="50.0" />
                      </HBox.margin>
                   </Separator>
-                  <VBox prefHeight="660.0" prefWidth="530.0">
+                  <VBox maxHeight="542.0" maxWidth="556.0" minHeight="0.0" minWidth="530.0" prefHeight="411.0" prefWidth="530.0">
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="449.0">
                            <children>
@@ -213,7 +216,7 @@
                         </HBox>
                         <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#borrowHandler" styleClass="borrow-btn" text="Borrow">
                            <VBox.margin>
-                              <Insets left="4.0" top="28.0" />
+                              <Insets left="160.0" top="70.0" />
                            </VBox.margin>
                            <font>
                               <Font name="Corbel Bold Italic" size="21.0" />
@@ -221,10 +224,13 @@
                         </Button>
                      </children>
                      <HBox.margin>
-                        <Insets left="19.0" top="69.0" />
+                        <Insets top="-150.0" />
                      </HBox.margin>
                   </VBox>
                </children>
+               <BorderPane.margin>
+                  <Insets top="10.0" />
+               </BorderPane.margin>
             </HBox>
          </center>
         </BorderPane>

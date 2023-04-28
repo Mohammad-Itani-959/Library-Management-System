@@ -119,7 +119,7 @@ public class MyBooksIterator implements Iterator {
 
             gridPane.add(newVbox, columnIndex % 5, rowIndex);
 
-            if (columnIndex % 5 == 4) {
+            if (columnIndex % 4 == 3) {
                 rowIndex++;
                 columnIndex = 0;
             } else {
