@@ -7,6 +7,7 @@ import com.example.project.proxyUser.ProxyUser;
 import com.example.project.user.Librarian;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -58,27 +59,33 @@ public class LibrarianIterator implements Iterator{
         int rowIndex = 0;
 
         gridPane.setPadding(new Insets(10));
-        gridPane.setHgap(15);
         gridPane.setVgap(10);
-
+        gridPane.setAlignment(Pos.CENTER);
         while (has_Next()) {
             resultSet = getNext();
             String librarianName= resultSet.getString("username");
             String librarianEmail= resultSet.getString("email");
             Librarian l = new Librarian(Integer.parseInt(resultSet.getString("id")),librarianName,resultSet.getString("password"),librarianEmail);
-            Label label = new Label(librarianName);
-            label.setFont(Font.font("Corbel", 16));
-            label.setTextFill(Color.web("#f0824f"));
-            VBox newVbox = new VBox();
+            Label name = new Label(librarianName);
+            Label email = new Label(librarianEmail);
+            name.setFont(Font.font("Corbel", 18));
+            name.setTextFill(Color.web("#f0824f"));
+            email.setFont(Font.font("Corbel", 16));
+            email.setTextFill(Color.web("#f0824f"));
 
+            VBox newVbox = new VBox();
+            newVbox.setAlignment(Pos.CENTER);
 
             ImageView imageView = new ImageView();
-            Image image = new Image(getClass().getResourceAsStream("/images/books/librarian.jpg"));
+            Image image = new Image(getClass().getResourceAsStream("/images/librarianimg.png"));
             imageView.setImage(image);
-            imageView.setFitWidth(207);
-            imageView.setFitHeight(300);
+            imageView.setFitWidth(140);
+            imageView.setFitHeight(140);
 
-            newVbox.getChildren().add(label);
+            newVbox.getChildren().add(imageView);
+            newVbox.getChildren().add(name);
+            newVbox.getChildren().add(email);
+
             newVbox.setPrefWidth(207);
             newVbox.setPrefHeight(320);
             newVbox.getStyleClass().add("librarian-vbox");
@@ -100,11 +107,10 @@ public class LibrarianIterator implements Iterator{
                 stage.setScene(scene);
             });
             //add the content in the gridpane
-            gridPane.add(newVbox, columnIndex % 4, rowIndex);
+            gridPane.add(newVbox, 1, rowIndex);
 
-            if (columnIndex % 4 == 1) {
+            if (columnIndex== 1) {
                 rowIndex++;
-                columnIndex = 0;
             } else {
                 columnIndex++;
             }

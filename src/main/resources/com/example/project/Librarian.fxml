@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -132,7 +133,7 @@
          <center>
             <Pane fx:id="pane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <VBox fx:id="addBook" alignment="CENTER" layoutX="76.0" layoutY="34.0" prefHeight="643.0" prefWidth="864.0" styleClass="white-bg">
+                  <VBox fx:id="addBook" alignment="CENTER" layoutX="76.0" layoutY="34.0" prefHeight="643.0" prefWidth="864.0">
                      <children>
                         <HBox alignment="CENTER" prefHeight="66.0" prefWidth="752.0">
                            <children>
@@ -325,6 +326,10 @@
                            </VBox.margin>
                         </HBox>
                      </children>
+                     <styleClass>
+                        <String fx:value="white-bg" />
+                        <String fx:value="box" />
+                     </styleClass>
                   </VBox>
                </children>
             </Pane>

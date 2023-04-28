@@ -122,3 +122,12 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 7, 0, 0, 0);
 }
 
+/*Admin*/
+.box{
+     -fx-background-radius: 10px;
+     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);
+}
+
+.no-bg{
+    -fx-background-color: rgba(255, 255, 255, 0);
+}
