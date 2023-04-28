@@ -8,10 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Librarian extends User{
-
-    public List<User> allBorrowers = new ArrayList<User>();// List of all users
-
-
+    public List<User> allBorrowers = new ArrayList<User>();
     public Librarian(String email , String password){
         super(email,password);
     }
@@ -25,10 +22,9 @@ public class Librarian extends User{
 
     }
 
-    public ResultSet getUsersWithBorrowedBooks(){
-        return null;
+    public ArrayList<User> getUsersWithBorrowedBooks(Librarian librarian) throws SQLException{
+        return database.getUsersOfLibrarian(librarian);
     }
-    public void getUserBorrowedBooks(User user){return ;}
     public void addBook(Book book) throws SQLException {
         database.addBookLibrarian(book);
     }

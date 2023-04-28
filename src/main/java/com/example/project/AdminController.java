@@ -38,6 +38,7 @@ public class AdminController {
     Database database;
     @FXML
     private Label label;
+    Admin admin;
 
     {
         try {
@@ -53,10 +54,13 @@ public class AdminController {
     }
     public void start() throws SQLException {
         try {
+            admin = (Admin) proxyUser.getRealUser();
+            admin.getLibrarians();
             this.getAllLibrarian(this.gridPane);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
 
     }
     public void add(ActionEvent actionEvent) throws IOException, SQLException {
@@ -66,9 +70,7 @@ public class AdminController {
         String Email = email.getText();
 
         if (Username.length() > 0 && (Password.length() > 0 && Password.equals(ConfirmPassword)) && Email.length() > 0 && Email.contains("@")) {
-            Admin admin = (Admin) proxyUser.getRealUser();
             admin.addLibrarian(Username,Password,Email);
-
             this.getAllLibrarian(gridPane);
         }
     }

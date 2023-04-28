@@ -2,20 +2,14 @@ package com.example.project;
 
 import com.example.project.iterator.*;
 import com.example.project.proxyUser.ProxyUser;
-import com.example.project.user.Borrower;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -53,9 +47,7 @@ public class AllBooksController {
 
     public ProxyUser proxyUser;
     Database database;
-
     Iterator iterator;
-
 
     @javafx.fxml.FXML
     @FXML
@@ -71,14 +63,13 @@ public class AllBooksController {
     public void start() throws SQLException,IOException {
         this.showMessage(text);
         try {
-            this.getAllbooks(gridPane);
+            this.getAllBooks(gridPane);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         setChoiceBoxElements();
     }
-
-    public void getAllbooks(GridPane gridPane) throws SQLException {
+    public void getAllBooks(GridPane gridPane) throws SQLException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
         iterator = new GeneralIterator();
         iterator.setProxyUser(this.proxyUser);
@@ -119,7 +110,7 @@ public class AllBooksController {
             String authorName = searchAuthor.getText();
             if(authorName.isEmpty()){
                 searchAuthor.setPromptText("Please enter an author name");
-                this.getAllbooks(gridPane);
+                this.getAllBooks(gridPane);
             }
             else{
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("book.fxml"));
@@ -132,7 +123,7 @@ public class AllBooksController {
     public void searchLengthHandler(ActionEvent actionEvent )throws SQLException{
         if(searchLength.getText().equals("")){
             searchAuthor.setPromptText("Please enter an author name");
-            this.getAllbooks(gridPane);
+            this.getAllBooks(gridPane);
 
         }
         else{
@@ -144,11 +135,10 @@ public class AllBooksController {
             iterator.setFXMLLoader(fxmlLoader);
         }
     }
-
     public void searchBookNameHandler(ActionEvent actionEvent)throws SQLException{
         if(searchText.getText().equals("")){
             searchText.setPromptText("Please enter a book name");
-            this.getAllbooks(gridPane);
+            this.getAllBooks(gridPane);
         }
         else{
 
