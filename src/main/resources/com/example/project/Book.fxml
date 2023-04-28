@@ -24,9 +24,9 @@
                                 <Image url="@../../../images/logo1.png" />
                             </image>
                         </ImageView>
-                        <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" text="World Of Books">
+                        <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="custom-font" text="World Of Books">
                             <font>
-                                <Font name="Harlow Solid Italic" size="42.0" />
+                                <Font name="System Italic" size="42.0" />
                             </font>
                             <HBox.margin>
                                 <Insets left="24.0" top="6.0" />
@@ -121,7 +121,7 @@
                 </VBox>
             </left>
          <center>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT" prefHeight="729.0" prefWidth="1079.0" BorderPane.alignment="CENTER_LEFT">
                <children>
                   <ImageView fx:id="bookImage" fitHeight="594.0" fitWidth="415.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
@@ -133,11 +133,11 @@
                         <Insets left="74.0" />
                      </HBox.margin>
                   </Separator>
-                  <VBox prefHeight="739.0" prefWidth="450.0">
+                  <VBox prefHeight="660.0" prefWidth="530.0">
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="449.0">
                            <children>
-                              <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" text="Title:">
+                              <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="custom-font" text="Title:">
                                  <font>
                                     <Font name="Harlow Solid Italic" size="45.0" />
                                  </font>
@@ -157,7 +157,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="449.0">
                            <children>
-                              <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" text="Author:">
+                              <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="custom-font" text="Author:">
                                  <font>
                                     <Font name="Harlow Solid Italic" size="45.0" />
                                  </font>
@@ -175,7 +175,7 @@
                               <Insets left="11.0" />
                            </VBox.margin>
                         </HBox>
-                        <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:">
+                        <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="custom-font" text="Description:">
                            <font>
                               <Font name="Harlow Solid Italic" size="45.0" />
                            </font>
@@ -183,7 +183,7 @@
                               <Insets top="13.0" />
                            </VBox.margin>
                         </Text>
-                        <Text fx:id="bookDescription" lineSpacing="3.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="589.0000734329224">
+                        <Text fx:id="bookDescription" lineSpacing="3.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="522.3999528884888">
                            <font>
                               <Font name="Corbel" size="20.0" />
                            </font>
@@ -193,7 +193,7 @@
                         </Text>
                         <HBox alignment="CENTER_LEFT" layoutX="21.0" layoutY="10.0" prefHeight="59.0" prefWidth="449.0">
                            <children>
-                              <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:">
+                              <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="custom-font" text="Category:">
                                  <font>
                                     <Font name="Harlow Solid Italic" size="45.0" />
                                  </font>
