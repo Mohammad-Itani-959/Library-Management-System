@@ -8,6 +8,10 @@
     -fx-background-color: rgba(0,0,0,0);
 }
 
+.custom-font {
+  -fx-font-family: "Harlow Solid Italic";
+}
+
 /*start page*/
 .logo {
     -fx-fit-height: 50;

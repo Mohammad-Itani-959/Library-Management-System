@@ -33,9 +33,9 @@
                                 <Insets left="8.0" />
                             </HBox.margin>
                         </ImageView>
-                        <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" text="World Of Books" wrappingWidth="370.93674659729004">
+                        <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="custom-font" text="World Of Books" wrappingWidth="370.93674659729004">
                             <font>
-                                <Font name="Harlow Solid Italic" size="42.0" />
+                                <Font name="System Italic" size="42.0" />
                             </font>
                             <HBox.margin>
                                 <Insets left="24.0" top="6.0" />

@@ -12,12 +12,15 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 public class BookDetailController {
     @FXML
@@ -42,6 +45,13 @@ public class BookDetailController {
             throw new RuntimeException(e);
         }
     }
+
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        // Load the custom font
+        Font font = Font.loadFont(getClass().getResourceAsStream("src/main/resources/fonts/Harlow Solid Italic Italic.ttf"), 20);
+    }
+
     private Book book ;
     public void backHandler(ActionEvent actionEvent) throws IOException, SQLException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AllBooks.fxml"));
