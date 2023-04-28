@@ -47,7 +47,7 @@ public class LibrarianDetailController {
     public void delete(ActionEvent actionEvent) throws SQLException, IOException {
         Admin admin = (Admin)this.proxyUser.getRealUser();
         admin.removeLibrarian(this.librarian);
-
+        System.out.println("Delete method in librarian detail controller");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("admin.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
         AnchorPane root = fxmlLoader.load();

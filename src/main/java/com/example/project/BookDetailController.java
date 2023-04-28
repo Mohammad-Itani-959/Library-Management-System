@@ -1,7 +1,9 @@
 package com.example.project;
 
 import com.example.project.iterator.Iterator;
+import com.example.project.proxyUser.ProxyBorrower;
 import com.example.project.proxyUser.ProxyUser;
+import com.example.project.user.Borrower;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -81,8 +83,8 @@ public class BookDetailController {
         }
 
         if(flag == false){
-            if(database.Borrow(book,proxyUser.getRealUser(),"1","2")){
-
+            Borrower borrower =(Borrower) this.proxyUser.getRealUser();
+            if(borrower.borrowBook(book,borrower,"Start","End")){
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AllBooks.fxml"));
                 AnchorPane root = fxmlLoader.load();
 

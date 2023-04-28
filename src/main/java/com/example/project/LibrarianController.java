@@ -3,6 +3,7 @@ package com.example.project;
 import com.example.project.proxyUser.ProxyLibrarian;
 import com.example.project.proxyUser.ProxyUser;
 import com.example.project.user.Borrower;
+import com.example.project.user.Librarian;
 import com.example.project.user.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -155,7 +156,8 @@ public class LibrarianController {
             pane.getChildren().removeAll(pane.getChildren());
             VBox vBox = new VBox();
 
-            ArrayList<User> users = database.getUsersOfLibrarian(this.proxyUser.getRealUser());
+            Librarian librarian = this.proxyUser.getRealUser();
+            ArrayList<User> users = librarian.getUsersWithBorrowedBooks(librarian);
             int i = 0;
             for (; i < users.size(); i++) {
                 Borrower borrower = (Borrower) users.get(i);
