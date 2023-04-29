@@ -31,9 +31,9 @@
                                 <Insets left="8.0" />
                             </HBox.margin>
                         </ImageView>
-                        <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" text="World Of Books" wrappingWidth="370.93674659729004">
+                        <Text fill="#f0824f" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="custom-font" text="World Of Books" wrappingWidth="370.93674659729004">
                             <font>
-                                <Font name="Harlow Solid Italic" size="42.0" />
+                                <Font name="System Italic" size="42.0" />
                             </font>
                             <HBox.margin>
                                 <Insets left="24.0" top="6.0" />
@@ -89,7 +89,7 @@
                                 <Insets top="4.0" />
                             </VBox.margin>
                         </Separator>
-                  <VBox alignment="TOP_CENTER" prefHeight="422.0" prefWidth="268.0" visible="false" styleClass="book-vbox">
+                  <VBox alignment="TOP_CENTER" prefHeight="422.0" prefWidth="268.0" styleClass="book-vbox" visible="false">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" top="22.0" />
                      </VBox.margin>
