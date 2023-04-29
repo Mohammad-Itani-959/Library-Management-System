@@ -95,6 +95,8 @@ public class BookDetailController {
         if(flag == false){
             Borrower borrower =(Borrower) this.proxyUser.getRealUser();
             if(borrower.borrowBook(book,borrower,"Start","End")){
+
+
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AllBooks.fxml"));
                 AnchorPane root = fxmlLoader.load();
 

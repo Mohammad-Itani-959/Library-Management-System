@@ -25,8 +25,11 @@ public class Librarian extends User{
     public ArrayList<User> getUsersWithBorrowedBooks(Librarian librarian) throws SQLException{
         return database.getUsersOfLibrarian(librarian);
     }
-    public void addBook(Book book) throws SQLException {
-        database.addBookLibrarian(book);
+    public boolean addBook(Book book) throws SQLException {
+        if(database.addBookLibrarian(book)){
+            return true;
+        }
+        return false;
     }
     public void fillAllBorrowers()throws SQLException{
         // id here is the id of the librarian

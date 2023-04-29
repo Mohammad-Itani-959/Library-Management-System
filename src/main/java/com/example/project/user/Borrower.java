@@ -17,8 +17,12 @@ public class Borrower extends User {
         database.Borrow(book,user,start,end);
         return true;
     }
-    public void returnBook(){
-        //Code Here
+    public boolean returnBook(Book book)throws SQLException {
+        if(database.returnBook(book)){
+            return true;
+        }
+        return false;
+
     }
     public void notifyUser(int id , Label label)throws SQLException {
         ResultSet resultSet = database.getMessage(""+id);

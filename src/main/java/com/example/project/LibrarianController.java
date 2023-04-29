@@ -12,15 +12,13 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Separator;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -132,7 +130,21 @@ public class LibrarianController {
         if(!title.isEmpty() && !author.isEmpty() && !length.isEmpty() && !cat.isEmpty() && !quantity.isEmpty() && !desc.isEmpty() && selectedFile != null){
             Book newbook= new Book(title,author,desc,cat,imagePath,length,""+proxyUser.getRealUser().getId());
             newbook.setQuantity(quantity);
-            proxyUser.getRealUser().addBook(newbook);
+            if(proxyUser.getRealUser().addBook(newbook)){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Book Added !!");
+
+                // Set the font and color of the content text
+                Label label = new Label(alert.getContentText());
+                label.setFont(Font.font("Arial", FontWeight.NORMAL, 14));
+                label.setTextFill(Color.GREEN);
+
+                // Set the content of the alert to the label
+                alert.getDialogPane().setContent(label);
+                alert.show();
+            }
             proxyUser.getRealUser().notifyUsers();
             cancel();
         }

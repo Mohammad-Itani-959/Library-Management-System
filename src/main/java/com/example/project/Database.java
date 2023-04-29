@@ -91,7 +91,7 @@ public class Database {
                 "VALUES\n" +
                 "  ('Alice In WonderLand', 'Alice In Wonderland is a classic novel written by Lewis Carroll. It tells the story of a young girl named Alice who falls down a rabbit hole and discovers a strange and fantastical world. The book is filled with whimsical characters, such as the Cheshire Cat, the Mad Hatter, and the Queen of Hearts, and is known for its use of surrealism and wordplay. Alice In Wonderland is a timeless tale that continues to captivate readers of all ages.','images/books/aliceinwonderland.jpg',200, 10, 'Fiction', 'Lewis Carroll', 5),\n" +
                 "  ('And Then There Were None', 'And Then There Were None is a thrilling mystery novel written by Agatha Christie. The story follows ten strangers who are invited to a remote island under false pretenses, only to find themselves trapped and hunted by an unknown killer. As the guests begin to die off one by one, the tension and suspense mount until the shocking conclusion. And Then There Were None is widely regarded as one of Christie greatest works, and is a must-read for fans of the mystery genre','images/books/and then there were none.jpg',300, 10, 'Mystery','Agatha Christie', 4),\n" +
-                "  ('Harry Potter', 'The Harry Potter book series is a beloved fantasy series written by J.K. Rowling. The story follows a young boy named Harry Potter, who discovers on his eleventh birthday that he is a wizard. He enrolls in Hogwarts School of Witchcraft and Wizardry, where he makes friends and enemies, learns magic, and uncovers the truth about his family and his destiny. The series is known for its intricate plot, well-developed characters, and immersive world-building. It has been widely acclaimed for its ability to captivate readers of all ages, and has become a cultural phenomenon, inspiring a film franchise, merchandise, and even a theme park','images/books/harrypotter.png',142,14, 'Fantasy', 'J. K. Rowling', 5),\n" +
+                "  ('Harry Potter', 'The Harry Potter book series is a beloved fantasy series written by J.K. Rowling. The story follows a young boy named Harry Potter, who discovers on his eleventh birthday that he is a wizard. He enrolls in Hogwarts School of Witchcraft and Wizardry, where he makes friends and enemies, learns magic, and uncovers the truth about his family and his destiny','images/books/harrypotter.png',142,14, 'Fantasy', 'J. K. Rowling', 5),\n" +
                 "  ('IT', 'This book is a horror story about a group of friends who are terrorized by a malevolent entity that takes on the form of a clown named Pennywise. The book deals with themes of childhood trauma, friendship, and the struggle between good and evil','images/books/it.jpg' ,111,7, 'Horror', 'Stephen King', 4),\n" +
                 "  ('Java', 'This book is designed for individuals who are new to programming and wish to learn how to develop software using Java. The book covers the basics of object-oriented programming, data types, control structures, arrays, functions, classes, inheritance, polymorphism, and exception handling, among other topics','images/books/java.jpg', 231,2, 'Nonfiction','Mr Kotiyana', 4),\n" +
                 "  ('Le monde Secret De Sombreterre', 'It is a children fantasy novel that tells the story of two young siblings, Max and Lili, who discover a hidden world beneath the Earth surface called Sombreterre. In this world, they meet a variety of magical creatures and embark on a thrilling adventure to save Sombreterre from an evil queen who seeks to destroy it','images/books/lemondesecret.jpg',122, 8, 'Children', 'Cassandra ODonnell', 5),\n" +
@@ -227,7 +227,7 @@ public class Database {
     public ResultSet getAllLibrarians() throws SQLException {
         return statement.executeQuery("select * from Users1 where type='librarian'");
     }
-    public void addBookLibrarian(Book book) throws SQLException {
+    public boolean addBookLibrarian(Book book) throws SQLException {
         String sql = "INSERT INTO Books (title, description, image, bookLength, quantity, category, authorName, librarianId) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -240,6 +240,8 @@ public class Database {
         statement.setString(7, book.getBookAuthor());
         statement.setInt(8, Integer.parseInt(book.getBookLibrarian()));
         statement.executeUpdate();
+
+        return true;
     }
     public ResultSet getAllBorrowers()throws SQLException{
         return statement.executeQuery("Select * FROM Users1 WHERE type ='borrower'");
@@ -269,5 +271,12 @@ public class Database {
             users.add(user);
         }
         return users;
+    }
+
+    public boolean returnBook(Book book)throws SQLException{
+        statement.execute("DELETE FROM Borrows WHERE bookId='"+book.getBookId()+"'");
+        statement.execute("" +
+                "UPDATE Books SET quantity = quantity+1 WHERE id ='"+book.getBookId()+"'");
+        return true;
     }
 }

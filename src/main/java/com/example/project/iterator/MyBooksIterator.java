@@ -2,14 +2,17 @@ package com.example.project.iterator;
 
 import com.example.project.Book;
 import com.example.project.BookDetailController;
+import com.example.project.BorrowedbooksController;
 import com.example.project.Database;
 import com.example.project.proxyUser.ProxyUser;
+import com.example.project.user.Borrower;
 import com.example.project.user.User;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -97,11 +100,36 @@ public class MyBooksIterator implements Iterator {
             booktitle.setFont(Font.font("Corbel", FontWeight.BOLD ,16));
             booktitle.setTextFill(Color.web("#f0824f"));
             booktitle.setPadding(new Insets(5, 0, 0, 0));
-            Button returnbtn = new Button("Return");
-            returnbtn.setFont(Font.font("Corbel",16));
-            returnbtn.getStyleClass().add("borrow-btn");
-            returnbtn.setId("returnbtn");
-            titleandreturn.getChildren().addAll(booktitle,returnbtn);
+            Button returnBtn = new Button("Return");
+            returnBtn.setFont(Font.font("Corbel",16));
+            returnBtn.getStyleClass().add("borrow-btn");
+            returnBtn.setId("returnBtn");
+            returnBtn.setOnMouseClicked(mouseEvent -> {
+                Borrower borrower =(Borrower) this.proxyUser.getRealUser();
+                try {
+                    if(borrower.returnBook(book)){
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Error");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Returned Successfully...");
+
+                        // Set the font and color of the content text
+                        Label label = new Label(alert.getContentText());
+                        label.setFont(Font.font("Arial", FontWeight.NORMAL, 14));
+                        label.setTextFill(Color.GREEN);
+
+                        // Set the content of the alert to the label
+                        alert.getDialogPane().setContent(label);
+                        alert.show();
+
+                        this.show(gridPane);
+                    }
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+
+            titleandreturn.getChildren().addAll(booktitle,returnBtn);
             VBox newVbox = new VBox();
             newVbox.getChildren().add(imageView);
             newVbox.getChildren().add(titleandreturn);
