@@ -10,8 +10,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -46,8 +50,24 @@ public class LibrarianDetailController {
     }
     public void delete(ActionEvent actionEvent) throws SQLException, IOException {
         Admin admin = (Admin)this.proxyUser.getRealUser();
-        admin.removeLibrarian(this.librarian);
-        System.out.println("Delete method in librarian detail controller");
+        if(!admin.removeLibrarian(this.librarian)){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Cannot Remove Librarian... Last One...");
+
+            // Set the font and color of the content text
+            Label label = new Label(alert.getContentText());
+            label.setFont(Font.font("Arial", FontWeight.NORMAL, 14));
+            label.setTextFill(Color.RED);
+
+            // Set the content of the alert to the label
+            alert.getDialogPane().setContent(label);
+            alert.show();
+
+            return;
+        }
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("admin.fxml"));
         Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
         AnchorPane root = fxmlLoader.load();

@@ -70,7 +70,6 @@ public class GeneralIterator implements Iterator{
             ImageView imageView = new ImageView();
             Image image;
             image = new Image(getClass().getResourceAsStream("/" + bookImage));
-            System.out.println("I am Here");
             imageView.setImage(image);
             imageView.setFitWidth(207);
             imageView.setFitHeight(300);

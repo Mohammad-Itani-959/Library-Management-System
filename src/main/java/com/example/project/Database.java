@@ -13,33 +13,31 @@ public class Database {
     Statement statement ;
 
     public Database() throws SQLException {
-        this.connection= DriverManager.getConnection(String.format("jdbc:mysql://localhost:3306/%s", "guiprroject"), "root", "AlaaKanso2002.@.");
+        this.connection= DriverManager.getConnection(String.format("jdbc:mysql://localhost:3306/%s", "guiprroject"), "root", "");
         this.statement = this.connection.createStatement();
     }
     public void createTables() throws SQLException{
-            ResultSet resultSet ;
-             /*statement.execute("CREATE TABLE Users ("+
-                "id int AUTO_INCREMENT Primary Key,"+
-                " username VARCHAR(50) NOT NULL," +
-                " email VARCHAR(50) NOT NULL," +
-                " password VARCHAR(255) NOT NULL," +
-                " type VARCHAR(20));");*/
-          resultSet = statement.executeQuery("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'Users')");
-            if(!(resultSet.next() && resultSet.getBoolean(1))){
-                statement.execute("CREATE TABLE Users ("+
-                        " username VARCHAR(50) NOT NULL," +
-                        " email VARCHAR(50) NOT NULL," +
-                        " password VARCHAR(255) NOT NULL," +
-                        " type VARCHAR(20));");
-            }
+        ResultSet resultSet ;
 
-            resultSet = statement.executeQuery("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'Messages')");
-            if(!(resultSet.next() && resultSet.getBoolean(1))){
-                statement.execute("CREATE TABLE Messages (" +
-                        "id int AUTO_INCREMENT Primary Key,"+
-                        "  message TEXT," +
-                        "  userId int );");
-            }
+        resultSet = statement.executeQuery("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'Messages')");
+        if(!(resultSet.next() && resultSet.getBoolean(1))){
+            statement.execute("CREATE TABLE Messages (" +
+                    "id int AUTO_INCREMENT Primary Key,"+
+                    "  message TEXT," +
+                    "  userId int );");
+        }
+
+        resultSet = statement.executeQuery("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'users1')");
+        if(!(resultSet.next() && resultSet.getBoolean(1))){
+            statement.execute("CREATE TABLE users1 (" +
+                    "id int AUTO_INCREMENT Primary Key," +
+                    " username VARCHAR(50) NOT NULL," +
+                    " email VARCHAR(50) NOT NULL," +
+                    " password VARCHAR(255) NOT NULL," +
+                    " type VARCHAR(20));");
+        }
+
+
 
             resultSet = statement.executeQuery("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'Books')");
             if(!(resultSet.next() && resultSet.getBoolean(1))){
@@ -72,11 +70,11 @@ public class Database {
         createBooks();
     }
     public void createUsers() throws SQLException{
-            ResultSet resultSet = statement.executeQuery("Select * from Users");
+            ResultSet resultSet = statement.executeQuery("Select * from users1");
             if(resultSet.next()){
                 return ;
             }
-            statement.execute("INSERT INTO Users (username, email, password, type) VALUES\n" +
+            statement.execute("INSERT INTO users1 (username, email, password, type) VALUES\n" +
                     "('john.doe', 'john.doe@example.com', 'password1', 'admin'),\n" +
                     "('jane.doe', 'jane.doe@example.com', 'password2', 'borrower'),\n" +
                     "('alice', 'alice@example.com', 'password3', 'borrower'),\n" +
@@ -114,38 +112,38 @@ public class Database {
         return statement.executeQuery("Select * from book where title = '"+bookName+"'");
     }
     public ResultSet borrowerLogin(String email , String password ) throws SQLException{
-        ResultSet resultSet = statement.executeQuery("Select * from Users where email = '"+email+"' and password = '"+password+"' and " +
+        ResultSet resultSet = statement.executeQuery("Select * from Users1 where email = '"+email+"' and password = '"+password+"' and " +
                 "type = 'borrower'");
 
        return resultSet;
     }
     public boolean borrowerRegister(String username , String email , String password)throws SQLException{
-        statement.execute("INSERT INTO Users(username , email , password ,type) " +
+        statement.execute("INSERT INTO Users1(username , email , password ,type) " +
                 "Values('"+username+"','"+email+"','"+password+"', 'borrower');");
         return true;
     }
     public boolean adminLogin(String email , String password) throws SQLException{
-        ResultSet resultSet = statement.executeQuery("Select * from Users where email = '"+email+"' and password = '"+password+"' and " +
+        ResultSet resultSet = statement.executeQuery("Select * from Users1 where email = '"+email+"' and password = '"+password+"' and " +
                 "type = 'admin'");
         if(resultSet.next()) return true;
         return false;
     }
     public boolean adminRegister(String username , String email , String password)throws SQLException{
-        ResultSet resultSet = statement.executeQuery("Select * from Users where type = 'admin'");
+        ResultSet resultSet = statement.executeQuery("Select * from Users1 where type = 'admin'");
         if(resultSet.next())return false;
         else{
-            statement.execute("INSERT INTO Users(id,username , email , password ,type) " +
+            statement.execute("INSERT INTO Users1(id,username , email , password ,type) " +
                     "Values('"+'1'+"','"+username+"','"+email+"','"+password+"', 'admin');");
             return true;
         }
 
     }
     public ResultSet librarianLogin(String email , String password) throws SQLException{
-       ResultSet resultSet= statement.executeQuery("Select * from Users where email = '"+email+"' and password = '"+password+"' and type = 'librarian'");
+       ResultSet resultSet= statement.executeQuery("Select * from Users1 where email = '"+email+"' and password = '"+password+"' and type = 'librarian'");
        return  resultSet;
     }
     public boolean librarianRegister(String username , String password , String email) throws SQLException{
-        statement.execute("INSERT INTO Users(username , email , password ,type) " +
+        statement.execute("INSERT INTO Users1(username , email , password ,type) " +
                 "Values('"+username+"','"+email+"','"+password+"', 'librarian');");
         return true;
     }
@@ -170,7 +168,7 @@ public class Database {
     }
     public ResultSet getBorrowers( Librarian librarian) throws SQLException{
 
-        ResultSet resultSet = statement.executeQuery("SELECT DISTINCT * FROM Users WHERE id IN(" +
+        ResultSet resultSet = statement.executeQuery("SELECT DISTINCT * FROM Users1 WHERE id IN(" +
                 "SELECT userId FROM Borrows WHERE librarian = '"+librarian.getId()+"') and type ='borrower'");
         return resultSet;
         
@@ -186,7 +184,6 @@ public class Database {
             System.out.println("1"+user.getUsername());
             return true;
         }
-        System.out.println(user.getUsername());
         return false;
     }
     public ResultSet getBorrowedBooks(User user)throws SQLException{
@@ -195,15 +192,40 @@ public class Database {
 
         return resultSet;
     }
-    public void DeleteLibrarian(Librarian librarian) throws SQLException {
-        String query = "DELETE FROM Users WHERE id = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setString(1, ""+librarian.getId());
-            stmt.executeUpdate();
+    public ResultSet getBorrowedBooksUnderLibrarian(User user , Librarian librarian)throws SQLException{
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM BOOKS WHERE id IN (" +
+                "SELECT bookId FROM Borrows WHERE userId = '"+user.getId()+"' and librarianId ='"+ librarian.getId()+"')");
+
+        return resultSet;
+    }
+    public boolean DeleteLibrarian(Librarian librarian) throws SQLException {
+        int id = librarian.getId();
+
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM Users1 WHERE type='librarian' and id != '"+id+"'");
+        if(resultSet.next()){
+            Librarian found_librarian = new Librarian(
+                    Integer.parseInt(resultSet.getString("id")),
+                    resultSet.getString("username"),
+                    resultSet.getString("password"),
+                    resultSet.getString("email")
+            );
+
+            statement.execute("UPDATE Books SET librarianId='"+found_librarian.getId()+"' WHERE librarianId ='"+id+"'");
+
+            String query = "DELETE FROM Users1 WHERE id = ?";
+            try (PreparedStatement stmt = connection.prepareStatement(query)) {
+                stmt.setString(1, ""+librarian.getId());
+                stmt.executeUpdate();
+            }
+            return true;
         }
+        else{
+            return false;
+        }
+
     }
     public ResultSet getAllLibrarians() throws SQLException {
-        return statement.executeQuery("select * from Users where type='librarian'");
+        return statement.executeQuery("select * from Users1 where type='librarian'");
     }
     public void addBookLibrarian(Book book) throws SQLException {
         String sql = "INSERT INTO Books (title, description, image, bookLength, quantity, category, authorName, librarianId) " +
@@ -220,7 +242,7 @@ public class Database {
         statement.executeUpdate();
     }
     public ResultSet getAllBorrowers()throws SQLException{
-        return statement.executeQuery("Select * FROM Users WHERE type ='borrower'");
+        return statement.executeQuery("Select * FROM Users1 WHERE type ='borrower'");
     }
     public ResultSet getMessage(String id)throws SQLException{
         return statement.executeQuery("SELECT * FROM Messages WHERE userId ='"+id+"'");

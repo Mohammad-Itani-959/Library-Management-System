@@ -13,7 +13,7 @@ public class Borrower extends User {
     public Borrower(int id ,String username ,String password ,String email){
         super(id,username,password,email);
     }
-    public boolean borrowBook(Book book , Borrower user , String start , String end)throws SQLException{
+    public boolean borrowBook(Book book , Borrower user , String start , String end)throws SQLException {
         database.Borrow(book,user,start,end);
         return true;
     }

@@ -16,19 +16,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class EntryController {
-    @FXML
-    private Label welcomeText;
-
-    @FXML
-    private Button userbtn;
-
-    @FXML
-    private Button librarianbtn;
-
-    @FXML
-    private Button adminbtn;
-
-
     public void userHandler(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
         AnchorPane root = loader.load();
@@ -37,13 +24,13 @@ public class EntryController {
         loginController.proxyUser = new ProxyBorrower();
 
         Scene scene = new Scene(root);
-        Stage stage1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage1.setTitle("Borrower Login");
-        stage1.setWidth(1350);
-        stage1.setHeight(810);
-        stage1.setScene(scene);
-        stage1.setMaximized(true);
-        stage1.show();
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setTitle("Borrower Login");
+        stage.setWidth(1350);
+        stage.setHeight(810);
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.show();
 
     }
     public void librarianHandler(ActionEvent event) throws IOException{

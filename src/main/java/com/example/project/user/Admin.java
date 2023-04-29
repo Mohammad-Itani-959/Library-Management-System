@@ -37,13 +37,15 @@ public class Admin extends User{
         database.librarianRegister(username,password,email);
         this.getLibrarians();
     }
-    public void removeLibrarian(Librarian librarian)throws SQLException {
+    public boolean removeLibrarian(Librarian librarian)throws SQLException {
         for(int i=0 ; i<this.librarians.size();i++){
             if(librarians.get(i).getEmail().equals(librarian.getEmail())){
-                System.out.println("in if clause");
-                database.DeleteLibrarian(librarian);
+                if(database.DeleteLibrarian(librarian)){
+                    return true;
+                }
             }
         }
+        return false;
 
     }
 }

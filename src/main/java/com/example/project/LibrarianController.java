@@ -212,7 +212,7 @@ public class LibrarianController {
 
     public void show(GridPane gridPane , User user) throws SQLException {
 
-        ResultSet resultSet1 = database.getBorrowedBooks(user);
+        ResultSet resultSet1 = database.getBorrowedBooksUnderLibrarian(user,this.proxyUser.getRealUser());
         int i = 0 ;
         int a = gridPane.getChildren().size();
         while(i<a){

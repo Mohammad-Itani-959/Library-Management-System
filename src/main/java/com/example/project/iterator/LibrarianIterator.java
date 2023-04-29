@@ -66,6 +66,7 @@ public class LibrarianIterator implements Iterator{
             String librarianName= resultSet.getString("username");
             String librarianEmail= resultSet.getString("email");
             Librarian l = new Librarian(Integer.parseInt(resultSet.getString("id")),librarianName,resultSet.getString("password"),librarianEmail);
+            System.out.println(l.getEmail());
             Label name = new Label(librarianName);
             Label email = new Label(librarianEmail);
             name.setFont(Font.font("Corbel", 18));
@@ -107,13 +108,15 @@ public class LibrarianIterator implements Iterator{
                 stage.setScene(scene);
             });
             //add the content in the gridpane
-            gridPane.add(newVbox, 1, rowIndex);
+            gridPane.add(newVbox, columnIndex, rowIndex);
 
-            if (columnIndex== 1) {
+            rowIndex++;
+            /*if (columnIndex== 1) {
+                columnIndex = 0 ;
                 rowIndex++;
             } else {
                 columnIndex++;
-            }
+            }*/
         }
     }
     public boolean has_Next() {
