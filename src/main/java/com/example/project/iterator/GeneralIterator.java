@@ -19,6 +19,8 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -65,7 +67,6 @@ public class GeneralIterator implements Iterator{
                     resultSet.getString("librarianId")
             );
 
-
             ImageView imageView = new ImageView();
             Image image;
             image = new Image(getClass().getResourceAsStream("/" + bookImage));
@@ -97,7 +98,7 @@ public class GeneralIterator implements Iterator{
 
                 Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
-                stage.setFullScreen(true);
+                stage.setMaximized(true);
                 stage.setScene(scene);
                 stage.show();
             });

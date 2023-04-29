@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -133,10 +134,17 @@ public class LibrarianController {
             newbook.setQuantity(quantity);
             proxyUser.getRealUser().addBook(newbook);
             proxyUser.getRealUser().notifyUsers();
+            cancel();
         }
     }
     public void cancel() {
-
+        bookTitle.setText("");
+        bookCat.setText("");
+        bookDesc.setText("");
+        bookAuthor.setText("");
+        bookLength.setText("");
+        bookQuantity.setText("");
+        selectedFile = null;
     }
     public void addBookHandler(ActionEvent actionEvent)throws SQLException ,IOException{
         this.pane = (Pane) this.borderPane.getChildren().get(2);
@@ -151,9 +159,10 @@ public class LibrarianController {
     //fetchSubscribers is activated whenever i click on list of Users
     public void fetchSubscribers(ActionEvent actionEvent) throws SQLException {
         this.pane = (Pane) this.borderPane.getChildren().get(2);
-        if(this.pane.getChildren().get(0)==addBook) {
+        if(this.pane.getChildren().get(0) == addBook) {
             this.addBook = pane.getChildren().get(0);
             pane.getChildren().removeAll(pane.getChildren());
+
             VBox vBox = new VBox();
 
             Librarian librarian = this.proxyUser.getRealUser();
@@ -166,29 +175,36 @@ public class LibrarianController {
                 label.setTextFill(Color.web("#f0824f"));
                 vBox.getChildren().add(label);
 
-
                 GridPane gridPane = new GridPane();
-                ///////////////////////////////////////////////////
                 show(gridPane,borrower);
                 gridPane.setPadding(new Insets(10));
                 gridPane.setHgap(15);
                 gridPane.setVgap(10);
 
-                ///////////////////////////////////////////////////
                 vBox.getChildren().add(gridPane);
                 vBox.setPadding(new Insets(10));
             }
-            ScrollPane scrollPane = new ScrollPane(vBox);
 
-            scrollPane.setPrefSize(pane.getWidth()-10,pane.getHeight()-30);
+            ScrollPane scrollPane = new ScrollPane();
+            scrollPane.setContent(vBox);
+            scrollPane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+            scrollPane.setPrefViewportHeight(vBox.getBoundsInParent().getHeight());
 
-
+            VBox.setVgrow(scrollPane, Priority.ALWAYS);
 
             pane.getChildren().add(scrollPane);
-        }
-        else return;
 
+            // Bind the width and height of the ScrollPane to the width and height of the pane
+            scrollPane.prefWidthProperty().bind(pane.widthProperty());
+            scrollPane.prefHeightProperty().bind(pane.heightProperty());
+        }
+        else {
+            return;
+        }
     }
+
+
+
 
     public void setProxyUser(ProxyUser proxyUser){
         this.proxyUser = (ProxyLibrarian)proxyUser;
