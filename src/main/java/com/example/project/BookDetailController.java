@@ -124,7 +124,7 @@ public class BookDetailController {
         }
         else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Book Aready Borrowed!");
+            alert.setTitle("Book Already Borrowed!");
             alert.setHeaderText("Error!");
             alert.setContentText("Cannot Borrow This Book ... Already Borrowed");
             alert.show();
