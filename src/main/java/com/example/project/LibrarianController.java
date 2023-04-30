@@ -68,6 +68,9 @@ public class LibrarianController {
     @FXML
     private Node addBook;
 
+    @FXML
+    private Label imgselected;
+
     ResultSet resultSet ;
     Database database;
 
@@ -95,17 +98,20 @@ public class LibrarianController {
         stage.setMaximized(true);
         stage.show();
     }
-    //let the librarian choose an image to upload
 
+    //let the librarian choose an image to upload
     public void chooseImg(ActionEvent actionEvent) {
         FileChooser fileChooser= new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
         );
         selectedFile = fileChooser.showOpenDialog(null);
+        if(selectedFile != null){
+            imgselected.setText("Image selected successfully: " + selectedFile.getName());
+        }
     }
-    //add book to the db
 
+    //add book to the db
     public void addBook(ActionEvent actionEvent) throws SQLException{
         String title= bookTitle.getText();
         String cat= bookCat.getText();
@@ -169,6 +175,7 @@ public class LibrarianController {
         bookAuthor.setText("");
         bookLength.setText("");
         bookQuantity.setText("");
+        imgselected.setText("");
         selectedFile = null;
     }
     public void addBookHandler(ActionEvent actionEvent)throws SQLException ,IOException{

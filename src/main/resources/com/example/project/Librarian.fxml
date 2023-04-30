@@ -294,6 +294,14 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
+                              <Label fx:id="imgselected" textFill="#2c8925">
+                                 <HBox.margin>
+                                    <Insets left="17.0" top="2.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Corbel" size="20.0" />
+                                 </font>
+                              </Label>
                            </children>
                            <VBox.margin>
                               <Insets top="7.0" />
@@ -322,7 +330,7 @@
                               </Button>
                            </children>
                            <VBox.margin>
-                              <Insets top="3.0" />
+                              <Insets top="11.0" />
                            </VBox.margin>
                         </HBox>
                      </children>

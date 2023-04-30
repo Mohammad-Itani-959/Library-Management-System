@@ -181,7 +181,6 @@ public class Database {
                     "Values('" + book.getBookId() + "','" + user.getId() + "','" + book.getBookLibrarian() + "','" +
                     startDate + "','" + endDate + "')");
             statement.execute("Update Books SET quantity = quantity -1 WHERE title = '"+book.getBookTitle()+"'");
-            System.out.println("1"+user.getUsername());
             return true;
         }
         return false;
