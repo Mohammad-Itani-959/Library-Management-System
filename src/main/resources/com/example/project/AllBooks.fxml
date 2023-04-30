@@ -48,12 +48,12 @@
                 <VBox styleClass="white-bg" BorderPane.alignment="CENTER">
                     <children>
                         <Separator prefWidth="200.0" />
-                        <Label fx:id="email" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="199.0" textFill="#f0824f">
+                        <Label fx:id="email" alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="274.0" textFill="#f0824f">
                             <font>
                                 <Font name="Corbel Italic" size="17.0" />
                             </font>
                             <VBox.margin>
-                                <Insets left="39.0" top="3.0" />
+                                <Insets left="27.0" top="3.0" />
                             </VBox.margin></Label>
                         <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="35.0" prefWidth="290.0" styleClass="searchbox">
                             <VBox.margin>

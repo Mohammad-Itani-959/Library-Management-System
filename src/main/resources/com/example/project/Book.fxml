@@ -43,12 +43,12 @@
                 <VBox styleClass="white-bg" BorderPane.alignment="CENTER">
                     <children>
                         <Separator prefWidth="200.0" />
-                        <Label fx:id="label" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="17.0" prefWidth="199.0" textFill="#f0824f">
+                        <Label fx:id="label" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="22.0" prefWidth="259.0" textFill="#f0824f">
                             <font>
                                 <Font name="Corbel Italic" size="17.0" />
                             </font>
                             <VBox.margin>
-                                <Insets left="39.0" top="3.0" />
+                                <Insets left="21.0" top="3.0" />
                             </VBox.margin>
                         </Label>
                         <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="310.0" styleClass="mouse-moved">
@@ -90,9 +90,9 @@
                         <Insets bottom="25.0" left="79.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ScrollPane>
+                  <ScrollPane maxWidth="-Infinity" minWidth="-Infinity">
                      <content>
-                        <VBox maxHeight="542.0" maxWidth="556.0" minHeight="0.0" minWidth="530.0" prefHeight="411.0" prefWidth="530.0">
+                        <VBox>
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="449.0">
                                  <children>
@@ -182,7 +182,7 @@
                         </VBox>
                      </content>
                      <HBox.margin>
-                        <Insets left="26.0" top="50.0" />
+                        <Insets bottom="22.0" left="26.0" top="50.0" />
                      </HBox.margin>
                   </ScrollPane>
                </children>
