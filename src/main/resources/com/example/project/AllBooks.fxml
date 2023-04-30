@@ -199,17 +199,17 @@
                       </HBox>
                         <HBox prefHeight="26.0" prefWidth="310.0" styleClass="mouse-moved">
                             <children>
-                                <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="37.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../../images/author.png" />
+                                        <Image url="@../../../images/length.png" />
                                     </image>
                                     <HBox.margin>
-                                        <Insets top="1.0" />
+                                        <Insets left="3.0" top="5.0" />
                                     </HBox.margin>
                                 </ImageView>
                                 <TextField fx:id="searchLength" onAction="#searchLengthHandler" prefHeight="19.0" prefWidth="186.0" promptText="Pages' Number">
                                     <HBox.margin>
-                                        <Insets left="1.0" top="9.0" />
+                                        <Insets left="6.0" top="9.0" />
                                     </HBox.margin>
                                     <styleClass>
                                         <String fx:value="searchbox" />

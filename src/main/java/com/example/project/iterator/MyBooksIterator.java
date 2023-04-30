@@ -111,9 +111,9 @@ public class MyBooksIterator implements Iterator {
                 try {
                     if(borrower.returnBook(book)){
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Error");
+                        alert.setTitle("Success!");
                         alert.setHeaderText(null);
-                        alert.setContentText("Returned Successfully...");
+                        alert.setContentText("Book Returned Successfully!");
 
                         // Set the font and color of the content text
                         Label label = new Label(alert.getContentText());

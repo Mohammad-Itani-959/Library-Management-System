@@ -113,8 +113,10 @@ public class LibrarianController {
         String author= bookAuthor.getText();
         String length= bookLength.getText();
         String quantity= bookQuantity.getText();
-        String imagePath = "images/books/" + selectedFile.getName();
+        String imageName = selectedFile.getName();
+        String imagePath = "images/books/" + imageName;
         String destinationDirPath = "src/main/resources/images/books";
+        String targetDirPath = "target/classes/images/books";
 
         try {
             // Create the destination directory if it does not exist
@@ -124,8 +126,16 @@ public class LibrarianController {
             }
 
             // Copy the selected file to the destination directory
-            Path destinationPath = Paths.get(destinationDirPath, selectedFile.getName());
+            Path destinationPath = Paths.get(destinationDirPath, imageName);
             Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+
+            // Copy the selected file to the target directory
+            Path targetDir = Paths.get(targetDirPath);
+            if (!Files.exists(targetDir)) {
+                Files.createDirectories(targetDir);
+            }
+            Path targetPath = Paths.get(targetDirPath, imageName);
+            Files.copy(selectedFile.toPath(), targetPath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             System.err.println("Failed to copy image: " + e.getMessage());
         }
@@ -134,9 +144,9 @@ public class LibrarianController {
             newbook.setQuantity(quantity);
             if(proxyUser.getRealUser().addBook(newbook)){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error");
+                alert.setTitle("Book Added");
                 alert.setHeaderText(null);
-                alert.setContentText("Book Added !!");
+                alert.setContentText("Book Added Successfully!!");
 
                 // Set the font and color of the content text
                 Label label = new Label(alert.getContentText());
@@ -151,6 +161,7 @@ public class LibrarianController {
             cancel();
         }
     }
+
     public void cancel() {
         bookTitle.setText("");
         bookCat.setText("");
