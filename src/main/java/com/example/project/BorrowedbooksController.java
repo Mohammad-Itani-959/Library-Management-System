@@ -4,11 +4,13 @@ import com.example.project.iterator.MyBooksIterator;
 import com.example.project.proxyUser.ProxyUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -44,11 +46,12 @@ public class BorrowedbooksController {
         allBooksController.start();
 
 
-        Stage stage =(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setWidth(1350);
-        stage.setHeight(810);
+        Screen screen= Screen.getPrimary();
+        Rectangle2D bounds= screen.getVisualBounds();
+        root.setPrefSize(bounds.getWidth(), bounds.getHeight());
+        stage.setWidth(bounds.getWidth());
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();

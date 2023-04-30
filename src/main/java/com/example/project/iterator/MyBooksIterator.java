@@ -10,6 +10,7 @@ import com.example.project.user.User;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -24,6 +25,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -153,8 +155,12 @@ public class MyBooksIterator implements Iterator {
 
                 Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
-                stage.setFullScreen(true);
+                Screen screen= Screen.getPrimary();
+                Rectangle2D bounds= screen.getVisualBounds();
+                root.setPrefSize(bounds.getWidth(), bounds.getHeight());
+                stage.setWidth(bounds.getWidth());
                 stage.setScene(scene);
+                stage.setMaximized(true);
                 stage.show();
             });
 

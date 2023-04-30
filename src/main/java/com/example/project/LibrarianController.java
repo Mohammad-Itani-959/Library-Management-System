@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -20,6 +21,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.FileChooser;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -81,14 +83,14 @@ public class LibrarianController {
     public ProxyLibrarian proxyUser;
     public void Logout(ActionEvent actionEvent) throws SQLException, IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Entry.fxml"));
-        Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-
 
         AnchorPane root = fxmlLoader.load();
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setWidth(1350);
-        stage.setHeight(810);
+        Screen screen= Screen.getPrimary();
+        Rectangle2D bounds= screen.getVisualBounds();
+        root.setPrefSize(bounds.getWidth(), bounds.getHeight());
+        stage.setWidth(bounds.getWidth());
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();

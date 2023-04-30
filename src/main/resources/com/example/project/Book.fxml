@@ -13,9 +13,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" stylesheets="@../../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.BookDetailController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.BookDetailController">
     <children>
-        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
                 <HBox alignment="CENTER" fillHeight="false" styleClass="white-bg">
                     <children>
@@ -39,7 +39,7 @@
                 </HBox>
             </top>
             <left>
-                <VBox prefHeight="724.0" prefWidth="228.0" styleClass="white-bg" BorderPane.alignment="CENTER">
+                <VBox styleClass="white-bg" BorderPane.alignment="CENTER">
                     <children>
                         <Separator prefWidth="200.0" />
                         <Label fx:id="label" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="17.0" prefWidth="199.0" textFill="#f0824f">
@@ -82,7 +82,7 @@
                 </VBox>
             </left>
          <center>
-            <HBox alignment="CENTER_LEFT" maxWidth="1109.0" prefHeight="724.0" prefWidth="1109.0" BorderPane.alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT" BorderPane.alignment="CENTER_LEFT">
                <children>
                   <ImageView fx:id="bookImage" fitHeight="594.0" fitWidth="415.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>

@@ -1,160 +1,170 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="810.0" prefWidth="1315.0" stylesheets="@../../../styles/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.RegisterController">
+<AnchorPane stylesheets="@../../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.RegisterController">
     <children>
-        <VBox alignment="TOP_CENTER" prefHeight="810.0" prefWidth="634.0" styleClass="vleft">
-            <children>
-                <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="310.0">
-                    <VBox.margin>
-                        <Insets left="8.0" top="10.0" />
-                    </VBox.margin>
-                    <children>
-                        <ImageView fitHeight="113.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" scaleX="1.1" scaleY="1.1">
-                            <image>
-                                <Image url="@../../../images/back.png" />
-                            </image>
-                            <HBox.margin>
-                                <Insets top="2.0" />
-                            </HBox.margin>
-                        </ImageView>
-                        <Button onAction="#backHandler" mnemonicParsing="false" styleClass="transparent" text="Go back" textFill="black">
-                            <font>
-                                <Font name="Corbel Bold" size="18.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets top="4.0" />
-                            </HBox.margin>
-                        </Button>
-                    </children>
-                </HBox>
-                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" scaleX="0.5" scaleY="0.5">
-                    <image>
-                        <Image url="@../../../images/logo1.png" />
-                    </image>
-                    <VBox.margin>
-                        <Insets />
-                    </VBox.margin>
-                </ImageView>
-                <ImageView fitHeight="150.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true" scaleX="2.5" scaleY="2.5">
-                    <image>
-                        <Image url="@../../../images/userimg.png" />
-                    </image>
-                    <VBox.margin>
-                        <Insets top="229.0" />
-                    </VBox.margin>
-                </ImageView>
-            </children>
-        </VBox>
-        <VBox alignment="CENTER" layoutX="559.0" prefHeight="810.0" prefWidth="756.0" styleClass="vright" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="634.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label fx:id="errorr" alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="512.0" textFill="#e80b0b">
+      <HBox>
+         <children>
+              <VBox alignment="TOP_CENTER" prefHeight="810.0" prefWidth="634.0" styleClass="vleft">
+                  <children>
+                      <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="310.0">
+                          <VBox.margin>
+                              <Insets left="8.0" top="10.0" />
+                          </VBox.margin>
+                          <children>
+                              <ImageView fitHeight="113.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" scaleX="1.1" scaleY="1.1">
+                                  <image>
+                                      <Image url="@../../../images/back.png" />
+                                  </image>
+                                  <HBox.margin>
+                                      <Insets top="2.0" />
+                                  </HBox.margin>
+                              </ImageView>
+                              <Button mnemonicParsing="false" onAction="#backHandler" styleClass="transparent" text="Go back" textFill="black">
+                                  <font>
+                                      <Font name="Corbel Bold" size="18.0" />
+                                  </font>
+                                  <HBox.margin>
+                                      <Insets top="4.0" />
+                                  </HBox.margin>
+                              </Button>
+                          </children>
+                      </HBox>
+                      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" scaleX="0.5" scaleY="0.5">
+                          <image>
+                              <Image url="@../../../images/logo1.png" />
+                          </image>
+                          <VBox.margin>
+                              <Insets />
+                          </VBox.margin>
+                      </ImageView>
+                      <ImageView fitHeight="150.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true" scaleX="2.5" scaleY="2.5">
+                          <image>
+                              <Image url="@../../../images/userimg.png" />
+                          </image>
+                          <VBox.margin>
+                              <Insets top="229.0" />
+                          </VBox.margin>
+                      </ImageView>
+                  </children>
+              </VBox>
+              <VBox alignment="CENTER" prefHeight="810.0" prefWidth="756.0" styleClass="vright">
+                  <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="errorr" alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="512.0" textFill="#e80b0b">
+                           <font>
+                              <Font name="Cambria Bold Italic" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                          <children>
+                              <ImageView fitHeight="49.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
+                                  <image>
+                                      <Image url="@../../../images/admin.png" />
+                                  </image>
+                                  <HBox.margin>
+                                      <Insets left="19.0" />
+                                  </HBox.margin>
+                              </ImageView>
+                              <TextField fx:id="username" prefHeight="38.0" prefWidth="366.0" promptText="Username">
+                                  <HBox.margin>
+                                      <Insets left="17.0" />
+                                  </HBox.margin>
+                                  <font>
+                                      <Font name="Cambria" size="16.0" />
+                                  </font>
+                              </TextField>
+                          </children>
+                      </HBox>
+                      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                          <children>
+                              <ImageView fitHeight="49.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
+                                  <image>
+                                      <Image url="@../../../images/email.png" />
+                                  </image>
+                                  <HBox.margin>
+                                      <Insets left="19.0" />
+                                  </HBox.margin>
+                              </ImageView>
+                              <TextField fx:id="email" prefHeight="38.0" prefWidth="366.0" promptText="Email">
+                                  <HBox.margin>
+                                      <Insets left="17.0" />
+                                  </HBox.margin>
+                                  <font>
+                                      <Font name="Cambria" size="16.0" />
+                                  </font>
+                              </TextField>
+                          </children>
+                      </HBox>
+                      <HBox alignment="CENTER" layoutX="10.0" layoutY="365.0" prefHeight="50.0" prefWidth="200.0">
+                          <children>
+                              <ImageView fitHeight="60.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
+                                  <image>
+                                      <Image url="@../../../images/pass.png" />
+                                  </image>
+                                  <HBox.margin>
+                                      <Insets left="7.0" />
+                                  </HBox.margin>
+                              </ImageView>
+                              <PasswordField fx:id="password" prefHeight="38.0" prefWidth="366.0" promptText="password">
+                                  <HBox.margin>
+                                      <Insets left="11.0" />
+                                  </HBox.margin>
+                                  <font>
+                                      <Font name="Cambria" size="16.0" />
+                                  </font>
+                              </PasswordField>
+                          </children>
+                      </HBox>
+                      <HBox alignment="CENTER" layoutX="10.0" layoutY="365.0" prefHeight="50.0" prefWidth="200.0">
+                          <children>
+                              <ImageView fitHeight="60.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
+                                  <image>
+                                      <Image url="@../../../images/pass.png" />
+                                  </image>
+                                  <HBox.margin>
+                                      <Insets left="7.0" />
+                                  </HBox.margin>
+                              </ImageView>
+                              <PasswordField fx:id="confirmPassword" prefHeight="38.0" prefWidth="366.0" promptText="Confirm Password">
+                                  <HBox.margin>
+                                      <Insets left="11.0" />
+                                  </HBox.margin>
+                                  <font>
+                                      <Font name="Cambria" size="16.0" />
+                                  </font>
+                              </PasswordField>
+                          </children>
+                      </HBox>
+                      <Button mnemonicParsing="false" onAction="#registerHandler" prefHeight="50.0" prefWidth="300.0" styleClass="Registerbtn" text="Register">
+                          <VBox.margin>
+                              <Insets left="32.0" top="22.0" />
+                          </VBox.margin>
+                          <cursor>
+                              <Cursor fx:constant="HAND" />
+                          </cursor>
                      <font>
-                        <Font name="Cambria Bold Italic" size="24.0" />
+                        <Font name="Corbel" size="18.0" />
                      </font>
-                  </Label>
-               </children>
-            </HBox>
-                <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
-                    <children>
-                        <ImageView fitHeight="49.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
-                            <image>
-                                <Image url="@../../../images/admin.png" />
-                            </image>
-                            <HBox.margin>
-                                <Insets left="19.0" />
-                            </HBox.margin>
-                        </ImageView>
-                        <TextField fx:id="username" prefHeight="38.0" prefWidth="366.0" promptText="Username">
-                            <HBox.margin>
-                                <Insets left="17.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="Cambria" size="16.0" />
-                            </font>
-                        </TextField>
-                    </children>
-                </HBox>
-                <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
-                    <children>
-                        <ImageView fitHeight="49.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
-                            <image>
-                                <Image url="@../../../images/email.png" />
-                            </image>
-                            <HBox.margin>
-                                <Insets left="19.0" />
-                            </HBox.margin>
-                        </ImageView>
-                        <TextField fx:id="email" prefHeight="38.0" prefWidth="366.0" promptText="Email">
-                            <HBox.margin>
-                                <Insets left="17.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="Cambria" size="16.0" />
-                            </font>
-                        </TextField>
-                    </children>
-                </HBox>
-                <HBox alignment="CENTER" layoutX="10.0" layoutY="365.0" prefHeight="50.0" prefWidth="200.0">
-                    <children>
-                        <ImageView fitHeight="60.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
-                            <image>
-                                <Image url="@../../../images/pass.png" />
-                            </image>
-                            <HBox.margin>
-                                <Insets left="7.0" />
-                            </HBox.margin>
-                        </ImageView>
-                        <PasswordField fx:id="password" prefHeight="38.0" prefWidth="366.0" promptText="password">
-                            <HBox.margin>
-                                <Insets left="11.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="Cambria" size="16.0" />
-                            </font>
-                        </PasswordField>
-                    </children>
-                </HBox>
-                <HBox alignment="CENTER" layoutX="10.0" layoutY="365.0" prefHeight="50.0" prefWidth="200.0">
-                    <children>
-                        <ImageView fitHeight="60.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
-                            <image>
-                                <Image url="@../../../images/pass.png" />
-                            </image>
-                            <HBox.margin>
-                                <Insets left="7.0" />
-                            </HBox.margin>
-                        </ImageView>
-                        <PasswordField fx:id="confirmPassword" prefHeight="38.0" prefWidth="366.0" promptText="Confirm Password">
-                            <HBox.margin>
-                                <Insets left="11.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="Cambria" size="16.0" />
-                            </font>
-                        </PasswordField>
-                    </children>
-                </HBox>
-                <Button mnemonicParsing="false" onAction="#registerHandler" prefHeight="50.0" prefWidth="300.0" styleClass="Registerbtn" text="Register">
-                    <VBox.margin>
-                        <Insets left="32.0" top="22.0" />
-                    </VBox.margin>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-               <font>
-                  <Font name="Corbel" size="18.0" />
-               </font>
-                </Button>
-            </children>
-        </VBox>
+                      </Button>
+                  </children>
+              </VBox>
+         </children>
+      </HBox>
     </children>
 </AnchorPane>

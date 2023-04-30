@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="810.0" prefWidth="1315.0" stylesheets="@../../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.LibrarianDetailController">
+<AnchorPane stylesheets="@../../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.LibrarianDetailController">
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <HBox alignment="TOP_CENTER" prefHeight="118.0" prefWidth="1315.0" styleClass="white-bg" stylesheets="@../../../styles/style.css" BorderPane.alignment="CENTER">
+            <HBox alignment="TOP_CENTER" styleClass="white-bg" stylesheets="@../../../styles/style.css" BorderPane.alignment="CENTER">
                <children>
                   <ImageView fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -29,7 +29,7 @@
             </HBox>
          </top>
          <center>
-            <VBox alignment="CENTER" prefHeight="810.0" prefWidth="1315.0" styleClass="btn" stylesheets="@../../../styles/style.css" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" styleClass="btn" stylesheets="@../../../styles/style.css" BorderPane.alignment="CENTER">
                <children>
                   <HBox>
                      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="154.0" prefWidth="596.0" styleClass="custom-font" text="librarian name :" textFill="#f0824f">
@@ -37,9 +37,9 @@
                            <Font name="System Italic" size="36.0" />
                         </font>
                      </Label>
-                     <Label fx:id="labelName" contentDisplay="RIGHT" prefHeight="154.0" prefWidth="449.0" textFill="#f0824f">
+                     <Label fx:id="labelName" contentDisplay="RIGHT" prefHeight="154.0" prefWidth="449.0">
                         <font>
-                           <Font name="Harlow Solid Italic" size="36.0" />
+                           <Font name="Corbel Italic" size="36.0" />
                         </font>
                         <HBox.margin>
                            <Insets left="50.0" />
@@ -52,9 +52,9 @@
                            <Font name="Harlow Solid Italic" size="36.0" />
                         </font>
                      </Label>
-                     <Label fx:id="labelemail" contentDisplay="RIGHT" prefHeight="154.0" prefWidth="449.0" textFill="#f0824f">
+                     <Label fx:id="labelemail" contentDisplay="RIGHT" prefHeight="154.0" prefWidth="449.0">
                         <font>
-                           <Font name="Harlow Solid Italic" size="36.0" />
+                           <Font name="Corbel Italic" size="36.0" />
                         </font>
                         <HBox.margin>
                            <Insets left="50.0" />
@@ -78,7 +78,7 @@
             </VBox>
          </center>
       </BorderPane>
-      <HBox prefHeight="30.0" prefWidth="124.0">
+      <HBox>
             <children>
                <ImageView fitHeight="113.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" scaleX="1.1" scaleY="1.1">
                   <image>

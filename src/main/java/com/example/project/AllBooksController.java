@@ -6,10 +6,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -151,12 +153,13 @@ public class AllBooksController {
     }
     public void Logout(ActionEvent actionEvent) throws SQLException,IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("entry.fxml"));
-        Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
         AnchorPane root = fxmlLoader.load();
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setWidth(1350);
-        stage.setHeight(810);
+        Screen screen= Screen.getPrimary();
+        Rectangle2D bounds= screen.getVisualBounds();
+        root.setPrefSize(bounds.getWidth(), bounds.getHeight());
+        stage.setWidth(bounds.getWidth());
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();
@@ -167,17 +170,18 @@ public class AllBooksController {
     }
     public void YourBooks(ActionEvent actionEvent) throws SQLException, IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("borrowedbooks.fxml"));
-        Stage stage = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
         AnchorPane root = fxmlLoader.load();
 
         BorrowedbooksController borrowedbooksController = fxmlLoader.getController();
         borrowedbooksController.setProxyUser(this.proxyUser);
         borrowedbooksController.start();
 
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setWidth(1350);
-        stage.setHeight(810);
+        Screen screen= Screen.getPrimary();
+        Rectangle2D bounds= screen.getVisualBounds();
+        root.setPrefSize(bounds.getWidth(), bounds.getHeight());
+        stage.setWidth(bounds.getWidth());
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();

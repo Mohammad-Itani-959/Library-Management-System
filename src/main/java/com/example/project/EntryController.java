@@ -6,11 +6,13 @@ import com.example.project.proxyUser.ProxyLibrarian;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,11 +25,12 @@ public class EntryController {
         LoginController loginController = loader.getController();
         loginController.proxyUser = new ProxyBorrower();
 
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.setTitle("Borrower Login");
-        stage.setWidth(1350);
-        stage.setHeight(810);
+        Screen screen= Screen.getPrimary();
+        Rectangle2D bounds= screen.getVisualBounds();
+        root.setPrefSize(bounds.getWidth(), bounds.getHeight());
+        stage.setWidth(bounds.getWidth());
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();
@@ -41,14 +44,15 @@ public class EntryController {
             LoginController loginController = loader.getController();
             loginController.proxyUser = new ProxyLibrarian();
             loginController.removeRegister();
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
-            Stage stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage1.setTitle("librarian Login");
-            stage1.setWidth(1350);
-            stage1.setHeight(810);
-            stage1.setScene(scene);
-            stage1.setMaximized(true);
-            stage1.show();
+            Screen screen= Screen.getPrimary();
+            Rectangle2D bounds= screen.getVisualBounds();
+            root.setPrefSize(bounds.getWidth(), bounds.getHeight());
+            stage.setWidth(bounds.getWidth());
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.show();
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -63,14 +67,15 @@ public class EntryController {
         loginController.proxyUser = new ProxyAdmin();
         loginController.removeRegister();
 
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
-        Stage stage1 = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage1.setTitle("admin Login");
-        stage1.setWidth(1350);
-        stage1.setHeight(810);
-        stage1.setScene(scene);
-        stage1.setMaximized(true);
-        stage1.show();
+        Screen screen= Screen.getPrimary();
+        Rectangle2D bounds= screen.getVisualBounds();
+        root.setPrefSize(bounds.getWidth(), bounds.getHeight());
+        stage.setWidth(bounds.getWidth());
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.show();
 
     }
 

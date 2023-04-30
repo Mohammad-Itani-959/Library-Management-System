@@ -6,6 +6,7 @@ import com.example.project.BookDetailController;
 import com.example.project.proxyUser.ProxyUser;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -16,6 +17,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -97,8 +99,12 @@ public class GeneralIterator implements Iterator{
 
                 Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
-                stage.setMaximized(true);
+                Screen screen= Screen.getPrimary();
+                Rectangle2D bounds= screen.getVisualBounds();
+                root.setPrefSize(bounds.getWidth(), bounds.getHeight());
+                stage.setWidth(bounds.getWidth());
                 stage.setScene(scene);
+                stage.setMaximized(true);
                 stage.show();
             });
 

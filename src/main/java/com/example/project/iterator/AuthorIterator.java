@@ -6,6 +6,7 @@ import com.example.project.BookDetailController;
 import com.example.project.proxyUser.ProxyUser;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -14,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -109,12 +111,14 @@ public class AuthorIterator implements Iterator {
                 bookcontroller.setBook(book);
                 bookcontroller.putBookDetails();
                 bookcontroller.setProxyUser(this.proxyUser);
-
-
                 Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
-                stage.setFullScreen(true);
+                Screen screen= Screen.getPrimary();
+                Rectangle2D bounds= screen.getVisualBounds();
+                root.setPrefSize(bounds.getWidth(), bounds.getHeight());
+                stage.setWidth(bounds.getWidth());
                 stage.setScene(scene);
+                stage.setMaximized(true);
                 stage.show();
             });
 
