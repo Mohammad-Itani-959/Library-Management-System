@@ -161,7 +161,11 @@ public class Database {
         return statement.executeQuery("Select * From Books where bookLength <='"+length+"'");
     }
     public ResultSet get_books_by_name(String name) throws SQLException{
-        return statement.executeQuery("Select * From Books where title ='"+name+"'");
+        String query = "SELECT * FROM Books WHERE title = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, name);
+        ResultSet result = statement.executeQuery();
+        return result;
     }
     public ResultSet getCategories() throws SQLException{
         return statement.executeQuery("Select DISTINCT category From Books");
