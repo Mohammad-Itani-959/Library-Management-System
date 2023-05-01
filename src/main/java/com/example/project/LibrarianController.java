@@ -151,34 +151,33 @@ public class LibrarianController {
         }
 
         if(selectedFile == null){
-            imagePath = "images/nonfound.png" ;
-            imageName="nonfound.png";
+            imgselected.setText("Please Choose an image");
+            flag=true;
         }
-        else{
-            imagePath = "images/books/" + selectedFile.getName();
-            imageName=selectedFile.getName();
-            try {
-                // Create the destination directory if it does not exist
-                Path destinationDir = Paths.get(destinationDirPath);
-                if (!Files.exists(destinationDir)) {
-                    Files.createDirectories(destinationDir);
-                }
+        if(flag == true)return ;
 
-                // Copy the selected file to the destination directory
-                Path destinationPath = Paths.get(destinationDirPath, imageName);
-                Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
-
-                // Copy the selected file to the target directory
-                Path targetDir = Paths.get(targetDirPath);
-                if (!Files.exists(targetDir)) {
-                    Files.createDirectories(targetDir);
-                }
-                Path targetPath = Paths.get(targetDirPath, imageName);
-                Files.copy(selectedFile.toPath(), targetPath, StandardCopyOption.REPLACE_EXISTING);
-            } catch (IOException e) {
-                System.err.println("Failed to copy image: " + e.getMessage());
+        imagePath = "images/books/" + selectedFile.getName();
+        imageName=selectedFile.getName();
+        try {
+            // Create the destination directory if it does not exist
+            Path destinationDir = Paths.get(destinationDirPath);
+            if (!Files.exists(destinationDir)) {
+                Files.createDirectories(destinationDir);
             }
 
+            // Copy the selected file to the destination directory
+            Path destinationPath = Paths.get(destinationDirPath, imageName);
+            Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+
+            // Copy the selected file to the target directory
+            Path targetDir = Paths.get(targetDirPath);
+            if (!Files.exists(targetDir)) {
+                Files.createDirectories(targetDir);
+            }
+            Path targetPath = Paths.get(targetDirPath, imageName);
+            Files.copy(selectedFile.toPath(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            System.err.println("Failed to copy image: " + e.getMessage());
         }
 
         if(!title.isEmpty() && !author.isEmpty() && !length.isEmpty() && !cat.isEmpty() && !quantity.isEmpty() && !desc.isEmpty()){
@@ -270,9 +269,6 @@ public class LibrarianController {
             return;
         }
     }
-
-
-
 
     public void setProxyUser(ProxyUser proxyUser){
         this.proxyUser = (ProxyLibrarian)proxyUser;
