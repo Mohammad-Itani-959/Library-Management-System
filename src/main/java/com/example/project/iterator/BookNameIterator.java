@@ -14,9 +14,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -44,15 +47,15 @@ public class BookNameIterator implements Iterator{
     }
     @Override
     public void show(GridPane gridPane) throws SQLException {
+        int columnIndex = 0;
+        int rowIndex = 0;
+
         int i = 0 ;
         int a = gridPane.getChildren().size();
         while(i<a){
             gridPane.getChildren().remove(0);
             i++;
         }
-
-        int columnIndex = 0;
-        int rowIndex = 0;
 
         gridPane.setPadding(new Insets(10));
         gridPane.setHgap(15);
@@ -77,21 +80,69 @@ public class BookNameIterator implements Iterator{
                     resultSet.getString("librarianId")
             );
 
+            if(resultSet.getString("quantity").equals("0")){
+                ImageView imageView = new ImageView();
+                Image image;
+                image = new Image(getClass().getResourceAsStream("/" + bookImage));
+                imageView.setImage(image);
+                imageView.setFitWidth(207);
+                imageView.setFitHeight(300);
 
+                Label label = new Label(bookTitle);
+                label.setFont(Font.font("Corbel", 16));
+                label.setTextFill(Color.web("#f0824f"));
+
+
+                StackPane stackPane = new StackPane();
+                stackPane.getChildren().add(imageView);
+
+                Text outOfStockText = new Text("Out of Stock");
+                outOfStockText.setFill(Color.RED);
+                outOfStockText.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+                stackPane.getChildren().add(outOfStockText);
+
+                VBox newVbox = new VBox();
+                newVbox.getChildren().add(stackPane);
+                newVbox.getChildren().add(label);
+                newVbox.setPrefWidth(207);
+                newVbox.setPrefHeight(320);
+                newVbox.getStyleClass().add("book-vbox");
+
+
+                gridPane.add(newVbox, columnIndex % 4, rowIndex);
+
+                if (columnIndex % 4 == 3) {
+                    rowIndex++;
+                    columnIndex = 0;
+                } else {
+                    columnIndex++;
+                }
+                continue;
+            }
             ImageView imageView = new ImageView();
-            Image image = new Image(getClass().getResourceAsStream("/" + bookImage));
+            Image image;
+            image = new Image(getClass().getResourceAsStream("/" + bookImage));
             imageView.setImage(image);
             imageView.setFitWidth(207);
             imageView.setFitHeight(300);
+
             Label label = new Label(bookTitle);
             label.setFont(Font.font("Corbel", 16));
             label.setTextFill(Color.web("#f0824f"));
+
+
+            StackPane stackPane = new StackPane();
+            stackPane.getChildren().add(imageView);
+
+
+
             VBox newVbox = new VBox();
-            newVbox.getChildren().add(imageView);
+            newVbox.getChildren().add(stackPane);
             newVbox.getChildren().add(label);
             newVbox.setPrefWidth(207);
             newVbox.setPrefHeight(320);
             newVbox.getStyleClass().add("book-vbox");
+
             imageView.setOnMouseClicked(event-> {
                 AnchorPane root;
                 try {

@@ -119,33 +119,69 @@ public class LibrarianController {
         String author= bookAuthor.getText();
         String length= bookLength.getText();
         String quantity= bookQuantity.getText();
-        String imageName = selectedFile.getName();
-        String imagePath = "images/books/" + imageName;
+        String imageName ;
+        String imagePath ;
         String destinationDirPath = "src/main/resources/images/books";
         String targetDirPath = "target/classes/images/books";
 
-        try {
-            // Create the destination directory if it does not exist
-            Path destinationDir = Paths.get(destinationDirPath);
-            if (!Files.exists(destinationDir)) {
-                Files.createDirectories(destinationDir);
-            }
-
-            // Copy the selected file to the destination directory
-            Path destinationPath = Paths.get(destinationDirPath, imageName);
-            Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
-
-            // Copy the selected file to the target directory
-            Path targetDir = Paths.get(targetDirPath);
-            if (!Files.exists(targetDir)) {
-                Files.createDirectories(targetDir);
-            }
-            Path targetPath = Paths.get(targetDirPath, imageName);
-            Files.copy(selectedFile.toPath(), targetPath, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            System.err.println("Failed to copy image: " + e.getMessage());
+        boolean flag= false;
+        if(title.isEmpty()){
+            bookTitle.setPromptText("Please enter a title");
+            flag= true;
         }
-        if(!title.isEmpty() && !author.isEmpty() && !length.isEmpty() && !cat.isEmpty() && !quantity.isEmpty() && !desc.isEmpty() && selectedFile != null){
+        if(cat.isEmpty()){
+            bookCat.setPromptText("Please enter a category");
+            flag=true;
+        }
+        if(desc.isEmpty()){
+            bookDesc.setPromptText("Please enter a description");
+            flag=true;
+        }
+        if(author.isEmpty()){
+            bookAuthor.setPromptText("Please enter an author name");
+            flag=true;
+        }
+        if(length.isEmpty()){
+            bookLength.setPromptText("Please enter book length");
+            flag=true;
+        }
+        if(quantity.isEmpty()){
+            bookQuantity.setPromptText("Please enter a quantity");
+            flag=true;
+        }
+
+        if(selectedFile == null){
+            imagePath = "images/nonfound.png" ;
+            imageName="nonfound.png";
+        }
+        else{
+            imagePath = "images/books/" + selectedFile.getName();
+            imageName=selectedFile.getName();
+            try {
+                // Create the destination directory if it does not exist
+                Path destinationDir = Paths.get(destinationDirPath);
+                if (!Files.exists(destinationDir)) {
+                    Files.createDirectories(destinationDir);
+                }
+
+                // Copy the selected file to the destination directory
+                Path destinationPath = Paths.get(destinationDirPath, imageName);
+                Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+
+                // Copy the selected file to the target directory
+                Path targetDir = Paths.get(targetDirPath);
+                if (!Files.exists(targetDir)) {
+                    Files.createDirectories(targetDir);
+                }
+                Path targetPath = Paths.get(targetDirPath, imageName);
+                Files.copy(selectedFile.toPath(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                System.err.println("Failed to copy image: " + e.getMessage());
+            }
+
+        }
+
+        if(!title.isEmpty() && !author.isEmpty() && !length.isEmpty() && !cat.isEmpty() && !quantity.isEmpty() && !desc.isEmpty()){
             Book newbook= new Book(title,author,desc,cat,imagePath,length,""+proxyUser.getRealUser().getId());
             newbook.setQuantity(quantity);
             if(proxyUser.getRealUser().addBook(newbook)){
