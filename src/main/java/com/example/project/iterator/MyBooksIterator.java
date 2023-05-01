@@ -123,6 +123,7 @@ public class MyBooksIterator implements Iterator {
                         // Set the content of the alert to the label
                         alert.getDialogPane().setContent(label);
                         alert.show();
+                        resultSet=this.getBooks();
 
                         this.show(gridPane);
                     }
